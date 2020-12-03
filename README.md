@@ -1,11 +1,12 @@
 `Testee.it` provides `E2E` base framework
 =================================
 
+<img width="125" alt="testee it" src="https://user-images.githubusercontent.com/1389501/101088233-a21a9000-35b3-11eb-991c-4b9a29036b74.png">
+
 Testee.it is a simple framework around Selenium which helps to start with end-to-end testing in easy way. It is intended as a replacement for the
 default `Selenium from scratch` approach, because it is comprehensive and is not so easy to understand at-a-glance. Testee.it helps you to concise
 best practices for e2e testing.
 
-<img width="125" alt="testee it" src="https://user-images.githubusercontent.com/1389501/101088233-a21a9000-35b3-11eb-991c-4b9a29036b74.png">
 
 ## Bullet points of `Testee.it` with `Selenium`
 

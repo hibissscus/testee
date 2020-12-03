@@ -14,11 +14,11 @@ best practices for e2e testing.
 
 ## How to run E2E tests
 
-1. We are using [gradle] for building this `E2E` project
-2. To be able to run E2E tests locally we need to install [chromedriver] or [geckodriver]
+1. We are using `gradle` for building this `E2E` project
+2. To be able to run E2E tests locally we need to install `chromedriver` or `geckodriver`
     - `brew cask install chromedriver` (or `brew upgrade --cask chromedriver `)
     - `brew install geckodriver` (or `brew upgrade geckodriver`)
-3. Go to `testee.it.e2e.tests` and run any of the test via IDEA with `test` profile (ex.: [GoogleTest])
+3. Go to `testee.it.e2e.tests` and run any of the test via IDEA with `test` profile (ex.: [MatryoshkaTest])
 4. For `Selenium` dockerization we can use [docker-compose.yml]
     - `docker-compose up e2e`
     - `docker-compose down`

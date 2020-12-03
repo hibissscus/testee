@@ -1,0 +1,46 @@
+version: "3.7"
+services:
+  e2e:
+    container_name: e2e
+    image: gradle:6.7.1-jdk8
+    working_dir: /code
+    volumes:
+      - .:/code
+    environment:
+      - TZ=Europe/Berlin
+      - GITHUB_USER=${GITHUB_USER}
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - E2E_TITLE=${E2E_TITLE}
+      - E2E_WEB_URL=${E2E_WEB_URL}
+      - E2E_MAIL_URL=${E2E_MAIL_URL}
+    depends_on:
+      - selenium-hub
+      - chrome
+    command: "gradle e2e -De2e.selenium=http://selenium-hub:4444/wd/hub"
+  selenium-hub:
+    container_name: selenium-hub
+    image: selenium/hub:3.141.59-20201119
+    environment:
+      - TZ=Europe/Berlin
+  chrome:
+    image: selenium/node-chrome:3.141.59-20201119
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
+    environment:
+      - TZ=Europe/Berlin
+      - HUB_HOST=selenium-hub
+      - NODE_MAX_INSTANCES=10
+      - NODE_MAX_SESSION=10
+  firefox:
+    image: selenium/node-firefox:3.141.59-20201119
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
+    environment:
+      - TZ=Europe/Berlin
+      - HUB_HOST=selenium-hub
+      - NODE_MAX_INSTANCES=10
+      - NODE_MAX_SESSION=10

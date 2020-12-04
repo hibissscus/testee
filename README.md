@@ -10,7 +10,7 @@
 
 - [automation] ability to run test checks for application in automation manner
 - [polymorphism] we are able to test on different browsers (Chrome, Firefox)
-- [representative] test-suite solution (testNG), reporting solution [reportNG](https://github.com/hibissscus/reportng) with screenshots.
+- [representative] test-suite solution [testNG](https://testng.org/doc/selenium.html), reporting solution [reportNG](https://github.com/hibissscus/reportng) with screenshots.
 
 ## How to run E2E tests
 
@@ -18,13 +18,13 @@
 2. To be able to run `E2E` tests locally we need to install `chromedriver` or `geckodriver`
     - `brew cask install chromedriver` (or `brew upgrade --cask chromedriver `)
     - `brew install geckodriver` (or `brew upgrade geckodriver`)
-3. Go to `testee.it.e2e.tests` and run any of the test via IDEA with `test` profile (ex.: [MatryoshkaTest])
-4. For `Selenium` dockerization we can use [docker-compose.yml]
+3. Go to `testee.it.e2e.tests` and run any of the test via IDEA with `test` profile (ex.: [MatryoshkaTest](https://github.com/hibissscus/testee/blob/master/src/test/kotlin/testee/it/tests/example/matryoshka/MatryoshkaTest.kt))
+4. For `Selenium` dockerization we can use [docker-compose.yml](https://github.com/hibissscus/testee/blob/master/docker-compose.yml)
     - `docker-compose up e2e`
     - `docker-compose down`
 
 ### Authors
 
-© 2019-2020 Sergei Stepanov https://github.com/hibissscus (Initial idea & implementation & enhancement
+© 2019-2020 [Sergei Stepanov](https://github.com/hibissscus) (Initial idea & implementation & enhancement
 
 <img width="125" alt="testee it" src="https://user-images.githubusercontent.com/1389501/101087856-21f42a80-35b3-11eb-8935-6ac32fb29471.png">

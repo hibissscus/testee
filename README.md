@@ -8,7 +8,7 @@
 
 ## Bullet points of `Testee.it` with `Selenium`
 
-- [automation] ability to run test checks for application in automation manner.
+- [automation] ability to run test checks for application in an automated manner.
 - [polymorphism] we are able to test on different browsers (Chrome, Firefox).
 - [representative] test-suite solution [testNG](https://testng.org/doc/selenium.html), reporting solution [reportNG](https://github.com/hibissscus/reportng) with screenshots.
 

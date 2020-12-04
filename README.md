@@ -10,8 +10,7 @@
 
 - [automation] ability to run test checks for application in automation manner
 - [polymorphism] we are able to test on different browsers (Chrome, Firefox)
-- [representative] test-suite solution (testNG), reporting solution [reportNG](https://github.com/hibissscus/reportng), screenshot solution (
-  integrated into reportNG)
+- [representative] test-suite solution (testNG), reporting solution [reportNG](https://github.com/hibissscus/reportng) with screenshots.
 
 ## How to run E2E tests
 

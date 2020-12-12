@@ -1,4 +1,4 @@
-package testee.it.tests
+package testee.it.e2e.core.test
 
 import org.apache.commons.io.FileUtils
 import org.openqa.selenium.OutputType
@@ -43,15 +43,15 @@ abstract class TestBase(
 ) {
 
     companion object {
-        private const val MAX_ALLOWED_RETRIES = 1
+        protected const val MAX_ALLOWED_RETRIES = 1
     }
 
     /**
      * This is an instance of [WebDriver] which will be used along the test.
      * It will be lazily initialized inside driverSetup method [TestBase.driverSetup].
      */
-    lateinit var driver: RemoteWebDriver private set
-    private var hasFailures = 0
+    lateinit var driver: RemoteWebDriver protected set
+    protected var hasFailures = 0
 
     /**
      * This part will be executed before any other test methods.
@@ -93,10 +93,10 @@ abstract class TestBase(
     /**
      * ... REPORTNG PART ...
      */
-    private lateinit var outputDirectory: String
-    private lateinit var className: String
-    private lateinit var testName: String
-    private lateinit var itc: ITestContext
+    protected lateinit var outputDirectory: String
+    protected lateinit var className: String
+    protected lateinit var testName: String
+    protected lateinit var itc: ITestContext
 
     @BeforeClass
     fun beforeClass(context: ITestContext) {
@@ -190,7 +190,7 @@ abstract class TestBase(
         }
     }
 
-    private fun getCorrespondingResultFor(context: ITestContext, method: Method): ITestResult? {
+    protected fun getCorrespondingResultFor(context: ITestContext, method: Method): ITestResult? {
         val allResults: MutableSet<ITestResult?> = HashSet()
         allResults.addAll(context.passedTests.allResults)
         allResults.addAll(context.failedTests.allResults)

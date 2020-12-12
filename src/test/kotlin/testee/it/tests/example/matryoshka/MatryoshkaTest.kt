@@ -1,9 +1,10 @@
 package testee.it.tests.example.matryoshka
 
-import com.bitminer.services.matryoshka.Emoji
+import org.testng.annotations.Ignore
 import org.testng.annotations.Test
+import testee.it.e2e.core.test.TestBase
+import testee.it.e2e.example.matryoshka.Emoji
 import testee.it.e2e.example.matryoshka.MatryoshkaPage
-import testee.it.tests.TestBase
 
 
 class MatryoshkaTest : TestBase() {

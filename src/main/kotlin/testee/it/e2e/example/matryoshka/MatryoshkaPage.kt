@@ -1,6 +1,5 @@
 package testee.it.e2e.example.matryoshka
 
-import com.bitminer.services.matryoshka.Emoji
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy

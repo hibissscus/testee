@@ -1,4 +1,4 @@
-package com.bitminer.services.matryoshka
+package testee.it.e2e.example.matryoshka
 
 enum class Emoji(val symbol: String) {
     E0("😀"),

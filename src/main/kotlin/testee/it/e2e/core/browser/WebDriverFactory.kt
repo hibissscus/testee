@@ -45,7 +45,7 @@ object WebDriverFactory {
     }
 
     /**
-     * Put focus on window
+     * Setup timeouts, navigate to initial page, put focus on window
      * @param driver for browser [Browser]
      * @param url for browser [Browser]
      */

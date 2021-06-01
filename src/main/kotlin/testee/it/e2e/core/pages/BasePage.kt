@@ -91,6 +91,14 @@ abstract class BasePage(private val driver: WebDriver) : Page {
     }
 
     /**
+     * Apply java [script] on this [Page]
+     */
+    fun <T : Page> T.applyJavaScript(script: String): T = apply {
+        val js = driver as JavascriptExecutor
+        js.executeScript(script)
+    }
+
+    /**
      * Retry function with amount of [tries] for lambda action with catch of [TimeoutException]
      */
     protected fun retry(tries: Int, action: () -> Unit) {
@@ -108,13 +116,13 @@ abstract class BasePage(private val driver: WebDriver) : Page {
      * Quick check of presents of the specified element by [By] selector
      */
     protected fun isPresent(by: By): Boolean {
-        setMinimumImplicitWait()
+        setMinImplicitWait()
         try {
             tick.until(presenceOfElementLocated(by))
         } catch (e: TimeoutException) {
             return false
         } finally {
-            setMaximumImplicitWait()
+            setMaxImplicitWait()
         }
         return true
     }
@@ -123,13 +131,13 @@ abstract class BasePage(private val driver: WebDriver) : Page {
      * Quick check of presents of the specified element by [By] selector
      */
     protected fun isNotPresent(by: By): Boolean {
-        setMinimumImplicitWait()
+        setMinImplicitWait()
         try {
             driver.findElements(by)
         } catch (e: TimeoutException) {
             return true
         } finally {
-            setMaximumImplicitWait()
+            setMaxImplicitWait()
         }
         return false
     }
@@ -138,13 +146,13 @@ abstract class BasePage(private val driver: WebDriver) : Page {
      * Quick check of visibility of the specified element by [By] selector
      */
     protected fun isVisible(by: By): Boolean {
-        setMinimumImplicitWait()
+        setMinImplicitWait()
         try {
             tick.until(visibilityOfElementLocated(by))
         } catch (e: TimeoutException) {
             return false
         } finally {
-            setMaximumImplicitWait()
+            setMaxImplicitWait()
         }
         return true
     }
@@ -153,13 +161,13 @@ abstract class BasePage(private val driver: WebDriver) : Page {
      * Quick check of visibility of the specified [WebElement]
      */
     protected fun isVisible(element: WebElement): Boolean {
-        setMinimumImplicitWait()
+        setMinImplicitWait()
         try {
             tick.until(visibilityOf(element))
         } catch (e: TimeoutException) {
             return false
         } finally {
-            setMaximumImplicitWait()
+            setMaxImplicitWait()
         }
         return true
     }
@@ -181,13 +189,13 @@ abstract class BasePage(private val driver: WebDriver) : Page {
      * Quick check of click ability [By] the locator of specified element
      */
     protected fun isClickable(by: By): Boolean {
-        setMinimumImplicitWait()
+        setMinImplicitWait()
         try {
             tick.until(elementToBeClickable(by))
         } catch (e: TimeoutException) {
             return false
         } finally {
-            setMaximumImplicitWait()
+            setMaxImplicitWait()
         }
         return true
     }
@@ -196,13 +204,13 @@ abstract class BasePage(private val driver: WebDriver) : Page {
      * Quick check of click ability of the specified [WebElement]
      */
     protected fun isClickable(element: WebElement): Boolean {
-        setMinimumImplicitWait()
+        setMinImplicitWait()
         try {
             tick.until(elementToBeClickable(element))
         } catch (e: TimeoutException) {
             return false
         } finally {
-            setMaximumImplicitWait()
+            setMaxImplicitWait()
         }
         return true
     }
@@ -220,17 +228,33 @@ abstract class BasePage(private val driver: WebDriver) : Page {
     }
 
     /**
+     * Set page load timeout in [milliseconds] for [driver]
+     */
+    fun setPageLoadTimeout(milliseconds: Long): BasePage = apply {
+        driver.manage().timeouts().pageLoadTimeout(milliseconds, TimeUnit.MILLISECONDS)
+        driver.manage().timeouts().implicitlyWait(milliseconds, TimeUnit.MILLISECONDS)
+        driver.manage().timeouts().setScriptTimeout(milliseconds, TimeUnit.MILLISECONDS)
+    }
+
+    /**
+     * Set implicit wait in [seconds] implicit wait for [driver]
+     */
+    fun setImplicitWait(seconds: Long = WAIT_MIN): BasePage = apply {
+        driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS)
+    }
+
+    /**
      * Set minimum [WAIT_MIN] implicit wait for [driver]
      */
-    fun setMinimumImplicitWait(): BasePage = apply {
-        driver.manage().timeouts().implicitlyWait(WAIT_MIN, TimeUnit.SECONDS)
+    fun setMinImplicitWait(): BasePage = apply {
+        setImplicitWait(WAIT_MIN)
     }
 
     /**
      * Set maximum [WAIT_MAX] implicit wait for [driver]
      */
-    fun setMaximumImplicitWait(): BasePage = apply {
-        driver.manage().timeouts().implicitlyWait(WAIT_MAX, TimeUnit.SECONDS)
+    fun setMaxImplicitWait(): BasePage = apply {
+        setImplicitWait(WAIT_MAX)
     }
 
     /**

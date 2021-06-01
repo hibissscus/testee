@@ -14,7 +14,6 @@ import org.openqa.selenium.safari.SafariDriver
 import org.openqa.selenium.safari.SafariOptions
 import testee.it.e2e.core.pages.BasePage
 import java.net.URL
-import java.util.HashMap
 import java.util.concurrent.TimeUnit
 
 

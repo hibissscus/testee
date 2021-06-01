@@ -22,7 +22,6 @@ import testee.it.e2e.core.browser.WebDriverFactory.manageBrowser
 import testee.it.e2e.core.browser.WebDriverFactory.startBrowser
 import java.io.File
 import java.lang.reflect.Method
-import java.util.HashSet
 import java.util.logging.Level
 
 
@@ -39,6 +38,7 @@ abstract class TestBase(
     protected var mobile: Boolean = false,
     protected var media: Boolean = true,
     protected var fake: Boolean? = false,
+    protected var offline: Boolean = false,
     protected var selenium: String = ""
 ) {
 
@@ -57,13 +57,14 @@ abstract class TestBase(
      * This part will be executed before any other test methods.
      */
     @BeforeClass
-    @Parameters("url", "selenium", "browser", "headless", "mobile")
+    @Parameters("url", "selenium", "browser", "headless", "mobile", "offline")
     fun driverSetup(
         @Optional("") optUrl: String,
         @Optional("") optSelenium: String,
         @Optional("") optBrowser: String,
         @Optional("") optHeadless: String,
-        @Optional("") optMobile: String
+        @Optional("") optMobile: String,
+        @Optional("") optOffline: String = "false"
     ) {
 
         if (!Strings.isNullOrEmpty(optUrl)) url = optUrl.replace("_", "-")
@@ -71,6 +72,7 @@ abstract class TestBase(
         if (!Strings.isNullOrEmpty(optBrowser)) browser = Browser.valueOf(optBrowser)
         if (!Strings.isNullOrEmpty(optHeadless)) headless = optHeadless.toBoolean()
         if (!Strings.isNullOrEmpty(optMobile)) mobile = optMobile.toBoolean()
+        if (!Strings.isNullOrEmpty(optOffline)) offline = optOffline.toBoolean()
 
         driverStart()
     }

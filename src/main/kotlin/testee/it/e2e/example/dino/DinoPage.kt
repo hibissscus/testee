@@ -1,0 +1,43 @@
+package testee.it.e2e.example.dino
+
+import org.openqa.selenium.Keys
+import org.openqa.selenium.WebDriver
+import org.openqa.selenium.WebDriverException
+import org.openqa.selenium.WebElement
+import org.openqa.selenium.support.FindBy
+import org.openqa.selenium.support.ui.ExpectedConditions
+import org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable
+import testee.it.e2e.core.pages.BasePage
+
+class DinoPage(val driver: WebDriver) : BasePage(driver) {
+
+    @FindBy(css = "body")
+    private lateinit var body: WebElement
+
+    override fun navigate(url: String): DinoPage = apply {
+        try {
+            driver.navigate().to("chrome://dino/")
+        } catch (ex: WebDriverException) {
+        }
+    }
+
+    override fun isLoaded(): DinoPage = apply {
+        waitForLoaded()
+    }
+
+    override fun isOpened(s: String): DinoPage = apply {
+        wait.until(ExpectedConditions.urlToBe("chrome://dino/"))
+        wait.until(ExpectedConditions.visibilityOf(body))
+    }
+
+    fun start(): DinoPage = apply {
+        wait.until(elementToBeClickable(body)).sendKeys(Keys.SPACE)
+    }
+
+    fun cheat(): DinoPage = apply {
+        applyJavaScript(
+            "function keyDown(e){Podium={};var n=document.createEvent(\"KeyboardEvent\");Object.defineProperty(n,\"keyCode\",{get:function(){return this.keyCodeVal}}),n.initKeyboardEvent?n.initKeyboardEvent(\"keydown\",!0,!0,document.defaultView,e,e,\"\",\"\",!1,\"\"):n.initKeyEvent(\"keydown\",!0,!0,document.defaultView,!1,!1,!1,!1,e,0),n.keyCodeVal=e,document.body.dispatchEvent(n)}function keyUp(e){Podium={};var n=document.createEvent(\"KeyboardEvent\");Object.defineProperty(n,\"keyCode\",{get:function(){return this.keyCodeVal}}),n.initKeyboardEvent?n.initKeyboardEvent(\"keyup\",!0,!0,document.defaultView,e,e,\"\",\"\",!1,\"\"):n.initKeyEvent(\"keyup\",!0,!0,document.defaultView,!1,!1,!1,!1,e,0),n.keyCodeVal=e,document.body.dispatchEvent(n)}setInterval(function(){Runner.instance_.horizon.obstacles.length>0&&(Runner.instance_.horizon.obstacles[0].xPos<25*Runner.instance_.currentSpeed-Runner.instance_.horizon.obstacles[0].width/2&&Runner.instance_.horizon.obstacles[0].yPos>75&&(keyUp(40),keyDown(38)),Runner.instance_.horizon.obstacles[0].xPos<30*Runner.instance_.currentSpeed-Runner.instance_.horizon.obstacles[0].width/2&&Runner.instance_.horizon.obstacles[0].yPos<=75&&keyDown(40))},5);"
+        )
+    }
+
+}

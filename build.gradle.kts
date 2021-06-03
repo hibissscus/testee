@@ -2,11 +2,11 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 
 plugins {
-    id("org.jetbrains.kotlin.jvm") version ("1.4.21")
+    id("org.jetbrains.kotlin.jvm") version ("1.5.10")
     id("maven-publish")
 }
 
-group = "testee.it"
+group = "testee"
 version = "1.0.2"
 
 repositories {
@@ -17,8 +17,8 @@ repositories {
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
     // selenium
-    implementation("org.seleniumhq.selenium:selenium-support:3.141.59")
-    implementation("org.seleniumhq.selenium:selenium-java:3.141.59")
+    implementation("org.seleniumhq.selenium:selenium-support:4.0.0-beta-3")
+    implementation("org.seleniumhq.selenium:selenium-java:4.0.0-beta-3")
     // testng
     implementation("org.testng:testng:7.1.0")
     // reportng (+ json-20180813.jar okhttp-2.7.5.jar retrofit-1.9.0.jar velocity-dep-1.4.jar)

@@ -5,7 +5,7 @@ import testee.it.e2e.core.test.TestBase
 import testee.it.e2e.example.dino.DinoPage
 
 
-class DinoTest : TestBase(url = "", offline = true) {
+class DinoTest : TestBase(url = "chrome://dino/") {
 
     @Test
     fun `01 dino run`() {

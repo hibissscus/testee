@@ -37,8 +37,7 @@ abstract class TestBase(
     protected var headless: Boolean = false,
     protected var mobile: Boolean = false,
     protected var media: Boolean = true,
-    protected var fake: Boolean? = false,
-    protected var offline: Boolean = false,
+    protected var fake: String = "",
     protected var selenium: String = ""
 ) {
 
@@ -57,14 +56,13 @@ abstract class TestBase(
      * This part will be executed before any other test methods.
      */
     @BeforeClass
-    @Parameters("url", "selenium", "browser", "headless", "mobile", "offline")
+    @Parameters("url", "selenium", "browser", "headless", "mobile")
     fun driverSetup(
         @Optional("") optUrl: String,
         @Optional("") optSelenium: String,
         @Optional("") optBrowser: String,
         @Optional("") optHeadless: String,
         @Optional("") optMobile: String,
-        @Optional("") optOffline: String = "false"
     ) {
 
         if (!Strings.isNullOrEmpty(optUrl)) url = optUrl.replace("_", "-")
@@ -72,7 +70,6 @@ abstract class TestBase(
         if (!Strings.isNullOrEmpty(optBrowser)) browser = Browser.valueOf(optBrowser)
         if (!Strings.isNullOrEmpty(optHeadless)) headless = optHeadless.toBoolean()
         if (!Strings.isNullOrEmpty(optMobile)) mobile = optMobile.toBoolean()
-        if (!Strings.isNullOrEmpty(optOffline)) offline = optOffline.toBoolean()
 
         driverStart()
     }

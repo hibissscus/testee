@@ -1,9 +1,9 @@
 package testee.it.e2e.core.browser
 
 /**
- * Enum for all possible browser which we want to use.
+ * Enum for all possible [browser] which we want to use.
  */
-enum class Browser(val browserName: String) {
+enum class Browser(val browser: String) {
     FIREFOX("firefox"),
     CHROME("chrome"),
     EDGE("edge"),

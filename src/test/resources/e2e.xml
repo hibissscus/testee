@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite verbose="1" configfailurepolicy="continue" thread-count="1" parallel="tests" name="e2e">
+    <parameter name="url" value="${e2e.url}"/>
+    <parameter name="selenium" value="${e2e.selenium}"/>
+    <parameter name="browser" value="CHROME"/>
+    <parameter name="headless" value="true"/>
+    <test parallel="classes" name="dino">
+        <packages>
+            <package name="testee.it.tests.example.dino.*"/>
+        </packages>
+    </test>
+    <test parallel="classes" name="matryoshka">
+        <packages>
+            <package name="testee.it.tests.example.matryoshka.*"/>
+        </packages>
+    </test>
+</suite>

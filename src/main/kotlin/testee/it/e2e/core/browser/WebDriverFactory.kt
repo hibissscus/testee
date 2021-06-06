@@ -18,7 +18,7 @@ import java.time.Duration
 
 
 /**
- * Base class for web tests. It contains web driver [RemoteWebDriver]
+ * Base class for web tests which contains [RemoteWebDriver] web driver
  */
 object WebDriverFactory {
 
@@ -52,7 +52,7 @@ object WebDriverFactory {
     fun manageBrowser(driver: RemoteWebDriver, url: String, defaultWait: Long = BasePage.WAIT_MAX): RemoteWebDriver = driver.apply {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(defaultWait))
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(defaultWait))
-        driver.manage().timeouts().setScriptTimeout(Duration.ofSeconds(defaultWait))
+        driver.manage().timeouts().scriptTimeout = Duration.ofSeconds(defaultWait)
         driver.manage().deleteAllCookies()
 
         // info about browser versions
@@ -175,20 +175,22 @@ object WebDriverFactory {
             opt.addArguments("--use-fake-ui-for-media-stream")
             opt.addArguments("--use-fake-device-for-media-stream")
             if (!headless) {
-                opt.addArguments("--use-file-for-fake-video-capture=${System.getProperty("user.dir")}/src/test/resources/fakeA.mjpeg")
+                opt.addArguments("--use-file-for-fake-video-capture=${System.getProperty("user.dir")}/src/test/resources/fake/fakeA.mjpeg")
             }
         }
 
         val prefs = HashMap<String, Any>()
-        prefs["download.default_directory"] = System.getProperty("user.dir")
         // pass the argument 1 to allow and 2 to block
         prefs["profile.default_content_setting_values.media_stream_mic"] = if (media) 1 else 2
         prefs["profile.default_content_setting_values.media_stream_camera"] = if (media) 1 else 2
-        opt.setExperimentalOption("prefs", prefs)
 
         return if (!Strings.isNullOrEmpty(selenium) && headless) {
+            prefs["download.default_directory"] = "/home/seluser/"
+            opt.setExperimentalOption("prefs", prefs)
             RemoteWebDriver(URL(selenium), opt)
         } else {
+            prefs["download.default_directory"] = System.getProperty("user.dir")
+            opt.setExperimentalOption("prefs", prefs)
             ChromeDriver(opt)
         }
     }

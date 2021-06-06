@@ -14,7 +14,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocate
 import org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf
 import org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated
 import org.openqa.selenium.support.ui.WebDriverWait
-import java.util.concurrent.TimeUnit
+import java.time.Duration
+import java.time.LocalDate
+import java.time.LocalTime
 
 abstract class BasePage(private val driver: WebDriver) : Page {
 
@@ -23,8 +25,11 @@ abstract class BasePage(private val driver: WebDriver) : Page {
         const val WAIT_MIN = 2L
     }
 
-    protected val wait = WebDriverWait(driver, WAIT_MAX)
-    protected val tick = WebDriverWait(driver, WAIT_MIN)
+    protected val wait = WebDriverWait(driver, Duration.ofSeconds(WAIT_MAX))
+    protected val tick = WebDriverWait(driver, Duration.ofSeconds(WAIT_MIN))
+
+    protected val localDate: LocalDate = LocalDate.now()
+    protected val localTime: LocalTime = LocalTime.now()
 
     /**
      * Initialization for all elements on the page marked with annotation
@@ -79,23 +84,23 @@ abstract class BasePage(private val driver: WebDriver) : Page {
     }
 
     /**
-     * Insert [text] in specific [field] on this [Page]
+     * Insert [text] in specific [element] on this [Page]
      */
-    fun <T : Page> T.sendTextViaJavascript(field: WebElement, text: String): T = apply {
+    fun <T : Page> T.sendTextViaJavascript(element: WebElement, text: String): T = apply {
         val js = driver as JavascriptExecutor
         js.executeScript(
             "var elm = arguments[0], txt = arguments[1];\n" +
                     "  elm.value = txt;\n" +
-                    "  elm.dispatchEvent(new Event('input'));", field, text
+                    "  elm.dispatchEvent(new Event('input'));", element, text
         )
     }
 
     /**
-     * Apply java [script] on this [Page]
+     * Apply java [script] on this [Page] with [varargs]
      */
-    fun <T : Page> T.applyJavaScript(script: String): T = apply {
+    fun <T : Page> T.applyJavaScript(script: String, vararg varargs: Any): T = apply {
         val js = driver as JavascriptExecutor
-        js.executeScript(script)
+        js.executeScript(script, varargs)
     }
 
     /**
@@ -231,16 +236,16 @@ abstract class BasePage(private val driver: WebDriver) : Page {
      * Set page load timeout in [milliseconds] for [driver]
      */
     fun setPageLoadTimeout(milliseconds: Long): BasePage = apply {
-        driver.manage().timeouts().pageLoadTimeout(milliseconds, TimeUnit.MILLISECONDS)
-        driver.manage().timeouts().implicitlyWait(milliseconds, TimeUnit.MILLISECONDS)
-        driver.manage().timeouts().setScriptTimeout(milliseconds, TimeUnit.MILLISECONDS)
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofMillis(milliseconds))
+        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(milliseconds))
+        driver.manage().timeouts().scriptTimeout = Duration.ofMillis(milliseconds)
     }
 
     /**
      * Set implicit wait in [seconds] implicit wait for [driver]
      */
     fun setImplicitWait(seconds: Long = WAIT_MIN): BasePage = apply {
-        driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS)
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(seconds))
     }
 
     /**

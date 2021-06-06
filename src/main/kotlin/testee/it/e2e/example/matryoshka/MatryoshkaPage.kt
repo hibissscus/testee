@@ -30,7 +30,7 @@ class MatryoshkaPage(val driver: WebDriver) : BasePage(driver) {
 
     //- - - - - - - -
 
-    @FindBy(id = "tool-arrange")
+    @FindBy(css = "[for='transform-toggle']")
     private lateinit var toolArrange: WebElement
 
     @FindBy(id = "arrange-top")
@@ -84,8 +84,7 @@ class MatryoshkaPage(val driver: WebDriver) : BasePage(driver) {
 
 
     override fun navigate(url: String): MatryoshkaPage = apply {
-        driver.navigate().to("https://pixlr.com/x")
-        this.isLoaded().isOpened()
+        isLoaded().isOpened()
     }
 
     override fun isOpened(s: String): MatryoshkaPage = apply {
@@ -128,19 +127,14 @@ class MatryoshkaPage(val driver: WebDriver) : BasePage(driver) {
         sendTextViaJavascript(textInput, Emoji.values().random().symbol)
 
         wait.until(elementToBeClickable(toolArrange)).click()
-        wait.until(attributeContains(toolArrange, "class", "active"))
         wait.until(elementToBeClickable(toolArrangeTop)).click()
-        sendText(toolArrangeTop, "55")
+        sendText(toolArrangeTop, "45")
         wait.until(elementToBeClickable(toolArrangeLeft)).click()
         sendText(toolArrangeLeft, "90")
         wait.until(elementToBeClickable(toolArrangeWidth)).click()
         sendText(toolArrangeWidth, "360")
-
-        wait.until(elementToBeClickable(toolAddText)).click()
-        wait.until(elementToBeClickable(textFontPicker)).click()
-        wait.until(elementToBeClickable(fontArial)).click()
         wait.until(elementToBeClickable(textSize)).click()
-        sendText(textSize, "290")
+        sendText(textSize, "292")
 
         for (face in Emoji.values().copyOfRange(0, 10)) {
             wait.until(elementToBeClickable(layerListFirst)).click()

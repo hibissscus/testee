@@ -1,46 +1,74 @@
-version: "3.7"
+version: "3.9"
+# limitation:
+# - we are able to run not more then SE_NODE_MAX_SESSIONS session per cpu core (cpu limit)
+# - each node uses 2x250MB of RAM
+# - each node uses 256 MB of SSD disk space
 services:
   e2e:
     container_name: e2e
-    image: gradle:6.7.1-jdk8
+    image: gradle:7.0.0-jdk8
     working_dir: /code
     volumes:
-      - .:/code
+      - ./:/code
     environment:
       - TZ=Europe/Berlin
-      - GITHUB_USER=${GITHUB_USER}
-      - GITHUB_TOKEN=${GITHUB_TOKEN}
-      - E2E_TITLE=${E2E_TITLE}
-      - E2E_WEB_URL=${E2E_WEB_URL}
-      - E2E_MAIL_URL=${E2E_MAIL_URL}
     depends_on:
       - selenium-hub
       - chrome
-    command: "gradle e2e -De2e.selenium=http://selenium-hub:4444/wd/hub"
+      - firefox
+      - edge
+    command: "gradle e2e -De2e.url=https://www.google.com/ -De2e.selenium=http://selenium-hub:4444/wd/hub"
   selenium-hub:
     container_name: selenium-hub
-    image: selenium/hub:3.141.59-20201119
+    image: selenium/hub:4.0.0-beta-4-prerelease-20210517
+    ports:
+      - "4444:4444"
+      - "4443:4443"
+      - "4442:4442"
     environment:
       - TZ=Europe/Berlin
   chrome:
-    image: selenium/node-chrome:3.141.59-20201119
+    container_name: chrome
+    image: selenium/node-chrome:4.0.0-beta-4-prerelease-20210517
     volumes:
       - /dev/shm:/dev/shm
     depends_on:
       - selenium-hub
     environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SE_NODE_MAX_SESSIONS=1
       - TZ=Europe/Berlin
-      - HUB_HOST=selenium-hub
-      - NODE_MAX_INSTANCES=10
-      - NODE_MAX_SESSION=10
+    ports:
+      - "6901:5900"
   firefox:
-    image: selenium/node-firefox:3.141.59-20201119
+    container_name: firefox
+    image: selenium/node-firefox:4.0.0-beta-4-prerelease-20210517
     volumes:
       - /dev/shm:/dev/shm
     depends_on:
       - selenium-hub
     environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SE_NODE_MAX_SESSIONS=1
       - TZ=Europe/Berlin
-      - HUB_HOST=selenium-hub
-      - NODE_MAX_INSTANCES=10
-      - NODE_MAX_SESSION=10
+    ports:
+      - "6911:5900"
+  edge:
+    container_name: edge
+    image: selenium/node-edge:4.0.0-beta-4-prerelease-20210517
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SE_NODE_MAX_SESSIONS=1
+      - TZ=Europe/Berlin
+    ports:
+      - "6921:5900"

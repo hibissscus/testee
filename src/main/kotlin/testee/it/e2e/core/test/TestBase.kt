@@ -22,6 +22,7 @@ import testee.it.e2e.core.browser.WebDriverFactory.manageBrowser
 import testee.it.e2e.core.browser.WebDriverFactory.startBrowser
 import java.io.File
 import java.lang.reflect.Method
+import java.util.Locale
 import java.util.logging.Level
 
 
@@ -65,7 +66,7 @@ abstract class TestBase(
         @Optional("") optMobile: String,
     ) {
 
-        if (!Strings.isNullOrEmpty(optUrl)) url = optUrl.replace("_", "-")
+        if (!Strings.isNullOrEmpty(optUrl) && url.isBlank()) url = optUrl.replace("_", "-")
         if (!Strings.isNullOrEmpty(optSelenium)) selenium = optSelenium.replace("_", "-")
         if (!Strings.isNullOrEmpty(optBrowser)) browser = Browser.valueOf(optBrowser)
         if (!Strings.isNullOrEmpty(optHeadless)) headless = optHeadless.toBoolean()
@@ -160,8 +161,8 @@ abstract class TestBase(
             for (logEntry in lodEntries) {
                 println("__________________________________________________________")
                 when {
-                    logEntry.message.toLowerCase().contains("error") -> println("Error Message in Console:" + logEntry.message)
-                    logEntry.message.toLowerCase().contains("warning") -> println("Warning Message in Console:" + logEntry.message)
+                    logEntry.message.lowercase(Locale.getDefault()).contains("error") -> println("Error Message in Console:" + logEntry.message)
+                    logEntry.message.lowercase(Locale.getDefault()).contains("warning") -> println("Warning Message in Console:" + logEntry.message)
                     else -> println("Information Message in Console:" + logEntry.message)
                 }
             }

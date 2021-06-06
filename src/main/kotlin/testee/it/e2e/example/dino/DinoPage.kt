@@ -2,7 +2,6 @@ package testee.it.e2e.example.dino
 
 import org.openqa.selenium.Keys
 import org.openqa.selenium.WebDriver
-import org.openqa.selenium.WebDriverException
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 import org.openqa.selenium.support.ui.ExpectedConditions
@@ -15,10 +14,7 @@ class DinoPage(val driver: WebDriver) : BasePage(driver) {
     private lateinit var body: WebElement
 
     override fun navigate(url: String): DinoPage = apply {
-        try {
-            driver.navigate().to(url)
-        } catch (ex: WebDriverException) {
-        }
+        isLoaded().isOpened()
     }
 
     override fun isLoaded(): DinoPage = apply {
@@ -26,7 +22,6 @@ class DinoPage(val driver: WebDriver) : BasePage(driver) {
     }
 
     override fun isOpened(s: String): DinoPage = apply {
-        wait.until(ExpectedConditions.urlToBe("chrome://dino/"))
         wait.until(ExpectedConditions.visibilityOf(body))
     }
 
@@ -36,9 +31,15 @@ class DinoPage(val driver: WebDriver) : BasePage(driver) {
         )
     }
 
-    fun speed(velocity: Int): DinoPage = apply {
+    fun gameSpeed(velocity: Int): DinoPage = apply {
         applyJavaScript(
             "Runner.instance_.setSpeed($velocity)"
+        )
+    }
+
+    fun jumpVelocity(velocity: Int): DinoPage = apply {
+        applyJavaScript(
+            "Runner.instance_.tRex.setJumpVelocity($velocity)"
         )
     }
 

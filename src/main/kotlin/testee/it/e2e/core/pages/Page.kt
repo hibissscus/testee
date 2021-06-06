@@ -12,19 +12,19 @@ import org.openqa.selenium.interactions.Actions
 interface Page : WaitForSeconds, SelectDropdownOption {
 
     /**
-     * Navigate to this [Page] is opened
+     * Navigate to [url] of the [Page]
      */
     fun navigate(url: String = ""): Page
-
-    /**
-     * Check that this [Page] is opened
-     */
-    fun isOpened(s: String = ""): Page
 
     /**
      * Check that on [Page] are no loading process
      */
     fun isLoaded(): Page
+
+    /**
+     * Check that this [Page] is opened
+     */
+    fun isOpened(s: String = ""): Page
 
     /**
      * Apply particular [Actions] chain for specific [Page]

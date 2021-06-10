@@ -1,5 +1,6 @@
 package testee.it.e2e.core.pages
 
+import com.google.common.base.Strings
 import org.openqa.selenium.By
 import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.TimeoutException
@@ -8,9 +9,11 @@ import org.openqa.selenium.WebDriverException
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.interactions.Actions
 import org.openqa.selenium.support.PageFactory
+import org.openqa.selenium.support.ui.ExpectedConditions.attributeContains
 import org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable
 import org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf
 import org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated
+import org.openqa.selenium.support.ui.ExpectedConditions.refreshed
 import org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf
 import org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated
 import org.openqa.selenium.support.ui.WebDriverWait
@@ -68,19 +71,25 @@ abstract class BasePage(protected val driver: WebDriver) : Page {
     }
 
     /**
-     * Clear and send [text] to specific [WebElement] on this [Page]
+     * Clear and send [text] to specific [WebElement] on this [Page] and [checkPresence] of the text
      */
-    fun <T : Page> T.sendText(element: WebElement, text: String): T = apply {
-        wait.until(elementToBeClickable(element)).clear()
-        wait.until(elementToBeClickable(element)).sendKeys(text)
+    fun <T : Page> T.sendText(element: WebElement, text: String, checkPresence: Boolean = true): T = apply {
+        wait.until(refreshed(elementToBeClickable(element))).clear()
+        wait.until(refreshed(elementToBeClickable(element))).sendKeys(text)
+        if (checkPresence && !Strings.isNullOrEmpty(text)) {
+            wait.until(refreshed(attributeContains(element, "value", text)))
+        }
     }
 
     /**
-     * Clear and send [text] by specific [By] on this [Page]
+     * Clear and send [text] by specific [By] on this [Page] and [checkPresence] of the text
      */
-    fun <T : Page> T.sendText(by: By, text: String): T = apply {
-        wait.until(elementToBeClickable(by)).clear()
-        wait.until(elementToBeClickable(by)).sendKeys(text)
+    fun <T : Page> T.sendText(by: By, text: String, checkPresence: Boolean = true): T = apply {
+        wait.until(refreshed(elementToBeClickable(by))).clear()
+        wait.until(refreshed(elementToBeClickable(by))).sendKeys(text)
+        if (checkPresence && !Strings.isNullOrEmpty(text)) {
+            wait.until(refreshed(attributeContains(by, "value", text)))
+        }
     }
 
     /**

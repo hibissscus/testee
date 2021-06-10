@@ -11,7 +11,6 @@ class MatryoshkaTest : TestBase(url = "https://pixlr.com/x/") {
     @Test
     fun `01 create different emoji`() {
         MatryoshkaPage(driver)
-            .navigate()
             .closeAllModalDialogs()
             .pixlr()
             .saveImage(Emoji.E11)

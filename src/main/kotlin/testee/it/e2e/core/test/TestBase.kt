@@ -43,6 +43,7 @@ abstract class TestBase(
 ) {
 
     companion object {
+        protected const val MAX_WAIT = 25L
         protected const val MAX_ALLOWED_RETRIES = 1
     }
 
@@ -76,10 +77,17 @@ abstract class TestBase(
     }
 
     /**
+     * Default wait fo driver configuration
+     */
+    protected open fun defaultWait(): Long {
+        return 25L
+    }
+
+    /**
      * Start new instance of the [WebDriver]
      */
-    fun driverStart() {
-        driver = manageBrowser(startBrowser(browser, headless, mobile, media, fake, selenium), url)
+    protected open fun driverStart() {
+        driver = manageBrowser(startBrowser(browser, headless, mobile, media, fake, selenium), url, defaultWait())
     }
 
     /**

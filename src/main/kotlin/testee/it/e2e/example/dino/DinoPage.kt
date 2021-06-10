@@ -5,24 +5,15 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 import org.openqa.selenium.support.ui.ExpectedConditions
-import org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable
-import testee.it.e2e.core.pages.BasePage
+import testee.it.e2e.core.pages.AbstractPage
 
-class DinoPage(driver: WebDriver) : BasePage(driver) {
+class DinoPage(driver: WebDriver) : AbstractPage(driver) {
 
     @FindBy(css = "body")
     private lateinit var body: WebElement
 
-    override fun navigate(url: String): DinoPage = apply {
-        isLoaded().isOpened()
-    }
-
-    override fun isLoaded(): DinoPage = apply {
-        waitForLoaded()
-    }
-
     override fun isOpened(s: String): DinoPage = apply {
-        wait.until(ExpectedConditions.visibilityOf(body))
+        wait().until(ExpectedConditions.visibilityOf(body))
     }
 
     fun cheat(): DinoPage = apply {
@@ -44,6 +35,6 @@ class DinoPage(driver: WebDriver) : BasePage(driver) {
     }
 
     fun start(): DinoPage = apply {
-        wait.until(elementToBeClickable(body)).sendKeys(Keys.SPACE)
+        clickable(body).sendKeys(Keys.SPACE)
     }
 }

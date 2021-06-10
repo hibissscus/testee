@@ -12,7 +12,6 @@ import org.openqa.selenium.firefox.FirefoxProfile
 import org.openqa.selenium.remote.RemoteWebDriver
 import org.openqa.selenium.safari.SafariDriver
 import org.openqa.selenium.safari.SafariOptions
-import testee.it.e2e.core.pages.BasePage
 import java.net.URL
 import java.time.Duration
 
@@ -49,7 +48,7 @@ object WebDriverFactory {
      * @param driver for browser [Browser]
      * @param url for browser [Browser]
      */
-    fun manageBrowser(driver: RemoteWebDriver, url: String, defaultWait: Long = BasePage.WAIT_MAX): RemoteWebDriver = driver.apply {
+    fun manageBrowser(driver: RemoteWebDriver, url: String, defaultWait: Long): RemoteWebDriver = driver.apply {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(defaultWait))
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(defaultWait))
         driver.manage().timeouts().scriptTimeout = Duration.ofSeconds(defaultWait)

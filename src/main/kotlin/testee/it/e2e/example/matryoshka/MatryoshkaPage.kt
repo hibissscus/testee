@@ -4,10 +4,9 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 import org.openqa.selenium.support.ui.ExpectedConditions.attributeContains
-import org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable
-import testee.it.e2e.core.pages.BasePage
+import testee.it.e2e.core.pages.AbstractPage
 
-class MatryoshkaPage(driver: WebDriver) : BasePage(driver) {
+class MatryoshkaPage(driver: WebDriver) : AbstractPage(driver) {
 
     companion object {
         private const val IMAGE_URL = "https://i.ibb.co/3p6XkbM/matryoshka.png"
@@ -82,13 +81,8 @@ class MatryoshkaPage(driver: WebDriver) : BasePage(driver) {
     @FindBy(id = "save-image-height")
     private lateinit var saveImageHeight: WebElement
 
-
-    override fun navigate(url: String): MatryoshkaPage = apply {
-        isLoaded().isOpened()
-    }
-
     override fun isOpened(s: String): MatryoshkaPage = apply {
-        wait.until(elementToBeClickable(createNewFromUrl))
+        clickable(createNewFromUrl)
     }
 
     override fun isLoaded(): MatryoshkaPage = apply {
@@ -97,47 +91,45 @@ class MatryoshkaPage(driver: WebDriver) : BasePage(driver) {
 
     fun closeAllModalDialogs(): MatryoshkaPage = apply {
         if (isVisible(popup)) {
-            wait.until(elementToBeClickable(popup)).click()
+            click(popup)
         }
     }
 
     fun saveImage(value: Emoji) {
-        wait.until(elementToBeClickable(layerListFirst)).click()
+        click(layerListFirst)
         sendTextViaJavascript(textInput, value.symbol)
         waitForLoaded()
-        wait.until(elementToBeClickable(save)).click()
-        wait.until(elementToBeClickable(saveFilename))
+        click(save)
+        clickable(saveFilename)
         sendTextViaJavascript(saveFilename, value.symbol)
-        wait.until(elementToBeClickable(saveImageHeight))
+        clickable(saveImageHeight)
         sendText(saveImageHeight, "512")
-        wait.until(elementToBeClickable(dialogApply)).click()
+        click(dialogApply)
         waitForSeconds(1)
-        wait.until(attributeContains(dialogApply, "class", "positive"))
-        wait.until(elementToBeClickable(dialogCancel)).click()
-        wait.until(elementToBeClickable(toolAddText)).click()
+        wait().until(attributeContains(dialogApply, "class", "positive"))
+        click(dialogCancel)
+        click(toolAddText)
     }
 
     fun pixlr(): MatryoshkaPage = apply {
-        wait.until(elementToBeClickable(createNewFromUrl)).click()
-        wait.until(elementToBeClickable(imageUrl))
+        click(createNewFromUrl)
         sendText(imageUrl, IMAGE_URL)
-        wait.until(elementToBeClickable(dialogApply)).click()
-        wait.until(elementToBeClickable(addLayer)).click()
-        wait.until(elementToBeClickable(addLayerText)).click()
+        click(dialogApply)
+        click(addLayer)
+        click(addLayerText)
         sendTextViaJavascript(textInput, Emoji.values().random().symbol)
-
-        wait.until(elementToBeClickable(toolArrange)).click()
-        wait.until(elementToBeClickable(toolArrangeTop)).click()
+        click(toolArrange)
+        click(toolArrangeTop)
         sendText(toolArrangeTop, "45")
-        wait.until(elementToBeClickable(toolArrangeLeft)).click()
+        click(toolArrangeLeft)
         sendText(toolArrangeLeft, "90")
-        wait.until(elementToBeClickable(toolArrangeWidth)).click()
+        click(toolArrangeWidth)
         sendText(toolArrangeWidth, "360")
-        wait.until(elementToBeClickable(textSize)).click()
+        click(textSize)
         sendText(textSize, "292")
 
         for (face in Emoji.values().copyOfRange(0, 10)) {
-            wait.until(elementToBeClickable(layerListFirst)).click()
+            click(layerListFirst)
             sendTextViaJavascript(textInput, face.symbol)
         }
 

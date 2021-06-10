@@ -11,7 +11,6 @@ class DinoTest : TestBase(url = "chrome://dino/", browser = Browser.CHROME) {
     @Test
     fun `01 dino run`() {
         DinoPage(driver)
-            .navigate()
             .cheat()
             .start()
             .waitForSeconds(10)

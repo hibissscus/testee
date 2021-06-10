@@ -1,12 +1,12 @@
 version: "3.9"
 # limitation:
-# - we are able to run not more then SE_NODE_MAX_SESSIONS session per cpu core (cpu limit)
-# - each node uses 2x250MB of RAM
-# - each node uses 256 MB of SSD disk space
+# - we are able to run SE_NODE_MAX_SESSIONS session not more then cpu core we have (cpu limit)
+# - each node uses approximately 2x250MB of RAM
+# - each node uses approximately 256 MB of SSD disk space
 services:
   e2e:
     container_name: e2e
-    image: gradle:7.0.0-jdk8
+    image: gradle:7.0.2-jdk8
     working_dir: /code
     volumes:
       - ./:/code
@@ -17,10 +17,10 @@ services:
       - chrome
       - firefox
       - edge
-    command: "gradle e2e -De2e.url=https://www.google.com/ -De2e.selenium=http://selenium-hub:4444/wd/hub"
+    command: "gradle e2e -De2e.selenium=http://selenium-hub:4444"
   selenium-hub:
     container_name: selenium-hub
-    image: selenium/hub:4.0.0-beta-4-prerelease-20210517
+    image: selenium/hub:4.0.0-beta-4-20210608
     ports:
       - "4444:4444"
       - "4443:4443"
@@ -29,7 +29,7 @@ services:
       - TZ=Europe/Berlin
   chrome:
     container_name: chrome
-    image: selenium/node-chrome:4.0.0-beta-4-prerelease-20210517
+    image: selenium/node-chrome:4.0.0-beta-4-20210608
     volumes:
       - /dev/shm:/dev/shm
     depends_on:
@@ -44,7 +44,7 @@ services:
       - "6901:5900"
   firefox:
     container_name: firefox
-    image: selenium/node-firefox:4.0.0-beta-4-prerelease-20210517
+    image: selenium/node-firefox:4.0.0-beta-4-20210608
     volumes:
       - /dev/shm:/dev/shm
     depends_on:
@@ -59,7 +59,7 @@ services:
       - "6911:5900"
   edge:
     container_name: edge
-    image: selenium/node-edge:4.0.0-beta-4-prerelease-20210517
+    image: selenium/node-edge:4.0.0-beta-4-20210608
     volumes:
       - /dev/shm:/dev/shm
     depends_on:

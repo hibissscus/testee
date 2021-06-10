@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions
 import org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable
 import testee.it.e2e.core.pages.BasePage
 
-class DinoPage(val driver: WebDriver) : BasePage(driver) {
+class DinoPage(driver: WebDriver) : BasePage(driver) {
 
     @FindBy(css = "body")
     private lateinit var body: WebElement

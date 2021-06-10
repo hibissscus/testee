@@ -17,8 +17,8 @@ repositories {
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.10")
     // selenium
-    implementation("org.seleniumhq.selenium:selenium-support:4.0.0-beta-3")
-    implementation("org.seleniumhq.selenium:selenium-java:4.0.0-beta-3")
+    implementation("org.seleniumhq.selenium:selenium-support:4.0.0-beta-4")
+    implementation("org.seleniumhq.selenium:selenium-java:4.0.0-beta-4")
     // testng
     implementation("org.testng:testng:7.1.0")
     // reportng (+ json-20180813.jar okhttp-2.7.5.jar retrofit-1.9.0.jar velocity-dep-1.4.jar)
@@ -72,7 +72,6 @@ tasks.register<Test>("e2e") {
         suites("src/test/resources/e2e.xml")
         systemProperties = mapOf(
             "e2e.selenium" to System.getProperty("e2e.selenium", ""),
-            "e2e.url" to System.getProperty("e2e.url", "http://testee.it/"),
             "testee.it.reportng.title" to "testee-e2e",
             "testee.it.reportng.slack" to "false",
             "testee.it.reportng.slack.token" to "xxxx-xxxxxxxxxx-xxxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx",

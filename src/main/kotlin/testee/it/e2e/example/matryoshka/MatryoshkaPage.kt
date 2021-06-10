@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions.attributeContains
 import org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable
 import testee.it.e2e.core.pages.BasePage
 
-class MatryoshkaPage(val driver: WebDriver) : BasePage(driver) {
+class MatryoshkaPage(driver: WebDriver) : BasePage(driver) {
 
     companion object {
         private const val IMAGE_URL = "https://i.ibb.co/3p6XkbM/matryoshka.png"

@@ -18,7 +18,7 @@ import java.time.Duration
 import java.time.LocalDate
 import java.time.LocalTime
 
-abstract class BasePage(private val driver: WebDriver) : Page {
+abstract class BasePage(protected val driver: WebDriver) : Page {
 
     companion object {
         const val WAIT_MAX = 25L
@@ -42,14 +42,14 @@ abstract class BasePage(private val driver: WebDriver) : Page {
     /**
      * View specific [Page]
      */
-    override fun <T : Page> T.view(page: T): T = apply {
+    override fun <T : Page> view(page: T): Page = apply {
         navigate().isLoaded().isOpened()
     }
 
     /**
      * View specific [Page] and check the [title] on the [Page]
      */
-    override fun <T : Page> T.view(page: T, title: String): T = apply {
+    override fun <T : Page> view(page: T, title: String): Page = apply {
         navigate().isLoaded().isOpened(title)
     }
 

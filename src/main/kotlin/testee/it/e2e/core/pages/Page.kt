@@ -27,6 +27,17 @@ interface Page : WaitForSeconds, SelectDropdownOption {
     fun isOpened(s: String = ""): Page
 
     /**
+     * View specific [Page]
+     */
+    fun <T : Page> view(page: T): Page
+
+    /**
+     * View specific [Page] and check the [title] on the [Page]
+     */
+    fun <T : Page> view(page: T, title: String): Page
+
+
+    /**
      * Apply particular [Actions] chain for specific [Page]
      */
     fun <T : Page> T.applyAction(action: Actions): T
@@ -36,15 +47,6 @@ interface Page : WaitForSeconds, SelectDropdownOption {
      */
     fun <T : Page> T.click(element: WebElement): T
 
-    /**
-     * View specific [Page]
-     */
-    fun <T : Page> T.view(page: T): T
-
-    /**
-     * View specific [Page] and check the [title] on the [Page]
-     */
-    fun <T : Page> T.view(page: T, title: String): T
 
     /**
      * [WaitForSeconds]

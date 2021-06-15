@@ -3,7 +3,7 @@
 
 |     |     |
 ------|------
-| ![](https://user-images.githubusercontent.com/1389501/101088233-a21a9000-35b3-11eb-991c-4b9a29036b74.png) |  testee.it is a simple framework around Selenium which helps to start with end-to-end testing in easy way. It is intended as a replacement for the default `Selenium from scratch` approach, because it is comprehensive and is not easy to understand it at a glance. testee.it helps you to concise best practices for e2e testing. |
+| ![](https://user-images.githubusercontent.com/1389501/122058312-c7524b80-cdeb-11eb-8e7b-861a3caa9132.png) |  testee.it is a simple framework around Selenium which helps to start with end-to-end testing in easy way. It is intended as a replacement for the default `Selenium from scratch` approach, because it is comprehensive and is not easy to understand it at a glance. testee.it helps you to concise best practices for e2e testing. |
 |    |      |
 
 ## Bullet points of `testee.it` with `Selenium`

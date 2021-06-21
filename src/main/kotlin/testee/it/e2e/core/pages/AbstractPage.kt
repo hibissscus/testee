@@ -5,6 +5,11 @@ import org.openqa.selenium.support.PageFactory
 import org.openqa.selenium.support.ui.WebDriverWait
 import java.time.Duration
 
+/**
+ * Main [AbstractPage] which implement [Page] interface.
+ * All tests pages should extend this [AbstractPage]
+ * Those methods can be overridden
+ */
 abstract class AbstractPage(protected val driver: WebDriver) : Page {
 
     /**

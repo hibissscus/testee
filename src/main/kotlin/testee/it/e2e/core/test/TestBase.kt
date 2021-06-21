@@ -6,7 +6,6 @@ import org.openqa.selenium.TakesScreenshot
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.logging.LogType
 import org.openqa.selenium.remote.RemoteWebDriver
-import org.testng.IRetryAnalyzer
 import org.testng.ITestContext
 import org.testng.ITestResult
 import org.testng.SkipException
@@ -42,11 +41,6 @@ abstract class TestBase(
     protected var selenium: String = ""
 ) {
 
-    companion object {
-        protected const val MAX_WAIT = 25L
-        protected const val MAX_ALLOWED_RETRIES = 1
-    }
-
     /**
      * This is an instance of [WebDriver] which will be used along the test.
      * It will be lazily initialized inside driverSetup method [TestBase.driverSetup].
@@ -81,6 +75,13 @@ abstract class TestBase(
      */
     protected open fun defaultWait(): Long {
         return 25L
+    }
+
+    /**
+     * Default wait fo driver configuration
+     */
+    protected open fun maxRetries(): Int {
+        return RetryAnalyzer.maxRetries
     }
 
     /**
@@ -120,7 +121,7 @@ abstract class TestBase(
 
         synchronized(this) {
             // skip all other test methods if we have errors
-            if (hasFailures >= MAX_ALLOWED_RETRIES) {
+            if (hasFailures >= maxRetries()) {
                 throw SkipException("Skipping this test")
             }
         }
@@ -141,7 +142,7 @@ abstract class TestBase(
         // in case if we allow retry for the first method in a test class
         if (itc.allTestMethods.first().methodName == testName) {
             val results = getCorrespondingResultFor(itc, method)
-            if (results != null && (itc.allTestMethods.first().getRetryAnalyzer(results) as RetryAnalyzer).retries == MAX_ALLOWED_RETRIES) {
+            if (results != null && (itc.allTestMethods.first().getRetryAnalyzer(results) as RetryAnalyzer).retries == maxRetries()) {
                 // clean up test results from duplication if we do retry
                 itc.skippedTests.allResults.forEach { i ->
                     if (itc.skippedTests.allMethods.contains(i.method)) {
@@ -181,21 +182,6 @@ abstract class TestBase(
         val screenshotFile = (driver as TakesScreenshot).getScreenshotAs(OutputType.FILE)
         val outputFolder = "${outputDirectory}/images/$className/$testName.png"
         FileUtils.copyFile(screenshotFile, File(outputFolder))
-    }
-
-    /**
-     * ... RETRY ANALYZER ...
-     */
-    class RetryAnalyzer : IRetryAnalyzer {
-        var retries = 0
-        override fun retry(result: ITestResult): Boolean {
-            retries++
-            if (retries <= MAX_ALLOWED_RETRIES && !result.isSuccess) {
-                println("Retry test: " + result.method + ", " + retries + " out of " + MAX_ALLOWED_RETRIES)
-                return true
-            }
-            return false
-        }
     }
 
     protected fun getCorrespondingResultFor(context: ITestContext, method: Method): ITestResult? {

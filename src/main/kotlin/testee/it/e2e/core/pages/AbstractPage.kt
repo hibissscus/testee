@@ -42,6 +42,7 @@ abstract class AbstractPage(protected val driver: WebDriver) : Page {
 
     override fun <T : Page> navigate(page: T, url: String): T = page.apply {
         driver().navigate().to(url)
+        view(page)
     }
 
     /**

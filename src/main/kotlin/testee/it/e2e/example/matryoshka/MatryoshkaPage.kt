@@ -105,7 +105,6 @@ class MatryoshkaPage(driver: WebDriver) : AbstractPage(driver) {
         clickable(saveImageHeight)
         sendText(saveImageHeight, "512")
         click(dialogApply)
-        waitForSeconds(1)
         wait().until(attributeContains(dialogApply, "class", "positive"))
         click(dialogCancel)
         click(toolAddText)

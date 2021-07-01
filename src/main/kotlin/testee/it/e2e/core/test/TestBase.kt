@@ -26,7 +26,7 @@ import java.lang.reflect.Method
  * This class is an entry point for all e2e tests in test suite.
  *
  * All test method names should start with something like: `01 test`, `02 test`, `03 test`,
- * Any instance of TestBase will execute test methods by the method name, in lexicographic order.
+ * Any instance of [TestBase] will execute test methods by the method name, in lexicographic order.
  */
 abstract class TestBase(
     protected var url: String = "",

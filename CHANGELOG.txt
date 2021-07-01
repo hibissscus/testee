@@ -1,3 +1,11 @@
-Changes in version 1.0.0
+Changes in version 1.0.2
+------------------------
+* AbstractPage and Page interfaces
+
+Changes in version 1.0.1
+------------------------
+* Move to build.gradle.kts
+
+Changes in version 1.0.2
 ------------------------
 * Initial implementation

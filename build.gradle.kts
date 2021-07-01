@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "testee"
-version = "1.3.6"
+version = "1.0.2"
 
 repositories {
     mavenCentral()
@@ -78,5 +78,18 @@ tasks.register<Test>("e2e") {
             "testee.it.reportng.slack.token" to "xxxx-xxxxxxxxxx-xxxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx",
             "testee.it.reportng.slack.channel" to "xxxx"
         )
+    }
+}
+
+tasks {
+    jar {
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+        from(
+            configurations.runtimeClasspath.get()
+                .onEach { println("add from dependencies: ${it.name}") }
+                .map { if (it.isDirectory) it else zipTree(it) })
+        val sourcesMain = sourceSets.main.get()
+        sourcesMain.allSource.forEach { println("add from sources: ${it.name}") }
+        from(sourcesMain.output)
     }
 }

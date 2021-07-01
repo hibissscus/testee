@@ -5,8 +5,9 @@ import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 import org.openqa.selenium.support.ui.ExpectedConditions.attributeContains
 import testee.it.e2e.core.pages.AbstractPage
+import testee.it.e2e.example.BasePage
 
-class MatryoshkaPage(driver: WebDriver) : AbstractPage(driver) {
+class MatryoshkaPage(driver: WebDriver) : BasePage(driver) {
 
     companion object {
         private const val IMAGE_URL = "https://i.ibb.co/3p6XkbM/matryoshka.png"
@@ -81,12 +82,8 @@ class MatryoshkaPage(driver: WebDriver) : AbstractPage(driver) {
     @FindBy(id = "save-image-height")
     private lateinit var saveImageHeight: WebElement
 
-    override fun isOpened(s: String): MatryoshkaPage = apply {
+    override fun <P : AbstractPage> P.isOpened(s: String): P = apply {
         clickable(createNewFromUrl)
-    }
-
-    override fun isLoaded(): MatryoshkaPage = apply {
-        waitForLoaded()
     }
 
     fun closeAllModalDialogs(): MatryoshkaPage = apply {

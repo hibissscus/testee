@@ -39,32 +39,4 @@ abstract class AbstractPage(protected val driver: WebDriver) : Page {
     override fun tick(): WebDriverWait {
         return WebDriverWait(driver, Duration.ofSeconds(waitMin()))
     }
-
-    override fun <T : Page> navigate(page: T, url: String): T = page.apply {
-        driver().navigate().to(url)
-        view(page)
-    }
-
-    /**
-     * Check that on [Page] are no loading process.
-     */
-    override fun isLoaded(): AbstractPage = apply {
-        waitForLoaded()
-    }
-
-
-    /**
-     * View specific [Page]
-     */
-    override fun <T : Page> view(page: T): T = page.apply {
-        isLoaded().isOpened()
-    }
-
-
-    /**
-     * View specific [Page] and check the [title] on the [Page]
-     */
-    override fun <T : Page> view(page: T, title: String): T = page.apply {
-        isLoaded().isOpened(title)
-    }
 }

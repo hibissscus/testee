@@ -6,7 +6,7 @@ interface WaitForSeconds {
      *
      * @param timeoutInSeconds timeout in seconds for wait
      */
-    fun waitForSeconds(timeoutInSeconds: Int) {
+    fun <P : AbstractPage> P.waitForSeconds(timeoutInSeconds: Int): P = apply {
         Thread.sleep((timeoutInSeconds * 1000).toLong())
     }
 }

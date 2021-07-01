@@ -2,34 +2,48 @@ package testee.it.e2e.core.pages
 
 /**
  * Main [Page] interface with default methods for page manipulation.
- * All tests pages should implement this interface.
  */
-interface Page : ApplyAction, Checks, Click,
-    Retry, SelectDropdownOption, SendText,
-    WaitForLoaded, WaitForSeconds {
-
-    /**
-     * Check that on [Page] are no loading process
-     */
-    fun isLoaded(): Page
+interface Page : ApplyAction, Checks, Click, Retry, SelectDropdownOption, SendText, WaitForLoaded, WaitForSeconds {
 
     /**
      * Check that this [Page] is opened
      */
-    fun isOpened(s: String = ""): Page
+    fun <P : AbstractPage> P.isOpened(s: String = ""): P
 
     /**
-     * Navigate to [url] of the [Page]
+     * Check that on [Page] are no loading process
      */
-    fun <T : Page> navigate(page: T, url: String = ""): T
+    fun <P : AbstractPage> P.isLoaded(): P = apply {
+        waitForLoaded()
+    }
+
+    /**
+     * Navigate to [url] of for this [Page]
+     */
+    fun <P : AbstractPage> P.navigate(url: String): P = apply {
+        driver().navigate().to(url)
+        view(this)
+    }
+
+    /**
+     * Navigate to new [Page] by [url]
+     */
+    fun <P : AbstractPage> P.navigate(page: P, url: String): P = apply {
+        driver().navigate().to(url)
+        view(page)
+    }
 
     /**
      * View specific [Page]
      */
-    fun <T : Page> view(page: T): T
+    fun <P : AbstractPage> P.view(page: P): P = page.apply {
+        isLoaded().isOpened()
+    }
 
     /**
      * View specific [Page] and check the [title] on the [Page]
      */
-    fun <T : Page> view(page: T, title: String): T
+    fun <P : AbstractPage> P.view(page: P, title: String): P = page.apply {
+        isLoaded().isOpened(title)
+    }
 }

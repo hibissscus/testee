@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("java")
-    id("org.jetbrains.kotlin.jvm") version ("1.5.10")
+    id("org.jetbrains.kotlin.jvm") version ("1.5.20")
 }
 
 group = "testee"
@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.10")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.20")
     // selenium
     implementation("org.seleniumhq.selenium:selenium-support:4.0.0-beta-4")
     implementation("org.seleniumhq.selenium:selenium-java:4.0.0-beta-4")

@@ -6,13 +6,14 @@ import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 import org.openqa.selenium.support.ui.ExpectedConditions
 import testee.it.e2e.core.pages.AbstractPage
+import testee.it.e2e.example.BasePage
 
-class DinoPage(driver: WebDriver) : AbstractPage(driver) {
+class DinoPage(driver: WebDriver) : BasePage(driver) {
 
     @FindBy(css = "body")
     private lateinit var body: WebElement
 
-    override fun isOpened(s: String): DinoPage = apply {
+    override fun <P : AbstractPage> P.isOpened(s: String): P = apply {
         wait().until(ExpectedConditions.visibilityOf(body))
     }
 

@@ -43,7 +43,7 @@ abstract class TestBase(
 
     /**
      * This is an instance of [WebDriver] which will be used along the test.
-     * It will be lazily initialized inside driverSetup method [TestBase.driverSetup].
+     * It will be lazily initialized  inside driverSetup method [TestBase.driverSetup].
      */
     lateinit var driver: RemoteWebDriver protected set
     protected var hasFailures = 0

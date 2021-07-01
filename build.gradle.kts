@@ -15,6 +15,7 @@ repositories {
 }
 
 dependencies {
+    // kotlin
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.20")
     // selenium
     implementation("org.seleniumhq.selenium:selenium-support:4.0.0-beta-4")

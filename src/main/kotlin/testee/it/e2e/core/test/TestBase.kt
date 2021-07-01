@@ -4,7 +4,6 @@ import org.apache.commons.io.FileUtils
 import org.openqa.selenium.OutputType
 import org.openqa.selenium.TakesScreenshot
 import org.openqa.selenium.WebDriver
-import org.openqa.selenium.logging.LogType
 import org.openqa.selenium.remote.RemoteWebDriver
 import org.testng.ITestContext
 import org.testng.ITestResult
@@ -21,8 +20,6 @@ import testee.it.e2e.core.browser.WebDriverFactory.manageBrowser
 import testee.it.e2e.core.browser.WebDriverFactory.startBrowser
 import java.io.File
 import java.lang.reflect.Method
-import java.util.Locale
-import java.util.logging.Level
 
 
 /**
@@ -155,36 +152,13 @@ abstract class TestBase(
         }
     }
 
-    /**
-     * ... LOGGING PART ...
-     */
-    @AfterMethod
-    fun logJavaScriptConsoleError() {
-        if (browser == Browser.CHROME && false) {
-            val logs = driver.manage().logs()
-            val logEntries = logs.get(LogType.BROWSER)
-            val lodEntries = logEntries.all.filter { logEntry -> logEntry.level == Level.SEVERE }.toList()
-            if (lodEntries.isNotEmpty()) {
-                println("$className: `$testName`")
-            }
-            for (logEntry in lodEntries) {
-                println("__________________________________________________________")
-                when {
-                    logEntry.message.lowercase(Locale.getDefault()).contains("error") -> println("Error Message in Console:" + logEntry.message)
-                    logEntry.message.lowercase(Locale.getDefault()).contains("warning") -> println("Warning Message in Console:" + logEntry.message)
-                    else -> println("Information Message in Console:" + logEntry.message)
-                }
-            }
-        }
-    }
-
     fun takeScreenShot() {
         val screenshotFile = (driver as TakesScreenshot).getScreenshotAs(OutputType.FILE)
         val outputFolder = "${outputDirectory}/images/$className/$testName.png"
         FileUtils.copyFile(screenshotFile, File(outputFolder))
     }
 
-    protected fun getCorrespondingResultFor(context: ITestContext, method: Method): ITestResult? {
+    fun getCorrespondingResultFor(context: ITestContext, method: Method): ITestResult? {
         val allResults: MutableSet<ITestResult?> = HashSet()
         allResults.addAll(context.passedTests.allResults)
         allResults.addAll(context.failedTests.allResults)

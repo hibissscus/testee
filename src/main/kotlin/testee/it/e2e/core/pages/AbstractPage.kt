@@ -57,7 +57,7 @@ abstract class AbstractPage(protected val driver: WebDriver) : Page {
     /**
      * Navigate to [url] of for this [Page]
      */
-    fun <P : AbstractPage> P.navigate(url: String): P {
+    fun <P : AbstractPage> P.open(url: String): P {
         driver().navigate().to(url)
         return view(this)
     }
@@ -65,7 +65,7 @@ abstract class AbstractPage(protected val driver: WebDriver) : Page {
     /**
      * Navigate to new [Page] by [url]
      */
-    fun <P : AbstractPage> P.navigate(page: P, url: String): P {
+    fun <P : AbstractPage> P.open(page: P, url: String): P {
         driver().navigate().to(url)
         return view(page)
     }

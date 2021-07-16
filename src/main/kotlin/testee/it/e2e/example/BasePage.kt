@@ -11,6 +11,14 @@ import testee.it.e2e.core.pages.AbstractPage
 abstract class BasePage(driver: WebDriver) : AbstractPage(driver) {
 
     companion object {
+        fun <P : AbstractPage> P.open(url: String): P {
+            return open(url)
+        }
+
+        fun <P : BasePage> P.open(page: P, url: String): P {
+            return open(page, url)
+        }
+
         fun <P : BasePage> P.waitForSeconds(timeoutInSeconds: Int): P {
             return waitForSeconds(timeoutInSeconds)
         }

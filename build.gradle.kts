@@ -3,11 +3,11 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("java")
-    id("org.jetbrains.kotlin.jvm") version ("1.5.20")
+    id("org.jetbrains.kotlin.jvm") version ("1.5.30")
 }
 
 group = "testee"
-version = "1.0.2"
+version = "1.0.3"
 
 repositories {
     mavenCentral()
@@ -16,23 +16,13 @@ repositories {
 
 dependencies {
     // kotlin
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.20")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.30")
     // selenium
     implementation("org.seleniumhq.selenium:selenium-support:4.0.0-beta-4")
     implementation("org.seleniumhq.selenium:selenium-java:4.0.0-beta-4")
     // testng
-    implementation("org.testng:testng:7.1.0")
-    // reportng (+ json-20180813.jar okhttp-2.7.5.jar retrofit-1.9.0.jar velocity-dep-1.4.jar)
-    implementation("com.github.hibissscus:reportng:1.3.6")
-    // templating
-    implementation("org.apache.pdfbox:pdfbox:1.2.1")
-    implementation("commons-io:commons-io:1.3.2")
-    implementation("com.google.inject:guice:3.0")
-    implementation("velocity:velocity-dep:1.4")
-    // slack
-    implementation("com.squareup.retrofit:retrofit:1.9.0")
-    implementation("com.squareup.okhttp:okhttp:2.7.5")
-    implementation("org.json:json:20180813")
+    implementation("org.testng:testng:7.4.0")
+    implementation("com.github.hibissscus:reportng:1.3.7")
 }
 
 // Customise the "compileKotlin" task.

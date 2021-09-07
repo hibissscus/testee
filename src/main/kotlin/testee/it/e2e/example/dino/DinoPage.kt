@@ -4,8 +4,7 @@ import org.openqa.selenium.Keys
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
-import org.openqa.selenium.support.ui.ExpectedConditions
-import testee.it.e2e.core.pages.AbstractPage
+import org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf
 import testee.it.e2e.example.BasePage
 
 class DinoPage(driver: WebDriver) : BasePage(driver) {
@@ -13,8 +12,8 @@ class DinoPage(driver: WebDriver) : BasePage(driver) {
     @FindBy(css = "body")
     private lateinit var body: WebElement
 
-    override fun <P : AbstractPage> P.isOpened(s: String): P = apply {
-        wait().until(ExpectedConditions.visibilityOf(body))
+    override fun isOpened(): BasePage = apply {
+        wait().until(visibilityOf(body))
     }
 
     fun cheat(): DinoPage = apply {

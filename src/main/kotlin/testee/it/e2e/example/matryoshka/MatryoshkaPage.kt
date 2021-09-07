@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 import org.openqa.selenium.support.ui.ExpectedConditions.attributeContains
-import testee.it.e2e.core.pages.AbstractPage
 import testee.it.e2e.example.BasePage
 
 class MatryoshkaPage(driver: WebDriver) : BasePage(driver) {
@@ -82,7 +81,7 @@ class MatryoshkaPage(driver: WebDriver) : BasePage(driver) {
     @FindBy(id = "save-image-height")
     private lateinit var saveImageHeight: WebElement
 
-    override fun <P : AbstractPage> P.isOpened(s: String): P = apply {
+    override fun isOpened(): MatryoshkaPage = apply {
         clickable(createNewFromUrl)
     }
 

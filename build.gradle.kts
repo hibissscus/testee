@@ -11,7 +11,9 @@ version = "1.0.3"
 
 repositories {
     mavenCentral()
-    maven { setUrl("https://jitpack.io") }
+    maven {
+        url = uri("https://jitpack.io")
+    }
 }
 
 dependencies {
@@ -77,6 +79,17 @@ tasks {
         duplicatesStrategy = DuplicatesStrategy.EXCLUDE
         from(
             configurations.runtimeClasspath.get()
+                .filter { !it.name.contains("java") }
+                .filter { !it.name.contains("kotlin") }
+                .filter { !it.name.contains("selenium") }
+                .filter { !it.name.contains("maven") }
+                .filter { !it.name.contains("testng") }
+                .filter { !it.name.contains("slf4j") }
+                .filter { !it.name.contains("opentelemetry") }
+                .filter { !it.name.contains("netty") }
+                .filter { !it.name.contains("spring-beans") }
+                .filter { !it.name.contains("spring-jcl") }
+                .filter { !it.name.contains("spring-core") }
                 .onEach { println("add from dependencies: ${it.name}") }
                 .map { if (it.isDirectory) it else zipTree(it) })
         val sourcesMain = sourceSets.main.get()

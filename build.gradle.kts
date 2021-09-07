@@ -2,8 +2,10 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 
 plugins {
-    id("java")
-    id("org.jetbrains.kotlin.jvm") version ("1.5.30")
+    java
+    kotlin("jvm") version "1.5.30"
+    id("maven-publish")
+    id("org.jetbrains.dokka") version "1.4.10.2"
 }
 
 group = "testee"
@@ -18,12 +20,12 @@ repositories {
 
 dependencies {
     // kotlin
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.30")
+    implementation(kotlin("stdlib"))
     // selenium
     implementation("org.seleniumhq.selenium:selenium-support:4.0.0-beta-4")
     implementation("org.seleniumhq.selenium:selenium-java:4.0.0-beta-4")
     // testng
-    implementation("org.testng:testng:7.4.0")
+    testImplementation("org.testng", "testng", "7.4.0")
     // reportng
     implementation("com.github.hibissscus:reportng:1.3.7")
 }

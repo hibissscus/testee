@@ -8,9 +8,6 @@ plugins {
     id("org.jetbrains.dokka") version "1.4.10.2"
 }
 
-group = "testee"
-version = "1.0.3"
-
 repositories {
     mavenCentral()
     maven {
@@ -76,22 +73,39 @@ tasks.register<Test>("e2e") {
     }
 }
 
+group = "testee"
+version = "1.0.3"
+
+val dokkaJavadocJar by tasks.creating(Jar::class) {
+    dependsOn(tasks.dokkaJavadoc)
+    from(tasks.dokkaJavadoc.get().outputDirectory.get())
+    archiveClassifier.set("javadoc")
+}
+
+val sourcesJar by tasks.creating(Jar::class) {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    archiveClassifier.set("sources")
+    from(sourceSets.getByName("main").allSource)
+    from("LICENSE.txt") { into("META-INF") }
+    from("README.md") { into("META-INF") }
+}
+
 tasks {
     jar {
         duplicatesStrategy = DuplicatesStrategy.EXCLUDE
         from(
             configurations.runtimeClasspath.get()
-                .filter { !it.name.contains("java") }
-                .filter { !it.name.contains("kotlin") }
-                .filter { !it.name.contains("selenium") }
-                .filter { !it.name.contains("maven") }
-                .filter { !it.name.contains("testng") }
-                .filter { !it.name.contains("slf4j") }
-                .filter { !it.name.contains("opentelemetry") }
-                .filter { !it.name.contains("netty") }
-                .filter { !it.name.contains("spring-beans") }
-                .filter { !it.name.contains("spring-jcl") }
-                .filter { !it.name.contains("spring-core") }
+                .filter {
+                    it.name.contains("reportng")
+                            || it.name.contains("velocity")
+                            || it.name.contains("spring-web")
+                            || it.name.contains("commons-collections")
+                            || it.name.contains("commons-lang")
+                            || it.name.contains("gson")
+                            || it.name.contains("guice")
+                            || it.name.contains("inject")
+                            || it.name.contains("aopalliance")
+                }
                 .onEach { println("add from dependencies: ${it.name}") }
                 .map { if (it.isDirectory) it else zipTree(it) })
         val sourcesMain = sourceSets.main.get()

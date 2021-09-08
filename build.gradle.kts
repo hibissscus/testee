@@ -4,9 +4,13 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     java
     kotlin("jvm") version "1.5.30"
-    id("maven-publish")
+    id("java-library")
     id("org.jetbrains.dokka") version "1.4.10.2"
 }
+
+group = "testee"
+version = "1.0.3"
+
 
 repositories {
     mavenCentral()
@@ -108,15 +112,5 @@ tasks {
         val sourcesMain = sourceSets.main.get()
         sourcesMain.allSource.forEach { println("add from sources: ${it.name}") }
         from(sourcesMain.output)
-    }
-}
-
-publishing {
-    repositories {
-        maven {
-            group = "testee"
-            name = "testee"
-            version = "1.0.3"
-        }
     }
 }

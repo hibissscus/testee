@@ -73,9 +73,6 @@ tasks.register<Test>("e2e") {
     }
 }
 
-group = "testee"
-version = "1.0.3"
-
 val dokkaJavadocJar by tasks.creating(Jar::class) {
     dependsOn(tasks.dokkaJavadoc)
     from(tasks.dokkaJavadoc.get().outputDirectory.get())
@@ -111,5 +108,15 @@ tasks {
         val sourcesMain = sourceSets.main.get()
         sourcesMain.allSource.forEach { println("add from sources: ${it.name}") }
         from(sourcesMain.output)
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            group = "testee"
+            name = "testee"
+            version = "1.0.3"
+        }
     }
 }

@@ -6,7 +6,7 @@ plugins {
     kotlin("jvm") version "1.5.30"
     id("maven-publish")
     id("java-library")
-    id("org.jetbrains.dokka") version "1.4.10.2"
+    id("org.jetbrains.dokka") version "1.5.0"
 }
 
 group = "testee"
@@ -23,10 +23,10 @@ dependencies {
     // kotlin
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.30")
     // selenium
-    implementation("org.seleniumhq.selenium:selenium-support:4.0.0-beta-4")
-    implementation("org.seleniumhq.selenium:selenium-java:4.0.0-beta-4")
+    implementation("org.seleniumhq.selenium:selenium-support:4.0.0-rc-1")
+    implementation("org.seleniumhq.selenium:selenium-java:4.0.0-rc-1")
     // testng
-    testImplementation("org.testng", "testng", "7.4.0")
+    implementation("org.testng", "testng", "7.4.0")
     // reportng
     implementation("com.github.hibissscus:reportng:1.3.7")
 }
@@ -69,6 +69,7 @@ tasks.register<Test>("e2e") {
         suites("src/test/resources/e2e.xml")
         systemProperties = mapOf(
             "e2e.selenium" to System.getProperty("e2e.selenium", ""),
+            "e2e.url" to System.getProperty("e2e.url", ""),
             "testee.it.reportng.title" to "testee-e2e",
             "testee.it.reportng.slack" to "false",
             "testee.it.reportng.slack.token" to "xxxx-xxxxxxxxxx-xxxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx",

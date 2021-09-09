@@ -3,7 +3,11 @@ package testee.it.e2e.core.pages
 import org.openqa.selenium.By
 import org.openqa.selenium.TimeoutException
 import org.openqa.selenium.WebElement
-import org.openqa.selenium.support.ui.ExpectedConditions.*
+import org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable
+import org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf
+import org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated
+import org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf
+import org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated
 import java.time.Duration
 
 interface Checks : Driver {
@@ -13,7 +17,7 @@ interface Checks : Driver {
     fun setPageLoadTimeout(milliseconds: Long) {
         driver().manage().timeouts().pageLoadTimeout(Duration.ofMillis(milliseconds))
         driver().manage().timeouts().implicitlyWait(Duration.ofMillis(milliseconds))
-        driver().manage().timeouts().scriptTimeout = Duration.ofMillis(milliseconds)
+        driver().manage().timeouts().scriptTimeout(Duration.ofMillis(milliseconds))
     }
 
     /**

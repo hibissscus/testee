@@ -51,7 +51,7 @@ object WebDriverFactory {
     fun manageBrowser(driver: RemoteWebDriver, url: String, defaultWait: Long): RemoteWebDriver = driver.apply {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(defaultWait))
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(defaultWait))
-        driver.manage().timeouts().scriptTimeout = Duration.ofSeconds(defaultWait)
+        driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(defaultWait))
         driver.manage().deleteAllCookies()
 
         // info about browser versions
@@ -146,11 +146,6 @@ object WebDriverFactory {
     private fun initChromeWebDriver(headless: Boolean, mobile: Boolean, media: Boolean, fake: String, selenium: String): RemoteWebDriver {
         val opt = ChromeOptions()
 
-        opt.setAcceptInsecureCerts(true)
-        opt.addArguments("--window-size=1300,900")
-        opt.addArguments("--lang=en")
-        opt.addArguments("--incognito")
-
         if (mobile) {
             val deviceMetrics = HashMap<String, Any>()
             deviceMetrics["width"] = 800
@@ -171,12 +166,20 @@ object WebDriverFactory {
         }
 
         if (fake.isNotEmpty()) {
+            opt.addArguments("--disable-user-media-security")
             opt.addArguments("--use-fake-ui-for-media-stream")
             opt.addArguments("--use-fake-device-for-media-stream")
             if (!headless) {
                 opt.addArguments("--use-file-for-fake-video-capture=${System.getProperty("user.dir")}/src/test/resources/fake/fakeA.mjpeg")
             }
         }
+
+        opt.setAcceptInsecureCerts(true)
+        //opt.addArguments("--incognito")
+        opt.addArguments("--disable-notifications")
+        opt.addArguments("--window-size=1280,800")
+        opt.addArguments("--lang=de")
+
 
         val prefs = HashMap<String, Any>()
         // pass the argument 1 to allow and 2 to block
@@ -188,7 +191,7 @@ object WebDriverFactory {
             opt.setExperimentalOption("prefs", prefs)
             RemoteWebDriver(URL(selenium), opt)
         } else {
-            prefs["download.default_directory"] = System.getProperty("user.dir")
+            prefs["download.default_directory"] = System.getProperty("user.dir") + "/downloads"
             opt.setExperimentalOption("prefs", prefs)
             ChromeDriver(opt)
         }

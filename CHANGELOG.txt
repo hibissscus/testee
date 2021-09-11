@@ -1,11 +1,15 @@
-Changes in version 1.0.2
+Changes in version 1.0.3
 ------------------------
-* AbstractPage and Page interfaces
-
-Changes in version 1.0.1
-------------------------
-* Move to build.gradle.kts
+* Kotlin 1.5.30
+* ReportNG 1.3.7
+* Updated Slack integration
+* build.gradle.kts publishing
+* selenium-java 4.0.0-rc-1
 
 Changes in version 1.0.2
 ------------------------
 * Initial implementation
+
+Changes in version 1.0.1
+------------------------
+* Move to build.gradle.kts

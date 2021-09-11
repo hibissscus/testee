@@ -8,12 +8,11 @@ import testee.it.e2e.example.BasePage
 
 class MatryoshkaPage(driver: WebDriver) : BasePage(driver) {
 
-    companion object {
-        private const val IMAGE_URL = "https://i.ibb.co/3p6XkbM/matryoshka.png"
-    }
-
     @FindBy(id = "close-contest")
     private lateinit var popup: WebElement
+
+    @FindBy(css = ".accept")
+    private lateinit var acceptCookieAgreement: WebElement
 
     @FindBy(id = "home-open-url")
     private lateinit var createNewFromUrl: WebElement
@@ -91,6 +90,19 @@ class MatryoshkaPage(driver: WebDriver) : BasePage(driver) {
         }
     }
 
+    fun acceptCookieAgreement(): MatryoshkaPage = apply {
+        if (isVisible(acceptCookieAgreement)) {
+            click(acceptCookieAgreement)
+        }
+    }
+
+
+    fun openNewImageFromUrl(imageUrlStr: String): MatryoshkaPage = apply {
+        click(createNewFromUrl)
+        sendText(imageUrl, imageUrlStr)
+        click(dialogApply)
+    }
+
     fun saveImage(value: Emoji) {
         click(layerListFirst)
         sendTextViaJavascript(textInput, value.symbol)
@@ -106,10 +118,7 @@ class MatryoshkaPage(driver: WebDriver) : BasePage(driver) {
         click(toolAddText)
     }
 
-    fun pixlr(): MatryoshkaPage = apply {
-        click(createNewFromUrl)
-        sendText(imageUrl, IMAGE_URL)
-        click(dialogApply)
+    fun pixlrPreset(): MatryoshkaPage = apply {
         click(addLayer)
         click(addLayerText)
         sendTextViaJavascript(textInput, Emoji.values().random().symbol)
@@ -122,12 +131,15 @@ class MatryoshkaPage(driver: WebDriver) : BasePage(driver) {
         sendText(toolArrangeWidth, "360")
         click(textSize)
         sendText(textSize, "292")
+    }
 
+
+    fun emoji(waitForSeconds: Int = 0): MatryoshkaPage = apply {
         for (face in Emoji.values().copyOfRange(0, 10)) {
             click(layerListFirst)
             sendTextViaJavascript(textInput, face.symbol)
+            waitForSeconds(waitForSeconds)
         }
-
         println("Finished")
     }
 }

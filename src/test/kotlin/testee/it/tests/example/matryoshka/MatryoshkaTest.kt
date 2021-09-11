@@ -9,12 +9,17 @@ import testee.it.e2e.example.matryoshka.MatryoshkaPage
 
 class MatryoshkaTest : TestBase(url = "https://pixlr.com/x/") {
 
+    private val imageUrl = "https://i.ibb.co/3p6XkbM/matryoshka.png"
+
     @Test
     fun `01 create different emoji`() {
         MatryoshkaPage(driver)
             .open(url)
             .closeAllModalDialogs()
-            .pixlr()
+            .acceptCookieAgreement()
+            .openNewImageFromUrl(imageUrl)
+            .pixlrPreset()
+            .emoji()
             .saveImage(Emoji.E11)
     }
 

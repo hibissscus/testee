@@ -51,7 +51,7 @@ object WebDriverFactory {
     fun manageBrowser(driver: RemoteWebDriver, url: String, defaultWait: Long): RemoteWebDriver = driver.apply {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(defaultWait))
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(defaultWait))
-        driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(defaultWait))
+        driver.manage().timeouts().scriptTimeout = Duration.ofSeconds(defaultWait)
         driver.manage().deleteAllCookies()
 
         // info about browser versions

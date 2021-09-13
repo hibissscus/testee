@@ -23,8 +23,8 @@ dependencies {
     // kotlin
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.30")
     // selenium
-    implementation("org.seleniumhq.selenium:selenium-support:4.0.0-rc-1")
-    implementation("org.seleniumhq.selenium:selenium-java:4.0.0-rc-1")
+    implementation("org.seleniumhq.selenium:selenium-support:4.0.0-beta-3")
+    implementation("org.seleniumhq.selenium:selenium-java:4.0.0-beta-3")
     // testng
     implementation("org.testng", "testng", "7.4.0")
     // reportng

@@ -17,7 +17,7 @@ interface Checks : Driver {
     fun setPageLoadTimeout(milliseconds: Long) {
         driver().manage().timeouts().pageLoadTimeout(Duration.ofMillis(milliseconds))
         driver().manage().timeouts().implicitlyWait(Duration.ofMillis(milliseconds))
-        driver().manage().timeouts().scriptTimeout(Duration.ofMillis(milliseconds))
+        driver().manage().timeouts().scriptTimeout = Duration.ofMillis(milliseconds)
     }
 
     /**

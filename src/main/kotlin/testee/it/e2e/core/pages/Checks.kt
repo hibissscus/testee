@@ -8,23 +8,23 @@ import org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf
 import org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated
 import org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf
 import org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated
-import java.util.concurrent.TimeUnit
+import java.time.Duration
 
 interface Checks : Driver {
     /**
      * Set page load timeout in [milliseconds] for [driver]
      */
     fun setPageLoadTimeout(milliseconds: Long) {
-        driver().manage().timeouts().pageLoadTimeout(milliseconds, TimeUnit.NANOSECONDS)
-        driver().manage().timeouts().implicitlyWait(milliseconds, TimeUnit.NANOSECONDS)
-        driver().manage().timeouts().setScriptTimeout(milliseconds, TimeUnit.NANOSECONDS)
+        driver().manage().timeouts().pageLoadTimeout(Duration.ofMillis(milliseconds))
+        driver().manage().timeouts().implicitlyWait(Duration.ofMillis(milliseconds))
+        driver().manage().timeouts().scriptTimeout(Duration.ofMillis(milliseconds))
     }
 
     /**
      * Set implicit wait in [seconds] implicit wait for [driver]
      */
     fun setImplicitWait(seconds: Long = waitMax()) {
-        driver().manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS)
+        driver().manage().timeouts().implicitlyWait(Duration.ofSeconds(seconds))
     }
 
     /**

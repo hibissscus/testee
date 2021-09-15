@@ -16,35 +16,56 @@ services:
       - selenium-hub
       - chrome
       - firefox
-    command: "gradle e2e -De2e.selenium=http://selenium-hub:4444/wd/hub"
+      - edge
+    command: "gradle e2e -De2e.selenium=http://selenium-hub:4444"
   selenium-hub:
     container_name: selenium-hub
-    image: selenium/hub:3.141.59-20210913
+    image: selenium/hub:4.0.0-rc-1-20210902
     ports:
-      - 4444:4444
+      - "4444:4444"
+      - "4443:4443"
+      - "4442:4442"
     environment:
       - TZ=Europe/Berlin
   chrome:
     container_name: chrome
-    image: selenium/node-chrome:3.141.59-20210913
-    volumes:
-      - /dev/shm:/dev/shm
+    image: selenium/node-chrome:4.0.0-rc-1-20210902
+    shm_size: 2gb
     depends_on:
       - selenium-hub
     environment:
-      - HUB_HOST=selenium-hub
-      - NODE_MAX_INSTANCES=5
-      - NODE_MAX_SESSION=5
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SE_NODE_MAX_SESSIONS=1
       - TZ=Europe/Berlin
+    ports:
+      - "6901:5900"
   firefox:
     container_name: firefox
-    image: selenium/node-firefox:3.141.59-20210913
-    volumes:
-      - /dev/shm:/dev/shm
+    image: selenium/node-firefox:4.0.0-rc-1-20210902
+    shm_size: 2gb
     depends_on:
       - selenium-hub
     environment:
-      - HUB_HOST=selenium-hub
-      - NODE_MAX_INSTANCES=5
-      - NODE_MAX_SESSION=5
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SE_NODE_MAX_SESSIONS=1
       - TZ=Europe/Berlin
+    ports:
+      - "6911:5900"
+  edge:
+    container_name: edge
+    image: selenium/node-edge:4.0.0-rc-1-20210902
+    shm_size: 2gb
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SE_NODE_MAX_SESSIONS=1
+      - TZ=Europe/Berlin
+    ports:
+      - "6921:5900"

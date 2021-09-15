@@ -3,7 +3,6 @@ package testee.it.e2e.core.pages
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.support.PageFactory
 import org.openqa.selenium.support.ui.WebDriverWait
-import java.time.Duration
 
 /**
  * Main [AbstractPage] which implement [Page] interface.
@@ -33,10 +32,10 @@ abstract class AbstractPage(protected val driver: WebDriver) : Page {
     }
 
     override fun wait(): WebDriverWait {
-        return WebDriverWait(driver, Duration.ofSeconds(waitMax()))
+        return WebDriverWait(driver, waitMax())
     }
 
     override fun tick(): WebDriverWait {
-        return WebDriverWait(driver, Duration.ofSeconds(waitMin()))
+        return WebDriverWait(driver, waitMax())
     }
 }

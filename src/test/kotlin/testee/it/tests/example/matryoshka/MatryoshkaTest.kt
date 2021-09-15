@@ -16,8 +16,6 @@ class MatryoshkaTest : TestBase(url = "https://pixlr.com/x/", browser = Browser.
     fun `01 create different emoji`() {
         MatryoshkaPage(driver)
             .open(url)
-            .closeAllModalDialogs()
-            .acceptCookieAgreement()
             .openNewImageFromUrl(imageUrl)
             .pixlrPreset()
             .emoji()

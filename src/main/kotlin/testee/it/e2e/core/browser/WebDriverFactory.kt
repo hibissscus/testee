@@ -4,16 +4,12 @@ import com.google.common.base.Strings
 import org.openqa.selenium.WebDriverException
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.chrome.ChromeOptions
-import org.openqa.selenium.edge.EdgeDriver
-import org.openqa.selenium.edge.EdgeOptions
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.firefox.FirefoxOptions
 import org.openqa.selenium.firefox.FirefoxProfile
 import org.openqa.selenium.remote.RemoteWebDriver
-import org.openqa.selenium.safari.SafariDriver
-import org.openqa.selenium.safari.SafariOptions
 import java.net.URL
-import java.time.Duration
+import java.util.concurrent.TimeUnit
 
 
 /**
@@ -38,8 +34,6 @@ object WebDriverFactory {
         return when (browser) {
             Browser.FIREFOX -> initFirefoxWebDriver(headless, media, fake, selenium)
             Browser.CHROME -> initChromeWebDriver(headless, mobile, media, fake, selenium)
-            Browser.EDGE -> initEdgeWebDriver(headless, media, fake, selenium)
-            Browser.SAFARI -> SafariDriver(SafariOptions())
         }
     }
 
@@ -49,9 +43,9 @@ object WebDriverFactory {
      * @param url for browser [Browser]
      */
     fun manageBrowser(driver: RemoteWebDriver, url: String, defaultWait: Long): RemoteWebDriver = driver.apply {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(defaultWait))
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(defaultWait))
-        driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(defaultWait))
+        driver.manage().timeouts().implicitlyWait(defaultWait, TimeUnit.SECONDS)
+        driver.manage().timeouts().pageLoadTimeout(defaultWait, TimeUnit.SECONDS)
+        driver.manage().timeouts().setScriptTimeout(defaultWait, TimeUnit.SECONDS)
         driver.manage().deleteAllCookies()
 
         // info about browser versions
@@ -76,19 +70,14 @@ object WebDriverFactory {
     fun getInfo(driver: RemoteWebDriver) {
         return when (driver) {
             is ChromeDriver -> {
-                println("Chrome: " + driver.capabilities.browserVersion)
+                println("Chrome: " + driver.capabilities.version)
                 println("ChromeDriver: " + (driver.capabilities.getCapability("chrome") as Map<*, *>)["chromedriverVersion"])
             }
             is FirefoxDriver -> {
-                println("Firefox: " + driver.capabilities.browserVersion)
-            }
-            is EdgeDriver -> {
-                println("Edge: " + driver.capabilities.browserVersion)
-            }
-            is SafariDriver -> {
-                println("Safari: " + driver.capabilities.browserVersion)
+                println("Firefox: " + driver.capabilities.version)
             }
             else -> {
+                println("TODO")
             }
         }
     }
@@ -194,46 +183,6 @@ object WebDriverFactory {
             prefs["download.default_directory"] = System.getProperty("user.dir") + "/downloads"
             opt.setExperimentalOption("prefs", prefs)
             ChromeDriver(opt)
-        }
-    }
-
-
-    /**
-     * Initialize driver and starts browser for [Browser.EDGE]
-     * @param headless - use or not headless mode
-     * @param media - use or not media
-     * @param selenium - selenium hub address
-     */
-    @Throws(Exception::class)
-    private fun initEdgeWebDriver(headless: Boolean, media: Boolean, fake: String, selenium: String): RemoteWebDriver {
-        val opt = EdgeOptions()
-
-        opt.setAcceptInsecureCerts(true)
-        opt.addArguments("--window-size=1300,900")
-        opt.addArguments("--lang=en")
-        opt.addArguments("--incognito")
-
-        if (headless) {
-            opt.setHeadless(headless)
-            opt.addArguments("--disable-dev-shm-usage")
-        }
-
-        if (fake.isNotEmpty()) {
-            opt.addArguments("--use-fake-ui-for-media-stream")
-            opt.addArguments("--use-fake-device-for-media-stream")
-        }
-
-        val prefs = HashMap<String, Any>()
-        prefs["download.default_directory"] = System.getProperty("user.dir")
-        // pass the argument 1 to allow and 2 to block
-        prefs["profile.default_content_setting_values.media_stream_mic"] = if (media) 1 else 2
-        prefs["profile.default_content_setting_values.media_stream_camera"] = if (media) 1 else 2
-        opt.setExperimentalOption("prefs", prefs)
-
-        return if (!Strings.isNullOrEmpty(selenium) && headless) {
-            RemoteWebDriver(URL(selenium), opt)
-        } else {
-            EdgeDriver(opt)
         }
     }
 }

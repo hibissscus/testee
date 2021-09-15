@@ -13,6 +13,13 @@ interface Click : Driver {
     }
 
     /**
+     *  Click on it specific element by [By] on the [Page]
+     */
+    fun clickable(element: By): WebElement {
+        return wait().until(ExpectedConditions.elementToBeClickable(element))
+    }
+
+    /**
      *  Click on it specific element [WebElement] on the [Page]
      */
     fun click(element: WebElement) {

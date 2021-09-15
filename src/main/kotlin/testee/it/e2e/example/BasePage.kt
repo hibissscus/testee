@@ -53,5 +53,22 @@ abstract class BasePage(driver: WebDriver) : AbstractPage(driver) {
             (page).isLoaded().isOpened()
             return page
         }
+
+        /**
+         * Create new tab for this [Page]
+         */
+        fun <P : BasePage> P.newTab(url: String): P {
+            createNewTab(url)
+            this.isLoaded().isOpened()
+            return this
+        }
+
+        /**
+         * Switch between browser tabs for this [Page]
+         */
+        fun <P : BasePage> P.switchTab(tabNumber: Int): P {
+            switchToTab(tabNumber)
+            return this
+        }
     }
 }

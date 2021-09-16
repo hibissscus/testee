@@ -1,6 +1,5 @@
 package testee.it.e2e.core.test
 
-import org.apache.commons.io.FileUtils
 import org.openqa.selenium.OutputType
 import org.openqa.selenium.TakesScreenshot
 import org.openqa.selenium.WebDriver
@@ -155,7 +154,7 @@ abstract class TestBase(
     fun takeScreenShot() {
         val screenshotFile = (driver as TakesScreenshot).getScreenshotAs(OutputType.FILE)
         val outputFolder = "${outputDirectory}/images/$className/$testName.png"
-        FileUtils.copyFile(screenshotFile, File(outputFolder))
+        screenshotFile.copyTo(File(outputFolder))
     }
 
     fun getCorrespondingResultFor(context: ITestContext, method: Method): ITestResult? {

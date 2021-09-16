@@ -1,11 +1,13 @@
 package testee.it.tests.example.slack
 
+import org.testng.SkipException
 import org.testng.annotations.Test
 import testee.it.e2e.core.browser.Browser
 import testee.it.e2e.core.test.TestBase
 import testee.it.e2e.example.BasePage.Companion.newTab
 import testee.it.e2e.example.BasePage.Companion.switchTab
 import testee.it.e2e.example.BasePage.Companion.view
+import testee.it.e2e.example.BasePage.Companion.waitForSeconds
 import testee.it.e2e.example.slack.api.SlackApiPage
 import testee.it.e2e.example.slack.model.Channels
 import testee.it.e2e.example.slack.model.Slack
@@ -38,6 +40,7 @@ class SlackTest : TestBase(url = Slack.WEB.slack, browser = Browser.CHROME) {
             .setToken(Tokens.TEST.token)
             .setChannel(Channels.TEST.channel)
             .setText(postMessage.text)
+            .waitForSeconds(2)
             .submit()
     }
 
@@ -46,6 +49,16 @@ class SlackTest : TestBase(url = Slack.WEB.slack, browser = Browser.CHROME) {
         SlackWebPage(driver)
             .switchTab(0)
             .findMessage(postMessage.text)
+            .waitForSeconds(2)
     }
 
+    @Test
+    fun `04 some exception`() {
+        assert(false) { "this test failed" }
+    }
+
+    @Test
+    fun `05 skipped test`() {
+        throw SkipException("this will be skipped")
+    }
 }

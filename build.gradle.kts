@@ -28,7 +28,7 @@ dependencies {
     // testng
     implementation("org.testng", "testng", "7.4.0")
     // reportng
-    implementation("com.github.hibissscus:reportng:1.3.7")
+    implementation("com.github.hibissscus:reportng:1.3.8")
 }
 
 // Customise the "compileKotlin" task.

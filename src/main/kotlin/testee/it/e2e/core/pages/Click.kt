@@ -27,6 +27,13 @@ interface Click : Driver {
     }
 
     /**
+     *  Click on it specific element [By] on the [Page]
+     */
+    fun click(element: By) {
+        wait().until(ExpectedConditions.elementToBeClickable(element)).click()
+    }
+
+    /**
      * Click on random [WebElement] and return its text.
      */
     fun clickOnRandomElement(by: By): String {

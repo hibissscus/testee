@@ -3,14 +3,14 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     java
-    kotlin("jvm") version "1.5.30"
+    kotlin("jvm") version "1.5.31"
     id("maven-publish")
     id("java-library")
     id("org.jetbrains.dokka") version "1.5.0"
 }
 
 group = "it.testee"
-version = "1.4.1"
+version = "1.4.2"
 
 repositories {
     mavenCentral()
@@ -21,13 +21,13 @@ repositories {
 
 dependencies {
     // kotlin
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.30")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.31")
     // selenium
     implementation("org.seleniumhq.selenium:selenium-java:4.0.0-rc-1")
     // testng
     implementation("org.testng", "testng", "7.4.0")
     // reportng
-    implementation("com.github.hibissscus:reportng:1.3.8")
+    implementation("com.github.hibissscus:reportng:1.3.9")
 }
 
 // Customise the "compileKotlin" task.
@@ -48,7 +48,7 @@ tasks {
         group = "verification"
         useTestNG {
             useDefaultListeners = false
-            listeners = setOf("testee.it.reportng.HTMLReporter")
+            listeners = setOf("testee.it.reportng.RuntimeTestListener", "testee.it.reportng.HTMLReporter")
             systemProperties = mapOf(
                 "testee.it.reportng.title" to "testee-e2e",
                 "testee.it.reportng.slack" to "false",
@@ -64,7 +64,7 @@ tasks.register<Test>("e2e") {
     group = "verification"
     useTestNG {
         useDefaultListeners = false
-        listeners = setOf("testee.it.reportng.HTMLReporter")
+        listeners = setOf("testee.it.reportng.RuntimeTestListener", "testee.it.reportng.HTMLReporter")
         suites("src/test/resources/e2e.xml")
         systemProperties = mapOf(
             "e2e.selenium" to System.getProperty("e2e.selenium", ""),

@@ -14,7 +14,8 @@ class PianoTest : TestBase(url = "https://virtualpiano.net", browser = Browser.C
     @Test
     fun `01 piano play with Mentor`() {
         PianoPage(driver)
-            .open("$url/?song-post-15552")
+            .open("$url/?song-post-" + Note.FLY.id)
+            //.open("$url/?song-post-" + Note.SYM40.id)
             .acceptAllCookies()
             .hideAdvertisement()
             .waitForSeconds(2)

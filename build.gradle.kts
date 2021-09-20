@@ -9,8 +9,8 @@ plugins {
     id("org.jetbrains.dokka") version "1.5.0"
 }
 
-group = "testee"
-version = "1.4.0"
+group = "it.testee"
+version = "1.4.1"
 
 repositories {
     mavenCentral()
@@ -23,7 +23,6 @@ dependencies {
     // kotlin
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.30")
     // selenium
-    implementation("org.seleniumhq.selenium:selenium-support:4.0.0-rc-1")
     implementation("org.seleniumhq.selenium:selenium-java:4.0.0-rc-1")
     // testng
     implementation("org.testng", "testng", "7.4.0")
@@ -119,9 +118,9 @@ tasks {
 publishing {
     publications {
         create<MavenPublication>("maven") {
-            groupId = "it.testee"
-            artifactId = "testee"
-            version = "1.0.3"
+            artifactId = rootProject.name
+            groupId = project.group.toString()
+            version = project.version.toString()
 
             from(components["java"])
         }

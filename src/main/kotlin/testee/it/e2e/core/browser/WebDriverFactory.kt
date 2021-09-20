@@ -175,7 +175,7 @@ object WebDriverFactory {
         }
 
         opt.setAcceptInsecureCerts(true)
-        //opt.addArguments("--incognito")
+        opt.addArguments("--incognito")
         opt.addArguments("--disable-notifications")
         opt.addArguments("--window-size=1280,800")
         opt.addArguments("--lang=de")

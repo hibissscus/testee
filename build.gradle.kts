@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "it.testee"
-version = "1.4.2"
+version = "1.4.3"
 
 repositories {
     mavenCentral()
@@ -27,7 +27,7 @@ dependencies {
     // testng
     implementation("org.testng", "testng", "7.4.0")
     // reportng
-    implementation("com.github.hibissscus:reportng:1.3.9")
+    implementation("com.github.hibissscus:reportng:1.4.0")
 }
 
 // Customise the "compileKotlin" task.
@@ -48,7 +48,7 @@ tasks {
         group = "verification"
         useTestNG {
             useDefaultListeners = false
-            listeners = setOf("testee.it.reportng.RuntimeTestListener", "testee.it.reportng.HTMLReporter")
+            listeners = setOf("testee.it.reportng.HTMLReporter")
             systemProperties = mapOf(
                 "testee.it.reportng.title" to "testee-e2e",
                 "testee.it.reportng.slack" to "false",

@@ -64,7 +64,7 @@ tasks.register<Test>("e2e") {
     group = "verification"
     useTestNG {
         useDefaultListeners = false
-        listeners = setOf("testee.it.reportng.RuntimeTestListener", "testee.it.reportng.HTMLReporter")
+        listeners = setOf("testee.it.reportng.HTMLReporterRuntime", "testee.it.reportng.HTMLReporter")
         suites("src/test/resources/e2e.xml")
         systemProperties = mapOf(
             "e2e.selenium" to System.getProperty("e2e.selenium", ""),

@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "it.testee"
-version = "1.4.4"
+version = "1.4.5"
 
 repositories {
     mavenCentral()
@@ -27,7 +27,7 @@ dependencies {
     // testng
     implementation("org.testng", "testng", "7.4.0")
     // reportng
-    implementation("com.github.hibissscus:reportng:1.4.1")
+    implementation("com.github.hibissscus:reportng:1.4.2")
 }
 
 // Customise the "compileKotlin" task.

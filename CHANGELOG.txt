@@ -1,3 +1,10 @@
+Changes in version 1.4.6
+------------------------
+* selenium 4 official release
+* selenium-java 4.0.0 public
+* selenium docker 4.0.0-20211013 public
+
+
 Changes in version 1.4.5
 ------------------------
 * reportng 1.4.2

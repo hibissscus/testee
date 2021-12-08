@@ -1,16 +1,13 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
-
 plugins {
     java
-    kotlin("jvm") version "1.5.31"
+    kotlin("jvm") version "1.6.0"
     id("maven-publish")
     id("java-library")
     id("org.jetbrains.dokka") version "1.5.0"
 }
 
 group = "it.testee"
-version = "1.4.6"
+version = "1.5.0"
 
 repositories {
     mavenCentral()
@@ -21,25 +18,13 @@ repositories {
 
 dependencies {
     // kotlin
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.31")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.0")
     // selenium
-    implementation("org.seleniumhq.selenium:selenium-java:4.0.0")
+    implementation("org.seleniumhq.selenium:selenium-java:4.1.0")
     // testng
     implementation("org.testng", "testng", "7.4.0")
     // reportng
     implementation("com.github.hibissscus:reportng:1.4.2")
-}
-
-// Customise the "compileKotlin" task.
-val compileKotlin by tasks.getting(KotlinCompile::class) {
-    kotlinOptions.jvmTarget = "1.8"
-    doLast { println("Finished compiling Kotlin source code") }
-}
-
-// Customise the "compileTestKotlin" task.
-val compileTestKotlin by tasks.getting(KotlinCompile::class) {
-    kotlinOptions.jvmTarget = "1.8"
-    doLast { println("Finished compiling Kotlin source code for testing") }
 }
 
 tasks {

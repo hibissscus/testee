@@ -8,7 +8,7 @@ import org.testng.ITestResult
  */
 class RetryAnalyzer : IRetryAnalyzer {
     companion object {
-        val maxRetries = 1
+        const val maxRetries = 1
     }
 
     var retries = 0

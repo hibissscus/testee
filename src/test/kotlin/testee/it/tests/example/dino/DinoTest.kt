@@ -14,7 +14,7 @@ class DinoTest : TestBase(url = "chrome://dino/", browser = Browser.CHROME) {
         DinoPage(driver)
             .cheat()
             .start()
-            .waitForSeconds(10)
+            .waitForSeconds(20)
     }
 
 }

@@ -20,7 +20,7 @@ services:
     command: "gradle e2e -De2e.selenium=http://selenium-hub:4444/wd/hub"
   selenium-hub:
     container_name: selenium-hub
-    image: selenium/hub:4.1.0-20211123
+    image: selenium/hub:4.1.1-20211217
     ports:
       - "4444:4444"
       - "4443:4443"
@@ -29,7 +29,7 @@ services:
       - TZ=Europe/Berlin
   chrome:
     container_name: chrome
-    image: selenium/node-chrome:4.1.0-20211123
+    image: selenium/node-chrome:4.1.1-20211217
     shm_size: 2gb
     depends_on:
       - selenium-hub
@@ -43,7 +43,7 @@ services:
       - "6901:5900"
   firefox:
     container_name: firefox
-    image: selenium/node-firefox:4.1.0-20211123
+    image: selenium/node-firefox:4.1.1-20211217
     shm_size: 2gb
     depends_on:
       - selenium-hub
@@ -57,7 +57,7 @@ services:
       - "6911:5900"
   edge:
     container_name: edge
-    image: selenium/node-edge:4.1.0-20211123
+    image: selenium/node-edge:4.1.1-20211217
     shm_size: 2gb
     depends_on:
       - selenium-hub

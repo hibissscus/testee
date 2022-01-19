@@ -4,33 +4,42 @@ import org.openqa.selenium.By
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.ui.ExpectedConditions
 
-interface Click : Driver {
+interface Click : Driver, Visibility, Checks {
     /**
-     *  Click on it specific element [WebElement] on the [Page]
+     *  Click on specific element [WebElement] on the [Page]
      */
     fun clickable(element: WebElement): WebElement {
         return wait().until(ExpectedConditions.elementToBeClickable(element))
     }
 
     /**
-     *  Click on it specific element by [By] on the [Page]
+     *  Click on specific element by [By] on the [Page]
      */
-    fun clickable(element: By): WebElement {
-        return wait().until(ExpectedConditions.elementToBeClickable(element))
+    fun clickable(by: By): WebElement {
+        return wait().until(ExpectedConditions.elementToBeClickable(by))
     }
 
     /**
-     *  Click on it specific element [WebElement] on the [Page]
+     *  Click on specific element [WebElement] on the [Page]
      */
     fun click(element: WebElement) {
         wait().until(ExpectedConditions.elementToBeClickable(element)).click()
     }
 
     /**
-     *  Click on it specific element [By] on the [Page]
+     *  Click on specific element [By] on the [Page]
      */
-    fun click(element: By) {
-        wait().until(ExpectedConditions.elementToBeClickable(element)).click()
+    fun click(by: By) {
+        wait().until(ExpectedConditions.elementToBeClickable(by)).click()
+    }
+
+    /**
+     *  Click on specific element [WebElement] on the [Page] if it is visible
+     */
+    fun clickIfVisible(element: WebElement) {
+        if (isVisible(element)) {
+            click(element)
+        }
     }
 
     /**

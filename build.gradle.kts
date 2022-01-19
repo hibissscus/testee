@@ -1,9 +1,9 @@
 plugins {
     java
-    kotlin("jvm") version "1.6.0"
+    kotlin("jvm") version "1.6.10"
     id("maven-publish")
     id("java-library")
-    id("org.jetbrains.dokka") version "1.5.0"
+    id("org.jetbrains.dokka") version "1.6.0"
 }
 
 group = "it.testee"
@@ -18,11 +18,11 @@ repositories {
 
 dependencies {
     // kotlin
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.0")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.10")
     // selenium
-    implementation("org.seleniumhq.selenium:selenium-java:4.1.0")
+    implementation("org.seleniumhq.selenium:selenium-java:4.1.1")
     // testng
-    implementation("org.testng", "testng", "7.4.0")
+    implementation("org.testng", "testng", "7.5")
     // reportng
     implementation("com.github.hibissscus:reportng:1.4.2")
 }
@@ -79,21 +79,11 @@ val sourcesJar by tasks.creating(Jar::class) {
 tasks {
     jar {
         duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-        from(
-            configurations.runtimeClasspath.get()
-                .filter {
-                    it.name.contains("reportng")
-                            || it.name.contains("velocity")
-                            || it.name.contains("spring-web")
-                            || it.name.contains("commons-collections")
-                            || it.name.contains("commons-lang")
-                            || it.name.contains("gson")
-                            || it.name.contains("guice")
-                            || it.name.contains("inject")
-                            || it.name.contains("aopalliance")
-                }
-                .onEach { println("add from dependencies: ${it.name}") }
-                .map { if (it.isDirectory) it else zipTree(it) })
+        from(configurations.runtimeClasspath.get().filter {
+            it.name.contains("reportng") || it.name.contains("velocity") || it.name.contains("spring-web") || it.name.contains("commons-collections") || it.name.contains(
+                "commons-lang"
+            ) || it.name.contains("gson") || it.name.contains("guice") || it.name.contains("inject") || it.name.contains("aopalliance")
+        }.onEach { println("add from dependencies: ${it.name}") }.map { if (it.isDirectory) it else zipTree(it) })
         val sourcesMain = sourceSets.main.get()
         sourcesMain.allSource.forEach { println("add from sources: ${it.name}") }
         from(sourcesMain.output)

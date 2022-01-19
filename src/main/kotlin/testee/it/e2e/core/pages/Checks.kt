@@ -3,6 +3,7 @@ package testee.it.e2e.core.pages
 import org.openqa.selenium.By
 import org.openqa.selenium.TimeoutException
 import org.openqa.selenium.WebElement
+import org.openqa.selenium.support.ui.ExpectedConditions
 import org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable
 import org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf
 import org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated
@@ -39,6 +40,21 @@ interface Checks : Driver {
      */
     fun setMaxImplicitWait() {
         setImplicitWait(waitMax())
+    }
+
+    /**
+     * Quick check if URL contains string [url]
+     */
+    fun isUrl(url: String): Boolean {
+        setMinImplicitWait()
+        try {
+            tick().until(ExpectedConditions.urlContains(url))
+        } catch (e: TimeoutException) {
+            return false
+        } finally {
+            setMaxImplicitWait()
+        }
+        return true
     }
 
     /**

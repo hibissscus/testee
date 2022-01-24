@@ -154,14 +154,15 @@ object WebDriverFactory {
 
             val mobileEmulation = HashMap<String, Any>()
             mobileEmulation["deviceMetrics"] = deviceMetrics
-            mobileEmulation["userAgent"] = "Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) " +
-                    "AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1"
+            mobileEmulation["userAgent"] =
+                "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36"
 
             opt.setExperimentalOption("mobileEmulation", mobileEmulation)
         }
 
         if (headless) {
             opt.setHeadless(headless)
+            opt.addArguments("--disable-gpu")
             opt.addArguments("--disable-dev-shm-usage")
         }
 

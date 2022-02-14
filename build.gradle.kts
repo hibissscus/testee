@@ -1,13 +1,13 @@
 plugins {
     java
-    kotlin("jvm") version "1.6.10"
+    kotlin("jvm") version "1.6.20-M1"
     id("maven-publish")
     id("java-library")
-    id("org.jetbrains.dokka") version "1.6.0"
+    id("org.jetbrains.dokka") version "1.6.10"
 }
 
 group = "it.testee"
-version = "1.5.1"
+version = "1.5.2"
 
 repositories {
     mavenCentral()
@@ -18,9 +18,9 @@ repositories {
 
 dependencies {
     // kotlin
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.10")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.20-M1")
     // selenium
-    implementation("org.seleniumhq.selenium:selenium-java:4.1.1")
+    implementation("org.seleniumhq.selenium:selenium-java:4.1.2")
     // testng
     implementation("org.testng", "testng", "7.5")
     // reportng

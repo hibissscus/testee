@@ -1,6 +1,7 @@
 package testee.it.e2e.core.pages
 
 interface Tabs : Driver, ApplyAction, WaitForLoaded {
+
     /**
      * Create new browser tab
      */

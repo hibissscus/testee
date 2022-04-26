@@ -3,6 +3,7 @@ package testee.it.e2e.core.pages
 import org.openqa.selenium.WebDriverException
 
 interface WaitForLoaded : Driver {
+
     /**
      * General wait for page source to be loaded with [maxWaitMillis] timeout
      * and pool of [pollDelimiterMillis]

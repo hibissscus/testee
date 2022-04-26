@@ -1,6 +1,7 @@
 package testee.it.e2e.core.pages
 
 interface WaitForSeconds {
+
     /**
      * Waiting for amount of seconds on the [WaitForSeconds]
      *

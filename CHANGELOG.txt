@@ -1,3 +1,35 @@
+Changes in version 1.5.4
+------------------------
+* reportng 1.4.3
+* kotlin 1.6.21
+* selenium docker 4.1.3-20220405
+* dokka 1.6.20
+
+
+Changes in version 1.5.3
+------------------------
+* selenium-java 4.1.3
+* selenium docker 4.1.3-20220327
+
+
+Changes in version 1.5.2
+------------------------
+* selenium-java 4.1.2
+* selenium docker 4.1.2-20220208
+* kotlin 1.6.20-M1
+* dokka 1.6.10
+* testng 7.5
+
+
+Changes in version 1.5.1
+------------------------
+* selenium-java 4.1.1
+* selenium docker 4.1.1-20211217
+* kotlin 1.6.10
+* dokka 1.6.0
+* testng 7.5
+
+
 Changes in version 1.4.6
 ------------------------
 * selenium 4 official release

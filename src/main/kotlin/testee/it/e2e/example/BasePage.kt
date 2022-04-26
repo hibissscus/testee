@@ -8,7 +8,7 @@ import testee.it.e2e.core.pages.WaitForSeconds
 /**
  * Main [BasePage] which implement [AbstractPage] interface.
  * All tests pages should extend this [BasePage]
- * Those methods can be overridden
+ * Those methods can be overwritten
  */
 abstract class BasePage(driver: WebDriver) : AbstractPage(driver) {
 

@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLoca
 import java.time.Duration
 
 interface Checks : Driver {
+
     /**
      * Set page load timeout in [milliseconds] for [driver]
      */

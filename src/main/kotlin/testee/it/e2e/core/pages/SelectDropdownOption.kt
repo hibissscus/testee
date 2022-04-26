@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.ui.Select
 
 interface SelectDropdownOption : Driver {
+
     /**
      * Select in dropdown list [Select]
      */

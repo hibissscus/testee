@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.ui.ExpectedConditions
 
 interface Visibility : Driver {
+
     /**
      *  Check if specific element [WebElement] is visible on the [Page]
      */

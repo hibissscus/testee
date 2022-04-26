@@ -3,6 +3,7 @@ package testee.it.e2e.core.pages
 import org.openqa.selenium.TimeoutException
 
 interface Retry {
+
     /**
      * Retry function with amount of [tries] for lambda action with catch of [TimeoutException]
      */

@@ -4,6 +4,7 @@ import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.interactions.Actions
 
 interface ApplyAction : Driver {
+
     /**
      * Perform [Actions] on the [Page]
      */

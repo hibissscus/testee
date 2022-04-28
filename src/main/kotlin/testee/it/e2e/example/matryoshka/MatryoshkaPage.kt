@@ -1,5 +1,6 @@
 package testee.it.e2e.example.matryoshka
 
+import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
@@ -96,6 +97,9 @@ class MatryoshkaPage(driver: WebDriver) : BasePage(driver) {
         }
     }
 
+    fun acceptPrivacyAgreement(): MatryoshkaPage = apply {
+        click(By.xpath("//button[contains(text(), 'Agree and proceed')]"))
+    }
 
     fun openNewImageFromUrl(imageUrlStr: String): MatryoshkaPage = apply {
         click(createNewFromUrl)
@@ -108,6 +112,8 @@ class MatryoshkaPage(driver: WebDriver) : BasePage(driver) {
         sendTextViaJavascript(textInput, value.symbol)
         waitForLoaded()
         click(save)
+        click(By.xpath("//a[contains(text(), 'Save as')]"))
+        // check dialog
         clickable(saveFilename)
         sendTextViaJavascript(saveFilename, value.symbol)
         clickable(saveImageHeight)
@@ -123,6 +129,7 @@ class MatryoshkaPage(driver: WebDriver) : BasePage(driver) {
         click(addLayerText)
         sendTextViaJavascript(textInput, Emoji.values().random().symbol)
         click(toolArrange)
+        acceptPrivacyAgreement()
         click(toolArrangeTop)
         sendText(toolArrangeTop, "45")
         click(toolArrangeLeft)

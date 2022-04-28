@@ -25,7 +25,7 @@ abstract class AbstractPage(protected val driver: WebDriver) : Page {
     }
 
     override fun waitMin(): Long {
-        return 2
+        return 5
     }
 
     override fun waitMax(): Long {

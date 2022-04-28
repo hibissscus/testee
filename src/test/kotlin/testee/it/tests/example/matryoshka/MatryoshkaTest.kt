@@ -17,11 +17,9 @@ class MatryoshkaTest : TestBase(url = "https://pixlr.com/x/", browser = Browser.
         MatryoshkaPage(driver)
             .open(url)
             .closeAllModalDialogs()
-            .acceptCookieAgreement()
             .openNewImageFromUrl(imageUrl)
             .pixlrPreset()
             .emoji()
-            .saveImage(Emoji.E11)
     }
 
 }

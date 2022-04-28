@@ -19,4 +19,19 @@ interface Visibility : Driver {
     fun visible(by: By): WebElement {
         return wait().until(ExpectedConditions.visibilityOfElementLocated(by))
     }
+
+    /**
+     *  Check if specific element [WebElement] is invisible on the [Page]
+     */
+    fun invisible(element: WebElement): Boolean {
+        return wait().until(ExpectedConditions.invisibilityOf(element))
+    }
+
+    /**
+     *   Check if specific element by [By] is invisible on the [Page]
+     */
+    fun invisible(by: By): Boolean {
+        return wait().until(ExpectedConditions.invisibilityOfElementLocated(by))
+    }
+
 }

@@ -1,3 +1,15 @@
+Changes in version 1.5.6
+------------------------
+* reportng 1.4.4
+* extend interfaces: TextToBe, Visibility
+
+
+Changes in version 1.5.5
+------------------------
+* selenium java 4.1.4
+* selenium docker 4.1.4-20220427
+
+
 Changes in version 1.5.4
 ------------------------
 * reportng 1.4.3

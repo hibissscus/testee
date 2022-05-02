@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "it.testee"
-version = "1.5.5"
+version = "1.5.6"
 
 repositories {
     mavenCentral()
@@ -24,7 +24,7 @@ dependencies {
     // testng
     implementation("org.testng", "testng", "7.5")
     // reportng
-    implementation("com.github.hibissscus:reportng:1.4.3")
+    implementation("com.github.hibissscus:reportng:1.4.4")
 }
 
 tasks {

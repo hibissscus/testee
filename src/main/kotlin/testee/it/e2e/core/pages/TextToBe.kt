@@ -14,7 +14,6 @@ interface TextToBe : Driver {
         return wait().until(ExpectedConditions.textToBePresentInElement(element, text))
     }
 
-
     /**
      *   Check if [text] is present in specific element by [By] on the [Page]
      */

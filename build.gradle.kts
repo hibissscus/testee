@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "it.testee"
-version = "1.5.6"
+version = "1.5.7"
 
 repositories {
     mavenCentral()
@@ -20,11 +20,11 @@ dependencies {
     // kotlin
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.21")
     // selenium
-    implementation("org.seleniumhq.selenium:selenium-java:4.1.4")
+    implementation("org.seleniumhq.selenium:selenium-java:4.2.0")
     // testng
-    implementation("org.testng", "testng", "7.5")
+    implementation("org.testng", "testng", "7.6.0")
     // reportng
-    implementation("com.github.hibissscus:reportng:1.4.4")
+    implementation("com.github.hibissscus:reportng:1.4.5")
 }
 
 tasks {

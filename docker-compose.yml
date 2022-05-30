@@ -21,7 +21,7 @@ services:
     command: "gradle e2e -De2e.selenium=http://selenium-hub:4444"
   selenium-hub:
     container_name: selenium-hub
-    image: selenium/hub:4.2.0-20220527
+    image: selenium/hub:4.1.4-20220427
     ports:
       - "4444:4444"
       - "4443:4443"
@@ -32,7 +32,7 @@ services:
       - SE_SESSION_RETRY_INTERVAL=5
   chrome:
     container_name: chrome
-    image: selenium/node-chrome:4.2.0-20220527
+    image: selenium/node-chrome:4.1.4-20220427
     shm_size: 512m
     volumes:
       - downloads:/home/seluser/
@@ -48,7 +48,7 @@ services:
       - "6901:5900"
   firefox:
     container_name: firefox
-    image: selenium/node-firefox:4.2.0-20220527
+    image: selenium/node-firefox:4.1.4-20220427
     shm_size: 512m
     depends_on:
       - selenium-hub
@@ -62,7 +62,7 @@ services:
       - "6911:5900"
   edge:
     container_name: edge
-    image: selenium/node-edge:4.2.0-20220527
+    image: selenium/node-edge:4.1.4-20220427
     shm_size: 512m
     depends_on:
       - selenium-hub

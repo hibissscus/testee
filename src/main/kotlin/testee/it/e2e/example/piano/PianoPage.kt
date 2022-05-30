@@ -14,6 +14,9 @@ class PianoPage(driver: WebDriver) : BasePage(driver) {
     @FindBy(css = ".piano-menu__song-start")
     private lateinit var start: WebElement
 
+    @FindBy(xpath = "//*[contains(text(), 'Accept all')]")
+    private lateinit var acceptCookies: WebElement
+
     @FindBy(id = "key-highlight")
     private lateinit var menu: WebElement
 
@@ -24,6 +27,7 @@ class PianoPage(driver: WebDriver) : BasePage(driver) {
     private lateinit var highlight: WebElement
 
     override fun isOpened(): PianoPage = apply {
+        clickable(acceptCookies)
     }
 
     private fun setAttribute(element: WebElement, attName: String, attValue: String) {
@@ -34,10 +38,8 @@ class PianoPage(driver: WebDriver) : BasePage(driver) {
         )
     }
 
-    fun hideCookies(): PianoPage = apply {
-        driver().findElements(By.id("qc-cmp2-container")).forEach {
-            setAttribute(it, "hidden", "true")
-        }
+    fun acceptAllCookies(): PianoPage = apply {
+        click(acceptCookies)
     }
 
     fun hideAdvertisement(): PianoPage = apply {

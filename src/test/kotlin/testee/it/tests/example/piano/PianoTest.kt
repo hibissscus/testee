@@ -12,25 +12,20 @@ import testee.it.e2e.example.piano.PianoPage
 class PianoTest : TestBase(url = "https://virtualpiano.net", browser = Browser.CHROME) {
 
     @Test
-    fun `01 piano play with Mentor`() {
+    fun `01 piano play`() {
         PianoPage(driver)
-            .open("$url/?song-post-" + Note.FLY.id)
-            //.open("$url/?song-post-" + Note.SYM40.id)
-            .acceptAllCookies()
-            .hideAdvertisement()
-            .waitForSeconds(2)
-            .mentorPlay()
+            .open("https://virtualpiano.net")
+            .hideCookies()
+            .freePlay(Note.SYM40, 50)
             .waitForSeconds(10)
     }
 
     @Test
-    fun `02 piano play`() {
+    fun `02 piano play with Mentor`() {
         PianoPage(driver)
-            .open("https://virtualpiano.net")
-            .acceptAllCookies()
-            .hideAdvertisement()
-            .waitForSeconds(2)
-            .freePlay(Note.SYM40, 50)
+            .open("$url/?song-post-" + Note.FLY.id)
+            .hideCookies()
+            .mentorPlay()
             .waitForSeconds(10)
     }
 

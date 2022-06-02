@@ -31,9 +31,12 @@ object WebDriverFactory {
      */
     @Throws(Exception::class)
     fun startBrowser(
-        browser: Browser = Browser.CHROME, headless: Boolean = false,
-        mobile: Boolean = false, media: Boolean = true,
-        fake: String = "", selenium: String = ""
+        browser: Browser = Browser.CHROME,
+        headless: Boolean = false,
+        mobile: Boolean = false,
+        media: Boolean = true,
+        fake: String = "",
+        selenium: String = ""
     ): RemoteWebDriver {
         return when (browser) {
             Browser.FIREFOX -> initFirefoxWebDriver(headless, media, fake, selenium)
@@ -61,7 +64,7 @@ object WebDriverFactory {
         if (url.isNotBlank()) {
             try {
                 driver.navigate().to(url)
-            } catch (ex: WebDriverException) {
+            } catch (_: WebDriverException) {
             }
         }
 

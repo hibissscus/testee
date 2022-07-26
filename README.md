@@ -12,6 +12,8 @@
 - [polymorphism] we are able to test on different browsers (Chrome, Firefox).
 - [representative] test-suite solution [testNG](https://testng.org/doc/selenium.html), reporting solution [reportNG](https://github.com/hibissscus/reportng) with screenshots.
 
+![dino](https://user-images.githubusercontent.com/1389501/181028016-c19b61eb-18a4-476d-a50b-d2f6c40a4bc6.gif)
+
 ## How to run E2E tests
 
 1. `gradle` is used for building this `E2E` project

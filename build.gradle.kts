@@ -1,13 +1,13 @@
 plugins {
     java
-    kotlin("jvm") version "1.7.0"
+    kotlin("jvm") version "1.7.10"
     id("maven-publish")
     id("java-library")
-    id("org.jetbrains.dokka") version "1.7.0"
+    id("org.jetbrains.dokka") version "1.7.10"
 }
 
 group = "it.testee"
-version = "1.6.0"
+version = "1.6.1"
 
 repositories {
     mavenCentral()

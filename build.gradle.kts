@@ -18,9 +18,9 @@ repositories {
 
 dependencies {
     // kotlin
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.7.0")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.7.10")
     // selenium
-    implementation("org.seleniumhq.selenium:selenium-java:4.3.0")
+    implementation("org.seleniumhq.selenium:selenium-java:4.4.0")
     // testng
     implementation("org.testng", "testng", "7.5")
     // reportng
@@ -80,9 +80,9 @@ tasks {
     jar {
         duplicatesStrategy = DuplicatesStrategy.EXCLUDE
         from(configurations.runtimeClasspath.get().filter {
-            it.name.contains("reportng") || it.name.contains("velocity") || it.name.contains("spring-web") || it.name.contains("commons-collections") || it.name.contains(
-                "commons-lang"
-            ) || it.name.contains("gson") || it.name.contains("guice") || it.name.contains("inject") || it.name.contains("aopalliance")
+            it.name.contains("reportng") || it.name.contains("velocity") || it.name.contains("spring-web") || it.name.contains("commons-collections")
+                    || it.name.contains("commons-lang") || it.name.contains("gson") || it.name.contains("guice") || it.name.contains("inject")
+                    || it.name.contains("aopalliance")
         }.onEach { println("add from dependencies: ${it.name}") }.map { if (it.isDirectory) it else zipTree(it) })
         val sourcesMain = sourceSets.main.get()
         sourcesMain.allSource.forEach { println("add from sources: ${it.name}") }

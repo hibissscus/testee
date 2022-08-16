@@ -1,9 +1,9 @@
 Changes in version 1.6.0
 
 ------------------------
-* selenium java 4.3.0
-* selenium docker 4.3.0-20220624
-* dokka 1.7.0
+* kotlin 1.7.10
+* selenium java 4.4.0
+* selenium docker 4.4.0-20220812
 
 
 Changes in version 1.5.9

@@ -1,3 +1,10 @@
+Changes in version 1.6.2
+
+------------------------
+* testng 7.6.1
+* reportng 1.4.7
+
+
 Changes in version 1.6.1
 
 ------------------------

@@ -1,0 +1,28 @@
+# This is a basic workflow which starts e2e tests on GitHub actions
+name: CI e2e space test
+
+# Controls when the workflow will run
+on:
+  push:
+    branches:
+      - master
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Runs a set of commands: [docker-compose] using the runners shell
+      - name: Run e2e tests
+        env:
+          E2E_TITLE: e2e-github-space
+          E2E_WEB_URL: https://e2e.jetbrains.space/p/e2e/
+          E2E_TEST_SUITE: e2e.xml
+        timeout-minutes: 10
+        run: docker-compose up e2e
+        working-directory: .

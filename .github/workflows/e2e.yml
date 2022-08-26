@@ -3,8 +3,6 @@ name: e2e
 
 # Controls when the workflow will run
 on:
-  schedule:
-    - cron: "0 2 * * *"
   push:
     branches:
       - master

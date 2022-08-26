@@ -1,11 +1,13 @@
 # This is a basic workflow which starts end-to-end tests on GitHub actions
-name: CI e2e test
+name: e2e
 
 # Controls when the workflow will run
 on:
   schedule:
     - cron: "0 2 * * *"
-  workflow_dispatch:
+  push:
+    branches:
+      - master
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:

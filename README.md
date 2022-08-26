@@ -6,7 +6,7 @@
 | ![](https://user-images.githubusercontent.com/1389501/122058312-c7524b80-cdeb-11eb-8e7b-861a3caa9132.png) |  `Testee` is a simple framework around Selenium which helps to start with end-to-end testing in easy way. It is intended as a replacement for the default `Selenium from scratch` approach, because it is comprehensive and is not easy to understand it at a glance, `Testee` helps you to concise best practices for e2e testing. |
 
 ![e2e_result](https://user-images.githubusercontent.com/1389501/97297276-14c87b00-1852-11eb-89a3-31c69ade0960.png)
-## Bullet points of `testee` with `Selenium`
+## Bullet points of `Testee` with `Selenium`
 
 - [automation] ability to run test checks for application in an automated manner.
 - [polymorphism] we are able to test on different browsers (Chrome, Firefox).

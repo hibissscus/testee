@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "it.testee"
-version = "1.6.2"
+version = "1.6.3"
 
 repositories {
     mavenCentral()
@@ -24,7 +24,7 @@ dependencies {
     // testng
     implementation("org.testng", "testng", "7.5")
     // reportng
-    implementation("com.github.hibissscus:reportng:1.4.7")
+    implementation("com.github.hibissscus:reportng:1.4.8")
 }
 
 tasks {
@@ -35,6 +35,7 @@ tasks {
             useDefaultListeners = false
             listeners = setOf("testee.it.reportng.HTMLReporter")
             systemProperties = mapOf(
+                "testee.it.version" to "$version",
                 "testee.it.reportng.title" to "testee-e2e",
                 "testee.it.reportng.slack" to "false",
                 "testee.it.reportng.slack.token" to "xxxx-xxxxxxxxxx-xxxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx",
@@ -54,6 +55,7 @@ tasks.register<Test>("e2e") {
         systemProperties = mapOf(
             "e2e.selenium" to System.getProperty("e2e.selenium", ""),
             "e2e.url" to System.getProperty("e2e.url", ""),
+            "testee.it.version" to "$version",
             "testee.it.reportng.title" to "testee-e2e",
             "testee.it.reportng.slack" to "false",
             "testee.it.reportng.slack.token" to "xxxx-xxxxxxxxxx-xxxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx",

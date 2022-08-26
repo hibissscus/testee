@@ -19,10 +19,6 @@ jobs:
 
       # Runs a set of commands: [docker-compose] using the runners shell
       - name: Run e2e tests
-        env:
-          E2E_TITLE: e2e-github-space
-          E2E_WEB_URL: https://e2e.jetbrains.space/p/e2e/
-          E2E_TEST_SUITE: e2e.xml
         timeout-minutes: 10
         run: docker-compose up e2e
         working-directory: .

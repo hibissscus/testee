@@ -6,7 +6,7 @@ version: "3.9"
 services:
   e2e:
     container_name: e2e
-    image: gradle:7.4.2-jdk17
+    image: gradle:7.5.1-jdk17
     working_dir: /code
     volumes:
       - ./:/code
@@ -50,6 +50,8 @@ services:
     container_name: firefox
     image: selenium/node-firefox:4.4.0-20220812
     shm_size: 512m
+    volumes:
+      - downloads:/home/seluser/
     depends_on:
       - selenium-hub
     environment:
@@ -64,6 +66,8 @@ services:
     container_name: edge
     image: selenium/node-edge:4.4.0-20220812
     shm_size: 512m
+    volumes:
+      - downloads:/home/seluser/
     depends_on:
       - selenium-hub
     environment:
@@ -74,3 +78,5 @@ services:
       - TZ=Europe/Berlin
     ports:
       - "6921:5900"
+volumes:
+  downloads:

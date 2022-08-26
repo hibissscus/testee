@@ -4,19 +4,9 @@
     <parameter name="selenium" value="${e2e.selenium}"/>
     <parameter name="browser" value="CHROME"/>
     <parameter name="headless" value="true"/>
-    <test parallel="classes" name="reportng">
-        <packages>
-            <package name="testee.it.tests.example.reportng.*"/>
-        </packages>
-    </test>
     <test parallel="classes" name="dino">
         <packages>
             <package name="testee.it.tests.example.dino.*"/>
-        </packages>
-    </test>
-    <test parallel="classes" name="matryoshka">
-        <packages>
-            <package name="testee.it.tests.example.matryoshka.*"/>
         </packages>
     </test>
 </suite>

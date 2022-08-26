@@ -22,7 +22,7 @@
 2. To run `E2E` tests locally we need to install `chromedriver` or `geckodriver`
     - `brew cask install chromedriver` (or `brew upgrade --cask chromedriver`)
     - `brew install geckodriver` (or `brew upgrade geckodriver`)
-3. Go to `testee.it.e2e.tests` and run any of the test via IDEA with `test` profile (ex.: [MatryoshkaTest](https://github.com/hibissscus/testee/blob/master/src/test/kotlin/testee/it/tests/example/matryoshka/MatryoshkaTest.kt))
+3. Go to `testee.it.e2e.tests` and run any of the test via IDEA with `test` profile (ex.: [DinoTest](https://github.com/hibissscus/testee/blob/master/src/test/kotlin/testee/it/tests/example/dino/DinoTest.kt))
 4. For `Selenium` dockerization use [docker-compose.yml](https://github.com/hibissscus/testee/blob/master/docker-compose.yml)
     - `docker-compose up e2e`
     - `docker-compose down`

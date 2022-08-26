@@ -16,8 +16,6 @@ services:
     depends_on:
       - selenium-hub
       - chrome
-      - firefox
-      - edge
     command: "gradle e2e -De2e.selenium=http://selenium-hub:4444"
   selenium-hub:
     container_name: selenium-hub
@@ -46,37 +44,5 @@ services:
       - TZ=Europe/Berlin
     ports:
       - "6901:5900"
-  firefox:
-    container_name: firefox
-    image: selenium/node-firefox:4.4.0-20220812
-    shm_size: 512m
-    volumes:
-      - downloads:/home/seluser/
-    depends_on:
-      - selenium-hub
-    environment:
-      - SE_EVENT_BUS_HOST=selenium-hub
-      - SE_EVENT_BUS_PUBLISH_PORT=4442
-      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
-      - SE_NODE_MAX_SESSIONS=1
-      - TZ=Europe/Berlin
-    ports:
-      - "6911:5900"
-  edge:
-    container_name: edge
-    image: selenium/node-edge:4.4.0-20220812
-    shm_size: 512m
-    volumes:
-      - downloads:/home/seluser/
-    depends_on:
-      - selenium-hub
-    environment:
-      - SE_EVENT_BUS_HOST=selenium-hub
-      - SE_EVENT_BUS_PUBLISH_PORT=4442
-      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
-      - SE_NODE_MAX_SESSIONS=1
-      - TZ=Europe/Berlin
-    ports:
-      - "6921:5900"
 volumes:
   downloads:

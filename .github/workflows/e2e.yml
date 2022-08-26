@@ -9,7 +9,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  test:
+  e2e:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,8 +17,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # Runs a set of commands: [docker-compose] using the runners shell
-      - name: Run e2e tests
+      # Runs a set of commands: using the runners shell
+      - name: Run e2e tests via docker-compose
         timeout-minutes: 10
         run: docker-compose up e2e
         working-directory: .
+
+      - name: Upload e2e test result as artifact on GitHub
+        uses: actions/upload-artifact@v3
+        with:
+          name: e2e_reports
+          path: ./build/reports/tests/e2e/e2e/

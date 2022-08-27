@@ -1,4 +1,4 @@
-`Testee` provides `E2E` base framework [![e2e](https://github.com/hibissscus/testee/actions/workflows/e2e.yml/badge.svg)](https://github.com/hibissscus/testee/actions/workflows/e2e.yml) 
+✅ `Testee` provides `E2E` base framework [![e2e](https://github.com/hibissscus/testee/actions/workflows/e2e.yml/badge.svg)](https://github.com/hibissscus/testee/actions/workflows/e2e.yml) 
 =================================
 
 |     |     |

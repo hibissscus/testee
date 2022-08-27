@@ -10,7 +10,7 @@
 
 - [automation] ability to run test checks for application in an automated manner.
 - [polymorphism] we are able to test on different browsers (Chrome, Firefox).
-- [representative] test-suite solution based on [testNG](https://testng.org/doc/selenium.html), reporting solution 🌈 [reportNG](https://github.com/hibissscus/reportng) with screenshots.
+- [representative] test-suite solution based on ☕ [TestNG](https://testng.org/doc/selenium.html), reporting solution 🌈 [ReportNG](https://github.com/hibissscus/reportng) with screenshots.
 - [parallelism] we are able to run end-to-end tests in parallel.
 
 

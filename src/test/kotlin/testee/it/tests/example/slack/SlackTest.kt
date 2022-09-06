@@ -8,13 +8,13 @@ import testee.it.e2e.example.BasePage.Companion.newTab
 import testee.it.e2e.example.BasePage.Companion.switchTab
 import testee.it.e2e.example.BasePage.Companion.view
 import testee.it.e2e.example.BasePage.Companion.waitForSeconds
-import testee.it.e2e.example.slack.api.SlackApiPage
 import testee.it.e2e.example.slack.model.Channels
 import testee.it.e2e.example.slack.model.Slack
 import testee.it.e2e.example.slack.model.Tokens
 import testee.it.e2e.example.slack.model.User
-import testee.it.e2e.example.slack.web.SlackWebLoginPage
-import testee.it.e2e.example.slack.web.SlackWebPage
+import testee.it.e2e.example.slack.pages.SlackApiPage
+import testee.it.e2e.example.slack.pages.SlackWebLoginPage
+import testee.it.e2e.example.slack.pages.SlackWebPage
 import kotlin.random.Random
 
 
@@ -28,6 +28,7 @@ class SlackTest : TestBase(url = Slack.WEB.slack, browser = Browser.CHROME) {
     fun `01 login into slack web`() {
         SlackWebLoginPage(driver)
             .isOpened()
+            .acceptAllCookies()
             .login(User.TEST)
             .view(SlackWebPage(driver))
     }
@@ -36,7 +37,6 @@ class SlackTest : TestBase(url = Slack.WEB.slack, browser = Browser.CHROME) {
     fun `02 postMessage via slack api`() {
         SlackApiPage(driver)
             .newTab("https://api.slack.com/methods/chat.postMessage/test")
-            .acceptAllCookies()
             .setToken(Tokens.TEST.token)
             .setChannel(Channels.TEST.channel)
             .setText(postMessage.text)

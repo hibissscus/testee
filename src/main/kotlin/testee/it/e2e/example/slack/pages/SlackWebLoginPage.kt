@@ -1,4 +1,4 @@
-package testee.it.e2e.example.slack.web
+package testee.it.e2e.example.slack.pages
 
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
@@ -26,6 +26,9 @@ class SlackWebLoginPage(driver: WebDriver) : BasePage(driver) {
     @FindBy(css = "[data-qa='continue_in_browser']")
     private lateinit var continueInBrowser: WebElement
 
+    @FindBy(css = "[id='onetrust-accept-btn-handler']")
+    private lateinit var acceptAllCookies: WebElement
+
     override fun isOpened(): SlackWebLoginPage = apply {
         clickable(login)
         clickable(loginSubmit)
@@ -35,6 +38,10 @@ class SlackWebLoginPage(driver: WebDriver) : BasePage(driver) {
         if (isVisible(continueInBrowser)) {
             click(continueInBrowser)
         }
+    }
+
+    fun acceptAllCookies(): SlackWebLoginPage = apply {
+        click(acceptAllCookies)
     }
 
     fun login(user: User): SlackWebLoginPage = apply {

@@ -1,4 +1,4 @@
-package testee.it.e2e.example.slack.web
+package testee.it.e2e.example.slack.pages
 
 import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
@@ -16,6 +16,6 @@ class SlackWebPage(driver: WebDriver) : BasePage(driver) {
     }
 
     fun findMessage(text: String): SlackWebPage = apply {
-        clickable(By.xpath("//span[contains(text(),'$text')]"))
+        clickable(By.xpath("//*[contains(text(),'$text')]"))
     }
 }

@@ -1,4 +1,4 @@
-package testee.it.e2e.example.slack.api
+package testee.it.e2e.example.slack.pages
 
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
@@ -6,9 +6,6 @@ import org.openqa.selenium.support.FindBy
 import testee.it.e2e.example.BasePage
 
 class SlackApiPage(driver: WebDriver) : BasePage(driver) {
-
-    @FindBy(id = "onetrust-accept-btn-handler")
-    private lateinit var acceptCookies: WebElement
 
     @FindBy(id = "api-arg-token")
     private lateinit var token: WebElement
@@ -23,13 +20,7 @@ class SlackApiPage(driver: WebDriver) : BasePage(driver) {
     private lateinit var submit: WebElement
 
     override fun isOpened(): SlackApiPage = apply {
-        clickable(acceptCookies)
-    }
-
-    fun acceptAllCookies(): SlackApiPage = apply {
-        if (isVisible(acceptCookies)) {
-            click(acceptCookies)
-        }
+        clickable(token)
     }
 
     fun setToken(tokenStr: String): SlackApiPage = apply {

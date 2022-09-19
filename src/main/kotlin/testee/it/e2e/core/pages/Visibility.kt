@@ -9,14 +9,14 @@ interface Visibility : Driver {
     /**
      *  Check if specific element [WebElement] is visible on the [Page]
      */
-    fun visibilityOf(element: WebElement): WebElement {
+    fun visible(element: WebElement): WebElement {
         return wait().until(ExpectedConditions.visibilityOf(element))
     }
 
     /**
      *   Check if specific element by [By] is visible on the [Page]
      */
-    fun visibilityOf(by: By): WebElement {
+    fun visible(by: By): WebElement {
         return wait().until(ExpectedConditions.visibilityOfElementLocated(by))
     }
 
@@ -53,14 +53,14 @@ interface Visibility : Driver {
     /**
      *  Check if specific element [WebElement] is invisible on the [Page]
      */
-    fun invisibilityOf(element: WebElement): Boolean {
+    fun invisible(element: WebElement): Boolean {
         return wait().until(ExpectedConditions.invisibilityOf(element))
     }
 
     /**
      *   Check if specific element by [By] is invisible on the [Page]
      */
-    fun invisibilityOf(by: By): Boolean {
+    fun invisible(by: By): Boolean {
         return wait().until(ExpectedConditions.invisibilityOfElementLocated(by))
     }
 

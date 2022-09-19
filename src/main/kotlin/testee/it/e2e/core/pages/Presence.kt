@@ -9,7 +9,7 @@ interface Presence : Driver {
     /**
      *  Check if specific element by [locator] is presented on the [Page]
      */
-    fun presenceOf(locator: By): WebElement {
+    fun presence(locator: By): WebElement {
         return wait().until(ExpectedConditions.presenceOfElementLocated(locator))
     }
 

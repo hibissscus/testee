@@ -12,7 +12,7 @@ class DinoPage(driver: WebDriver) : BasePage(driver) {
     private lateinit var body: WebElement
 
     override fun opened(): DinoPage = apply {
-        visibilityOf(body)
+        visible(body)
     }
 
     fun cheat(xPos: Int = 20): DinoPage = apply {

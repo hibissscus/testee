@@ -43,6 +43,14 @@ interface Visibility : Driver {
     }
 
     /**
+    checking that all elements present on the web [Page] that match the locator are visible.
+    Visibility means that the elements are not only displayed but also have a height and width that is greater than 0.
+     */
+    fun visibilityOfAllElementsLocatedBy(by: By): List<WebElement> {
+        return wait().until(ExpectedConditions.visibilityOfAllElementsLocatedBy(by))
+    }
+
+    /**
      *  Check if specific element [WebElement] is invisible on the [Page]
      */
     fun invisibilityOf(element: WebElement): Boolean {

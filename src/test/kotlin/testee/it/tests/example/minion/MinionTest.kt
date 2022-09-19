@@ -16,7 +16,6 @@ class MinionTest : TestBase(url = "https://pixlr.com/x/", browser = Browser.CHRO
         MinionPage(driver)
             .open(url)
             .closeAllModalDialogs()
-            .acceptCookieAgreement()
             .openNewImageFromUrl(imageUrl)
             .pixlrPreset()
             .emoji(1)

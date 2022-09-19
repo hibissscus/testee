@@ -9,28 +9,28 @@ interface Presence : Driver {
     /**
      *  Check if specific element by [locator] is presented on the [Page]
      */
-    fun presence(locator: By): WebElement {
+    fun presenceOf(locator: By): WebElement {
         return wait().until(ExpectedConditions.presenceOfElementLocated(locator))
     }
 
     /**
      *  Check if specific elements [WebElement] by [locator] are presented on the [Page]
      */
-    fun presenceOfAll(locator: By): List<WebElement> {
+    fun presenceOfAllElementsLocatedBy(locator: By): List<WebElement> {
         return wait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator))
     }
 
     /**
      *  Checking child WebElement as a part of parent element is present on the [Page] by [locator] and [childLocator]
      */
-    fun presenceOfNestedElement(locator: By, childLocator: By): WebElement {
+    fun presenceOfNestedElementLocatedBy(locator: By, childLocator: By): WebElement {
         return wait().until(ExpectedConditions.presenceOfNestedElementLocatedBy(locator, childLocator))
     }
 
     /**
      *  Checking child WebElements as a part of parent element are present on the [Page] by [locator] and [childLocator]
      */
-    fun presenceOfNestedElements(locator: By, childLocator: By): List<WebElement> {
+    fun presenceOfNestedElementsLocatedBy(locator: By, childLocator: By): List<WebElement> {
         return wait().until(ExpectedConditions.presenceOfNestedElementsLocatedBy(locator, childLocator))
     }
 

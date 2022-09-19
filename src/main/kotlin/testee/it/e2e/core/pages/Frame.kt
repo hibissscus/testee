@@ -10,7 +10,7 @@ interface Frame : Driver {
      * Checking whether the given frame by [element] is available to switch to.
      * If the frame is available it switches the given driver to the specified frame.
      */
-    fun frameAvailableAndSwitchToIt(element: WebElement) {
+    fun frameToBeAvailableAndSwitchToIt(element: WebElement) {
         wait().until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(element))
     }
 
@@ -18,7 +18,7 @@ interface Frame : Driver {
      * Checking whether the given frame is available by string [locator] to switch to.
      * If the frame is available it switches the given driver to the specified frame.
      */
-    fun frameAvailableAndSwitchToIt(locator: String) {
+    fun frameToBeAvailableAndSwitchToIt(locator: String) {
         wait().until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(locator))
     }
 
@@ -26,7 +26,7 @@ interface Frame : Driver {
      * Checking whether the given frame is available by [locator] to switch to.
      * If the frame is available it switches the given driver to the specified frame.
      */
-    fun frameAvailableAndSwitchToIt(locator: By) {
+    fun frameToBeAvailableAndSwitchToIt(locator: By) {
         wait().until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(locator))
     }
 
@@ -34,7 +34,7 @@ interface Frame : Driver {
      * Checking whether the given frame is available by [frameNumber] to switch to.
      * If the frame is available it switches the given driver to the specified frame.
      */
-    fun frameAvailableAndSwitchToIt(frameNumber: Int) {
+    fun frameToBeAvailableAndSwitchToIt(frameNumber: Int) {
         wait().until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameNumber))
     }
 

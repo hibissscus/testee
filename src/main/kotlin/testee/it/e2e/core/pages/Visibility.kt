@@ -9,28 +9,28 @@ interface Visibility : Driver {
     /**
      *  Check if specific element [WebElement] is visible on the [Page]
      */
-    fun visible(element: WebElement): WebElement {
+    fun visibilityOf(element: WebElement): WebElement {
         return wait().until(ExpectedConditions.visibilityOf(element))
     }
 
     /**
      *   Check if specific element by [By] is visible on the [Page]
      */
-    fun visible(by: By): WebElement {
+    fun visibilityOf(by: By): WebElement {
         return wait().until(ExpectedConditions.visibilityOfElementLocated(by))
     }
 
     /**
      * Checking child [WebElement]s as a part of parent element are visible by [childLocator]
      */
-    fun visibleAsNested(parentLocator: By, childLocator: By): List<WebElement> {
+    fun visibilityOfNestedElementsLocatedBy(parentLocator: By, childLocator: By): List<WebElement> {
         return wait().until(ExpectedConditions.visibilityOfNestedElementsLocatedBy(parentLocator, childLocator))
     }
 
     /**
      * Checking child [WebElement]s as a part of parent [WebElement] are visible by [childLocator]
      */
-    fun visibleAsNested(parentLocator: WebElement, childLocator: By): List<WebElement> {
+    fun visibilityOfNestedElementsLocatedBy(parentLocator: WebElement, childLocator: By): List<WebElement> {
         return wait().until(ExpectedConditions.visibilityOfNestedElementsLocatedBy(parentLocator, childLocator))
     }
 
@@ -38,21 +38,21 @@ interface Visibility : Driver {
      * Checking that all elements present on the web [Page] that match the locator are visible.
      * Visibility means that the elements are not only displayed but also have a height and width that is greater than 0.
      */
-    fun visibleAll(elements: List<WebElement>): List<WebElement> {
+    fun visibilityOfAllElements(elements: List<WebElement>): List<WebElement> {
         return wait().until(ExpectedConditions.visibilityOfAllElements(elements))
     }
 
     /**
      *  Check if specific element [WebElement] is invisible on the [Page]
      */
-    fun invisible(element: WebElement): Boolean {
+    fun invisibilityOf(element: WebElement): Boolean {
         return wait().until(ExpectedConditions.invisibilityOf(element))
     }
 
     /**
      *   Check if specific element by [By] is invisible on the [Page]
      */
-    fun invisible(by: By): Boolean {
+    fun invisibilityOfElementLocated(by: By): Boolean {
         return wait().until(ExpectedConditions.invisibilityOfElementLocated(by))
     }
 

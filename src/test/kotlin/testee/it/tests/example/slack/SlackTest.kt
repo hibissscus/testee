@@ -12,6 +12,7 @@ import testee.it.e2e.example.slack.model.Channels
 import testee.it.e2e.example.slack.model.Slack
 import testee.it.e2e.example.slack.model.Tokens
 import testee.it.e2e.example.slack.model.User
+import testee.it.e2e.example.slack.model.Workspace
 import testee.it.e2e.example.slack.pages.SlackApiPage
 import testee.it.e2e.example.slack.pages.SlackWebLoginPage
 import testee.it.e2e.example.slack.pages.SlackWebPage
@@ -27,9 +28,9 @@ class SlackTest : TestBase(url = Slack.WEB.slack, browser = Browser.CHROME) {
     @Test
     fun `01 login into slack web`() {
         SlackWebLoginPage(driver)
-            .isOpened()
+            .opened()
             .acceptAllCookies()
-            .login(User.TEST)
+            .login(Workspace.WORKSPACE, User.TEST)
             .view(SlackWebPage(driver))
     }
 

@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 import org.openqa.selenium.support.ui.ExpectedConditions
-import org.openqa.selenium.support.ui.ExpectedConditions.numberOfElementsToBeMoreThan
 import testee.it.e2e.example.BasePage
 
 class PianoPage(driver: WebDriver) : BasePage(driver) {
@@ -23,7 +22,7 @@ class PianoPage(driver: WebDriver) : BasePage(driver) {
     @FindBy(css = ".assist_highlight")
     private lateinit var highlight: WebElement
 
-    override fun isOpened(): PianoPage = apply {
+    override fun opened(): PianoPage = apply {
     }
 
     private fun setAttribute(element: WebElement, attName: String, attValue: String) {
@@ -49,10 +48,10 @@ class PianoPage(driver: WebDriver) : BasePage(driver) {
 
     fun setHighlight(): PianoPage = apply {
         click(menu)
-        wait().until(ExpectedConditions.attributeContains(menu, "class", "opened"))
-        wait().until(ExpectedConditions.attributeContains(assistMenu, "class", "active"))
+        attributeContains(menu, "class", "opened")
+        attributeContains(assistMenu, "class", "active")
         click(highlight)
-        wait().until(ExpectedConditions.attributeContains(menu, "class", "active"))
+        attributeContains(menu, "class", "active")
         click(menu)
     }
 
@@ -70,7 +69,7 @@ class PianoPage(driver: WebDriver) : BasePage(driver) {
             Thread.sleep(pause)
             println("|")
         } while (
-            tick().until(numberOfElementsToBeMoreThan(By.cssSelector(".key-white.key-next, .key-black.key-next"), 0)).size > 0
+            tick().until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".key-white.key-next, .key-black.key-next"), 0)).size > 0
         )
         println("Finish")
     }

@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 import testee.it.e2e.example.BasePage
 import testee.it.e2e.example.slack.model.User
+import testee.it.e2e.example.slack.model.Workspace
 
 class SlackWebLoginPage(driver: WebDriver) : BasePage(driver) {
 
@@ -29,23 +30,21 @@ class SlackWebLoginPage(driver: WebDriver) : BasePage(driver) {
     @FindBy(css = "[id='onetrust-accept-btn-handler']")
     private lateinit var acceptAllCookies: WebElement
 
-    override fun isOpened(): SlackWebLoginPage = apply {
+    override fun opened(): SlackWebLoginPage = apply {
         clickable(login)
         clickable(loginSubmit)
     }
 
     private fun continueInBrowser(): SlackWebLoginPage = apply {
-        if (isVisible(continueInBrowser)) {
-            click(continueInBrowser)
-        }
+        clickIfVisible(continueInBrowser)
     }
 
     fun acceptAllCookies(): SlackWebLoginPage = apply {
         click(acceptAllCookies)
     }
 
-    fun login(user: User): SlackWebLoginPage = apply {
-        sendText(login, "cubicam")
+    fun login(workspace: Workspace, user: User): SlackWebLoginPage = apply {
+        sendText(login, workspace.workspace)
         click(loginSubmit)
         sendText(loginEmail, user.username)
         sendText(loginPassword, user.password)

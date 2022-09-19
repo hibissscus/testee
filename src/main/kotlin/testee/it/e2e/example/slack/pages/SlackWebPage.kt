@@ -11,7 +11,7 @@ class SlackWebPage(driver: WebDriver) : BasePage(driver) {
     @FindBy(css = "[data-qa='channel_sidebar_name_test']")
     private lateinit var testChannel: WebElement
 
-    override fun isOpened(): SlackWebPage = apply {
+    override fun opened(): SlackWebPage = apply {
         clickable(testChannel)
     }
 

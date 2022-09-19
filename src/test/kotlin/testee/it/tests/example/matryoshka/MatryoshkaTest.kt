@@ -4,7 +4,6 @@ import org.testng.annotations.Test
 import testee.it.e2e.core.browser.Browser
 import testee.it.e2e.core.test.TestBase
 import testee.it.e2e.example.BasePage.Companion.open
-import testee.it.e2e.example.matryoshka.Emoji
 import testee.it.e2e.example.matryoshka.MatryoshkaPage
 
 

@@ -19,7 +19,7 @@ class SlackApiPage(driver: WebDriver) : BasePage(driver) {
     @FindBy(css = "[type='submit'][value='Test method']")
     private lateinit var submit: WebElement
 
-    override fun isOpened(): SlackApiPage = apply {
+    override fun opened(): SlackApiPage = apply {
         clickable(token)
     }
 

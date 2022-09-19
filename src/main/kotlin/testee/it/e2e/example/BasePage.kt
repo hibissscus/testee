@@ -12,13 +12,18 @@ import testee.it.e2e.core.pages.WaitForSeconds
  */
 abstract class BasePage(driver: WebDriver) : AbstractPage(driver) {
 
-    abstract fun isOpened(): BasePage
-
-    fun isLoaded(): BasePage = apply {
-        waitForLoaded()
-    }
+    abstract fun opened(): BasePage
 
     companion object {
+        /**
+         * General wait for page source to be loaded with [maxWaitMillis] timeout
+         * and pool of [pollDelimiterMillis]
+         */
+        fun <P : BasePage> P.loaded(maxWaitMillis: Int = waitMax().toInt() * 1000, pollDelimiterMillis: Int = 500): P {
+            waitForLoaded(maxWaitMillis, pollDelimiterMillis)
+            return this
+        }
+
         /**
          * Waiting for amount of seconds on the [WaitForSeconds]
          *
@@ -50,7 +55,7 @@ abstract class BasePage(driver: WebDriver) : AbstractPage(driver) {
          * View specific [Page] and check the [title] on the [Page]
          */
         fun <P : BasePage, T : BasePage> P.view(page: T): T {
-            (page).isLoaded().isOpened()
+            (page).loaded().opened()
             return page
         }
 
@@ -59,7 +64,7 @@ abstract class BasePage(driver: WebDriver) : AbstractPage(driver) {
          */
         fun <P : BasePage> P.newTab(url: String): P {
             createNewTab(url)
-            this.isLoaded().isOpened()
+            this.loaded().opened()
             return this
         }
 

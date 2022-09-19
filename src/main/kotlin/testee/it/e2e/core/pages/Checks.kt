@@ -9,38 +9,21 @@ import org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf
 import org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated
 import org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf
 import org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated
-import java.time.Duration
 
-interface Checks : Driver {
+interface Checks : Driver, Timeouts {
 
     /**
-     * Set page load timeout in [milliseconds] for [driver]
+     * Checking the URL of the current [Page] to contain specific [url] text
      */
-    fun setPageLoadTimeout(milliseconds: Long) {
-        driver().manage().timeouts().pageLoadTimeout(Duration.ofMillis(milliseconds))
-        driver().manage().timeouts().implicitlyWait(Duration.ofMillis(milliseconds))
-        driver().manage().timeouts().scriptTimeout(Duration.ofMillis(milliseconds))
+    fun urlContains(url: String) {
+        wait().until(ExpectedConditions.urlContains(url))
     }
 
     /**
-     * Set implicit wait in [seconds] implicit wait for [driver]
+     * Checking the [title] of a [Page]
      */
-    fun setImplicitWait(seconds: Long = waitMax()) {
-        driver().manage().timeouts().implicitlyWait(Duration.ofSeconds(seconds))
-    }
-
-    /**
-     * Set minimum implicit wait for [driver]
-     */
-    fun setMinImplicitWait() {
-        setImplicitWait(waitMin())
-    }
-
-    /**
-     * Set maximum implicit wait for [driver]
-     */
-    fun setMaxImplicitWait() {
-        setImplicitWait(waitMax())
+    fun titleIs(title: String) {
+        wait().until(ExpectedConditions.titleIs(title))
     }
 
     /**

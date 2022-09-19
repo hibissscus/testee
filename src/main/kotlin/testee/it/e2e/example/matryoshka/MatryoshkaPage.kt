@@ -4,7 +4,6 @@ import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
-import org.openqa.selenium.support.ui.ExpectedConditions.attributeContains
 import testee.it.e2e.example.BasePage
 
 class MatryoshkaPage(driver: WebDriver) : BasePage(driver) {
@@ -82,20 +81,16 @@ class MatryoshkaPage(driver: WebDriver) : BasePage(driver) {
     @FindBy(id = "save-image-height")
     private lateinit var saveImageHeight: WebElement
 
-    override fun isOpened(): MatryoshkaPage = apply {
+    override fun opened(): MatryoshkaPage = apply {
         clickable(createNewFromUrl)
     }
 
     fun closeAllModalDialogs(): MatryoshkaPage = apply {
-        if (isVisible(popup)) {
-            click(popup)
-        }
+        clickIfVisible(popup)
     }
 
     fun acceptCookieAgreement(): MatryoshkaPage = apply {
-        if (isVisible(acceptCookieAgreement)) {
-            click(acceptCookieAgreement)
-        }
+        clickIfVisible(acceptCookieAgreement)
     }
 
     fun acceptPrivacyAgreement(): MatryoshkaPage = apply {
@@ -120,7 +115,7 @@ class MatryoshkaPage(driver: WebDriver) : BasePage(driver) {
         clickable(saveImageHeight)
         sendText(saveImageHeight, "512")
         click(dialogApply)
-        wait().until(attributeContains(dialogApply, "class", "positive"))
+        attributeContains(dialogApply, "class", "positive")
         click(dialogCancel)
         click(toolAddText)
     }

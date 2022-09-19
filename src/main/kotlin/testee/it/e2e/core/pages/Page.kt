@@ -5,13 +5,19 @@ package testee.it.e2e.core.pages
  */
 interface Page :
     ApplyAction,
+    Attribute,
     Checks,
     Click,
+    Driver,
+    Frame,
+    Number,
+    Presence,
     Retry,
     SelectDropdownOption,
     SendText,
     Tabs,
-    TextToBe,
+    Text,
+    Timeouts,
     Visibility,
     WaitForLoaded,
     WaitForSeconds

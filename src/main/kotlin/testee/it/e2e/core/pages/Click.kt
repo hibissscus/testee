@@ -7,14 +7,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions
 interface Click : Driver, Visibility, Checks {
 
     /**
-     *  Click on specific element [WebElement] on the [Page]
+     *  Check if specific element [WebElement] can be clicked on the [Page]
      */
     fun clickable(element: WebElement): WebElement {
         return wait().until(ExpectedConditions.elementToBeClickable(element))
     }
 
     /**
-     *  Click on specific element by [By] on the [Page]
+     *  Check if specific element by [By] can be clicked on the [Page]
      */
     fun clickable(by: By): WebElement {
         return wait().until(ExpectedConditions.elementToBeClickable(by))
@@ -24,14 +24,14 @@ interface Click : Driver, Visibility, Checks {
      *  Click on specific element [WebElement] on the [Page]
      */
     fun click(element: WebElement) {
-        wait().until(ExpectedConditions.elementToBeClickable(element)).click()
+        clickable(element).click()
     }
 
     /**
      *  Click on specific element [By] on the [Page]
      */
     fun click(by: By) {
-        wait().until(ExpectedConditions.elementToBeClickable(by)).click()
+        clickable(by).click()
     }
 
     /**
@@ -39,7 +39,7 @@ interface Click : Driver, Visibility, Checks {
      */
     fun clickIfVisible(element: WebElement) {
         if (isVisible(element)) {
-            click(element)
+            return click(element)
         }
     }
 
@@ -47,11 +47,9 @@ interface Click : Driver, Visibility, Checks {
      * Click on random [WebElement] and return its text.
      */
     fun clickOnRandomElement(by: By): String {
-        driver().findElements(by)
-            .random()
-            .also {
-                wait().until(ExpectedConditions.elementToBeClickable(it)).click()
-                return it.text
-            }
+        driver().findElements(by).random().also {
+            wait().until(ExpectedConditions.elementToBeClickable(it)).click()
+            return it.text
+        }
     }
 }

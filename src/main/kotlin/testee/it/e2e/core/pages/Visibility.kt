@@ -21,6 +21,28 @@ interface Visibility : Driver {
     }
 
     /**
+     * Checking child [WebElement]s as a part of parent element are visible by [childLocator]
+     */
+    fun visibleAsNested(parentLocator: By, childLocator: By): List<WebElement> {
+        return wait().until(ExpectedConditions.visibilityOfNestedElementsLocatedBy(parentLocator, childLocator))
+    }
+
+    /**
+     * Checking child [WebElement]s as a part of parent [WebElement] are visible by [childLocator]
+     */
+    fun visibleAsNested(parentLocator: WebElement, childLocator: By): List<WebElement> {
+        return wait().until(ExpectedConditions.visibilityOfNestedElementsLocatedBy(parentLocator, childLocator))
+    }
+
+    /**
+     * Checking that all elements present on the web [Page] that match the locator are visible.
+     * Visibility means that the elements are not only displayed but also have a height and width that is greater than 0.
+     */
+    fun visibleAll(elements: List<WebElement>): List<WebElement> {
+        return wait().until(ExpectedConditions.visibilityOfAllElements(elements))
+    }
+
+    /**
      *  Check if specific element [WebElement] is invisible on the [Page]
      */
     fun invisible(element: WebElement): Boolean {

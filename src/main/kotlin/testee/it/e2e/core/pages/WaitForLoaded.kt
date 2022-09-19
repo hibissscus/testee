@@ -7,6 +7,9 @@ interface WaitForLoaded : Driver {
     /**
      * General wait for page source to be loaded with [maxWaitMillis] timeout
      * and pool of [pollDelimiterMillis]
+     *
+     * @param maxWaitMillis maximum amount of wait timeout in seconds
+     * @param pollDelimiterMillis polling time in seconds
      */
     fun waitForLoaded(maxWaitMillis: Int = waitMax().toInt() * 1000, pollDelimiterMillis: Int = 500) {
         val startTime = System.currentTimeMillis()

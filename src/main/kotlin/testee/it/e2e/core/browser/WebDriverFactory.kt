@@ -82,15 +82,19 @@ object WebDriverFactory {
                 println("Chrome: " + driver.capabilities.browserVersion)
                 println("ChromeDriver: " + (driver.capabilities.getCapability("chrome") as Map<*, *>)["chromedriverVersion"])
             }
+
             is FirefoxDriver -> {
                 println("Firefox: " + driver.capabilities.browserVersion)
             }
+
             is EdgeDriver -> {
                 println("Edge: " + driver.capabilities.browserVersion)
             }
+
             is SafariDriver -> {
                 println("Safari: " + driver.capabilities.browserVersion)
             }
+
             else -> {
             }
         }

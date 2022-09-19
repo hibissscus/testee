@@ -52,7 +52,7 @@ interface Visibility : Driver {
     /**
      *   Check if specific element by [By] is invisible on the [Page]
      */
-    fun invisibilityOfElementLocated(by: By): Boolean {
+    fun invisibilityOf(by: By): Boolean {
         return wait().until(ExpectedConditions.invisibilityOfElementLocated(by))
     }
 

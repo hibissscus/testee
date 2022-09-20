@@ -12,6 +12,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLoca
 
 interface Checks : Driver, Timeouts {
 
+
+    /**
+     * Checking the URL of the current [Page] to be a specific [url]
+     */
+    fun urlToBe(url: String) {
+        wait().until(ExpectedConditions.urlToBe(url))
+    }
+
     /**
      * Checking the URL of the current [Page] to contain specific [url] text
      */
@@ -20,10 +28,24 @@ interface Checks : Driver, Timeouts {
     }
 
     /**
+     * Checking the URL of the current [Page] to match a specific regular expression [regex]
+     */
+    fun urlMatches(regex: String) {
+        wait().until(ExpectedConditions.urlMatches(regex))
+    }
+
+    /**
      * Checking the [title] of a [Page]
      */
     fun titleIs(title: String) {
         wait().until(ExpectedConditions.titleIs(title))
+    }
+
+    /**
+     * Checking that the title contains a case-sensitive substring on the [Page]
+     */
+    fun titleContains(title: String) {
+        wait().until(ExpectedConditions.titleContains(title))
     }
 
     /**

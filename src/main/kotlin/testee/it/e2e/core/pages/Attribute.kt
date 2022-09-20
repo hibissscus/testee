@@ -30,7 +30,7 @@ interface Attribute : Driver {
     /**
      * Checking [WebElement] has any non-empty value for given [attribute]
      */
-    fun attributeToBeNonEmpty(element: WebElement, attribute: String): Boolean {
+    fun attributeToBeNotEmpty(element: WebElement, attribute: String): Boolean {
         return wait().until(ExpectedConditions.attributeToBeNotEmpty(element, attribute))
     }
 

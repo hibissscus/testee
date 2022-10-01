@@ -69,8 +69,8 @@ tasks.register<Test>("e2e") {
             "testee.it.version" to "$version",
             "testee.it.reportng.title" to "testee-e2e",
             "testee.it.reportng.slack" to "true",
-            "testee.it.reportng.slack.token" to "xoxb-570287064214-2443726642001-CcLC6vzeHH8KbhKQRQl5f4xJ",
-            "testee.it.reportng.slack.channel" to "test"
+            "testee.it.reportng.slack.token" to "xxxx-xxxxxxxxxx-xxxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx",
+            "testee.it.reportng.slack.channel" to "xxxx"
         )
     }
 }

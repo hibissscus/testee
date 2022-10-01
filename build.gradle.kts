@@ -26,7 +26,7 @@ dependencies {
     // testng
     implementation("org.testng", "testng", "7.5")
     // reportng
-    implementation("com.github.hibissscus:reportng:1.5.0")
+    implementation("com.github.hibissscus:reportng:1.4.9")
 }
 
 tasks {
@@ -34,8 +34,12 @@ tasks {
         description = "run e2e test locally"
         group = "verification"
         outputs.upToDateWhen { false }
+        testLogging.showStandardStreams = true
+        reports.html.required.set(false)
+        reports.junitXml.required.set(false)
         useTestNG {
-            useDefaultListeners = true
+            suites("src/test/resources/local.xml")
+            useDefaultListeners = false
             listeners = setOf("testee.it.reportng.HTMLReporter")
             systemProperties = mapOf(
                 "testee.it.version" to "$version",
@@ -52,18 +56,21 @@ tasks.register<Test>("e2e") {
     description = "run entire e2e test suite"
     group = "verification"
     outputs.upToDateWhen { false }
+    testLogging.showStandardStreams = true
+    reports.html.required.set(false)
+    reports.junitXml.required.set(false)
     useTestNG {
+        suites("src/test/resources/e2e.xml")
         useDefaultListeners = false
         listeners = setOf("testee.it.reportng.HTMLReporterRuntime", "testee.it.reportng.HTMLReporter")
-        suites("src/test/resources/e2e.xml")
         systemProperties = mapOf(
             "e2e.selenium" to System.getProperty("e2e.selenium", ""),
             "e2e.url" to System.getProperty("e2e.url", ""),
             "testee.it.version" to "$version",
             "testee.it.reportng.title" to "testee-e2e",
-            "testee.it.reportng.slack" to "false",
-            "testee.it.reportng.slack.token" to "xxxx-xxxxxxxxxx-xxxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx",
-            "testee.it.reportng.slack.channel" to "xxxx"
+            "testee.it.reportng.slack" to "true",
+            "testee.it.reportng.slack.token" to "xoxb-570287064214-2443726642001-CcLC6vzeHH8KbhKQRQl5f4xJ",
+            "testee.it.reportng.slack.channel" to "test"
         )
     }
 }
@@ -86,9 +93,9 @@ tasks {
     jar {
         duplicatesStrategy = DuplicatesStrategy.EXCLUDE
         from(configurations.runtimeClasspath.get().filter {
-            it.name.contains("reportng") || it.name.contains("velocity") || it.name.contains("spring-web") || it.name.contains("commons-collections")
-                    || it.name.contains("commons-lang") || it.name.contains("gson") || it.name.contains("guice") || it.name.contains("inject")
-                    || it.name.contains("aopalliance")
+            it.name.contains("reportng") || it.name.contains("velocity") || it.name.contains("spring-web") || it.name.contains("commons-collections") || it.name.contains(
+                "commons-lang"
+            ) || it.name.contains("gson") || it.name.contains("guice") || it.name.contains("inject") || it.name.contains("aopalliance")
         }.onEach { println("add from dependencies: ${it.name}") }.map { if (it.isDirectory) it else zipTree(it) })
         val sourcesMain = sourceSets.main.get()
         sourcesMain.allSource.forEach { println("add from sources: ${it.name}") }

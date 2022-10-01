@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite verbose="1" configfailurepolicy="continue" thread-count="1" parallel="tests" name="e2e">
+    <parameter name="browser" value="CHROME"/>
+    <parameter name="headless" value="false"/>
+    <test parallel="classes" name="example">
+        <packages>
+            <package name="testee.it.tests.example.*"/>
+        </packages>
+    </test>
+</suite>

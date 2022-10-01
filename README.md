@@ -20,7 +20,7 @@
 
 1. `gradle` is used for building this `E2E` project
 2. To run `E2E` tests locally we need to install `chromedriver` or `geckodriver`
-    - `brew cask install chromedriver` (or `brew upgrade --cask chromedriver`)
+    - `brew install chromedriver` (or `brew upgrade chromedriver`)
     - `brew install geckodriver` (or `brew upgrade geckodriver`)
 3. Go to `testee.it.e2e.tests` and run any of the test via IDEA with `test` profile (
    ex.: [DinoTest](https://github.com/hibissscus/testee/blob/master/src/test/kotlin/testee/it/tests/example/dino/DinoTest.kt))

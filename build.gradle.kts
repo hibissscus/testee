@@ -1,13 +1,13 @@
 plugins {
     java
-    kotlin("jvm") version "1.7.10"
+    kotlin("jvm") version "1.7.20"
     id("maven-publish")
     id("java-library")
     id("org.jetbrains.dokka") version "1.7.10"
 }
 
 group = "it.testee"
-version = "1.6.4"
+version = "1.6.5"
 
 repositories {
     mavenCentral()
@@ -20,19 +20,20 @@ dependencies {
     // kotlin
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.7.10")
     // selenium
-    implementation("org.seleniumhq.selenium:selenium-java:4.4.0")
+    implementation("org.seleniumhq.selenium:selenium-java:4.5.0")
     // testng
     implementation("org.testng", "testng", "7.5")
     // reportng
-    implementation("com.github.hibissscus:reportng:1.4.8")
+    implementation("com.github.hibissscus:reportng:1.5.0")
 }
 
 tasks {
     test {
         description = "run e2e test locally"
         group = "verification"
+        outputs.upToDateWhen { false }
         useTestNG {
-            useDefaultListeners = false
+            useDefaultListeners = true
             listeners = setOf("testee.it.reportng.HTMLReporter")
             systemProperties = mapOf(
                 "testee.it.version" to "$version",
@@ -48,6 +49,7 @@ tasks {
 tasks.register<Test>("e2e") {
     description = "run entire e2e test suite"
     group = "verification"
+    outputs.upToDateWhen { false }
     useTestNG {
         useDefaultListeners = false
         listeners = setOf("testee.it.reportng.HTMLReporterRuntime", "testee.it.reportng.HTMLReporter")

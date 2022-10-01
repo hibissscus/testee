@@ -19,7 +19,7 @@ services:
     command: "gradle e2e -De2e.selenium=http://selenium-hub:4444"
   selenium-hub:
     container_name: selenium-hub
-    image: selenium/hub:4.4.0-20220831
+    image: selenium/hub:4.5.0-20220929
     ports:
       - "4444:4444"
       - "4443:4443"
@@ -30,7 +30,7 @@ services:
       - SE_SESSION_RETRY_INTERVAL=5
   chrome:
     container_name: chrome
-    image: selenium/node-chrome:4.4.0-20220831
+    image: selenium/node-chrome:4.5.0-20220929
     shm_size: 512m
     volumes:
       - downloads:/home/seluser/

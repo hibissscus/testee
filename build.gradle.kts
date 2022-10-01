@@ -6,8 +6,10 @@ plugins {
     id("org.jetbrains.dokka") version "1.7.10"
 }
 
+
 group = "it.testee"
 version = "1.6.5"
+
 
 repositories {
     mavenCentral()

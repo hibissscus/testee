@@ -11,12 +11,14 @@ import org.testng.annotations.AfterClass
 import org.testng.annotations.AfterMethod
 import org.testng.annotations.BeforeClass
 import org.testng.annotations.BeforeMethod
+import org.testng.annotations.Listeners
 import org.testng.annotations.Optional
 import org.testng.annotations.Parameters
 import org.testng.util.Strings
 import testee.it.e2e.core.browser.Browser
 import testee.it.e2e.core.browser.WebDriverFactory.manageBrowser
 import testee.it.e2e.core.browser.WebDriverFactory.startBrowser
+import testee.it.reportng.HTMLReporter
 import java.io.File
 import java.lang.reflect.Method
 
@@ -27,6 +29,7 @@ import java.lang.reflect.Method
  * All test method names should start with something like: `01 test`, `02 test`, `03 test`,
  * Any instance of [TestBase] will execute test methods by the method name, in lexicographic order.
  */
+@Listeners(HTMLReporter::class)
 abstract class TestBase(
     protected var url: String = "",
     protected var browser: Browser = Browser.CHROME,

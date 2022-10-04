@@ -26,7 +26,7 @@ dependencies {
     // testng
     implementation("org.testng", "testng", "7.5")
     // reportng
-    implementation("com.github.hibissscus:reportng:1.4.9")
+    implementation("com.github.hibissscus:reportng:1.5.0")
 }
 
 tasks {

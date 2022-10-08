@@ -61,14 +61,14 @@ tasks.register<Test>("docker") {
     reports.html.required.set(false)
     reports.junitXml.required.set(false)
     useTestNG {
-        suites("src/test/resources/e2e.xml")
+        suites("src/test/resources/docker.xml")
         useDefaultListeners = false
         listeners = setOf("testee.it.reportng.HTMLReporterRuntime", "testee.it.reportng.HTMLReporter")
         systemProperties = mapOf(
             "e2e.selenium" to System.getProperty("e2e.selenium", ""),
             "e2e.url" to System.getProperty("e2e.url", ""),
             "testee.it.version" to "$version",
-            "testee.it.reportng.title" to "testee-e2e",
+            "testee.it.reportng.title" to "testee-e2e-docker",
             "testee.it.reportng.slack" to "true",
             "testee.it.reportng.slack.token" to "xxxx-xxxxxxxxxx-xxxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx",
             "testee.it.reportng.slack.channel" to "xxxx"

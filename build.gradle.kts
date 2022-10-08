@@ -4,6 +4,7 @@ plugins {
     id("maven-publish")
     id("java-library")
     id("org.jetbrains.dokka") version "1.7.10"
+    id("com.avast.gradle.docker-compose") version ("0.16.9")
 }
 
 
@@ -20,7 +21,7 @@ repositories {
 
 dependencies {
     // kotlin
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.7.10")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib")
     // selenium
     implementation("org.seleniumhq.selenium:selenium-java:4.5.0")
     // testng
@@ -52,7 +53,7 @@ tasks {
     }
 }
 
-tasks.register<Test>("e2e") {
+tasks.register<Test>("docker") {
     description = "run entire e2e test suite"
     group = "verification"
     outputs.upToDateWhen { false }
@@ -113,4 +114,14 @@ publishing {
             from(components["java"])
         }
     }
+}
+
+dockerCompose {
+    useComposeFiles.add(
+        if (org.gradle.internal.os.OperatingSystem.current() != null &&
+            org.gradle.internal.os.OperatingSystem.current().toString().contains("aarch64")
+        ) "docker-compose-arm.yml"
+        else "docker-compose.yml"
+    )
+    isRequiredBy(tasks.getByName("docker"))
 }

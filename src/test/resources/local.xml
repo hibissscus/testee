@@ -4,7 +4,7 @@
     <parameter name="headless" value="false"/>
     <test parallel="classes" name="example">
         <packages>
-            <package name="testee.it.tests.example.*"/>
+            <package name="testee.it.tests.example.dino"/>
         </packages>
     </test>
 </suite>

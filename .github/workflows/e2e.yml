@@ -19,14 +19,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # Runs a set of commands: using the runners shell
-      - name: Run e2e tests via docker-compose
+      # Runs gradle e2e tests
+      - name: Runs gradle e2e tests
         timeout-minutes: 10
-        run: docker-compose up e2e
-        working-directory: .
+        continue-on-error: true
+        run: ./gradlew docker
 
+      # Upload e2e test result as artifact on GitHub
       - name: Upload e2e test result as artifact on GitHub
+        if: ${{ always() }}
         uses: actions/upload-artifact@v3
         with:
           name: e2e_reports
-          path: ./build/reports/tests/e2e/e2e/
+          path: ./build/reports/tests/docker/e2e/

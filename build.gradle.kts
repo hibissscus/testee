@@ -71,7 +71,7 @@ tasks.register<Test>("docker") {
             "testee.it.version" to "$version",
             "testee.it.reportng.title" to "testee-e2e-docker",
             "testee.it.reportng.zip" to "true",
-            "testee.it.reportng.slack" to "true",
+            "testee.it.reportng.slack" to "false",
             "testee.it.reportng.slack.token" to "xxxx-xxxxxxxxxx-xxxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx",
             "testee.it.reportng.slack.channel" to "xxxx"
         )

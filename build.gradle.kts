@@ -27,7 +27,7 @@ dependencies {
     // testng
     implementation("org.testng", "testng", "7.5")
     // reportng
-    implementation("com.github.hibissscus:reportng:1.5.0")
+    implementation("com.github.hibissscus:reportng:1.5.1")
 }
 
 tasks {
@@ -45,6 +45,7 @@ tasks {
             systemProperties = mapOf(
                 "testee.it.version" to "$version",
                 "testee.it.reportng.title" to "testee-e2e",
+                "testee.it.reportng.zip" to "true",
                 "testee.it.reportng.slack" to "false",
                 "testee.it.reportng.slack.token" to "xxxx-xxxxxxxxxx-xxxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx",
                 "testee.it.reportng.slack.channel" to "xxxx"
@@ -69,6 +70,7 @@ tasks.register<Test>("docker") {
             "e2e.url" to System.getProperty("e2e.url", ""),
             "testee.it.version" to "$version",
             "testee.it.reportng.title" to "testee-e2e-docker",
+            "testee.it.reportng.zip" to "true",
             "testee.it.reportng.slack" to "true",
             "testee.it.reportng.slack.token" to "xxxx-xxxxxxxxxx-xxxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx",
             "testee.it.reportng.slack.channel" to "xxxx"

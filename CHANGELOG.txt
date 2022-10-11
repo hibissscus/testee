@@ -3,8 +3,8 @@ Changes in version 1.6.5
 ------------------------
 * kotlin 1.7.20
 * selenium java 4.5.0
-* selenium docker 4.5.0-20220929
-* reportng 1.4.9
+* selenium docker 4.5.0-20221004
+* reportng 1.5.1
 
 
 Changes in version 1.6.4

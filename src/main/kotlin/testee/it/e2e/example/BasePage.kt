@@ -16,11 +16,10 @@ abstract class BasePage(driver: WebDriver) : AbstractPage(driver) {
 
     companion object {
         /**
-         * General wait for page source to be loaded with [maxWaitMillis] timeout
-         * and pool of [pollDelimiterMillis]
+         * General wait for page source to be loaded.
          */
-        fun <P : BasePage> P.loaded(maxWaitMillis: Int = waitMax().toInt() * 1000, pollDelimiterMillis: Int = 500): P {
-            waitForLoaded(maxWaitMillis, pollDelimiterMillis)
+        fun <P : BasePage> P.loaded(): P {
+            waitForLoaded()
             return this
         }
 

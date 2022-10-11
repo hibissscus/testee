@@ -1,28 +1,18 @@
 package testee.it.e2e.core.pages
 
-import org.openqa.selenium.WebDriverException
+import org.openqa.selenium.JavascriptExecutor
+import org.openqa.selenium.WebDriver
+import org.openqa.selenium.support.ui.ExpectedCondition
+
 
 interface WaitForLoaded : Driver {
 
     /**
-     * General wait for page source to be loaded with [maxWaitMillis] timeout
-     * and pool of [pollDelimiterMillis]
-     *
-     * @param maxWaitMillis maximum amount of wait timeout in seconds
-     * @param pollDelimiterMillis polling time in seconds
+     * General wait for page source to be loaded.
      */
-    fun waitForLoaded(maxWaitMillis: Int = waitMax().toInt() * 1000, pollDelimiterMillis: Int = 500) {
-        val startTime = System.currentTimeMillis()
-        while (System.currentTimeMillis() < startTime + maxWaitMillis) {
-            try {
-                val prevState = driver().pageSource
-                Thread.sleep(pollDelimiterMillis.toLong())
-                if (prevState == driver().pageSource) {
-                    return
-                }
-            } catch (e: WebDriverException) {
-                Thread.sleep(pollDelimiterMillis.toLong())
-            }
-        }
+    fun waitForLoaded() {
+        wait().until(ExpectedCondition { webDriver: WebDriver ->
+            (webDriver as JavascriptExecutor).executeScript("return document.readyState") == "complete"
+        } as ExpectedCondition<Boolean>)
     }
 }

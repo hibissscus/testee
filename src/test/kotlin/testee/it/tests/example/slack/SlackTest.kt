@@ -4,6 +4,7 @@ import org.testng.SkipException
 import org.testng.annotations.Test
 import testee.it.e2e.core.browser.Browser
 import testee.it.e2e.core.test.TestBase
+import testee.it.e2e.example.BasePage.Companion.loaded
 import testee.it.e2e.example.BasePage.Companion.newTab
 import testee.it.e2e.example.BasePage.Companion.switchTab
 import testee.it.e2e.example.BasePage.Companion.view

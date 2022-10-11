@@ -129,7 +129,6 @@ interface Checks : Driver, Timeouts {
     fun isInvisible(element: WebElement): Boolean {
         try {
             wait().until(invisibilityOf(element))
-            println(element.isDisplayed)
         } catch (e: TimeoutException) {
             return false
         }

@@ -63,7 +63,7 @@ object WebDriverFactory {
         // navigate to entry point page
         if (url.isNotBlank()) {
             try {
-                driver.navigate().to(url)
+                driver.get(url)
             } catch (_: WebDriverException) {
             }
         }

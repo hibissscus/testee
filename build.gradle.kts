@@ -4,12 +4,12 @@ plugins {
     id("maven-publish")
     id("java-library")
     id("org.jetbrains.dokka") version "1.7.20"
-    id("com.avast.gradle.docker-compose") version ("0.16.9")
+    id("com.avast.gradle.docker-compose") version ("0.16.11")
 }
 
 
 group = "it.testee"
-version = "1.6.5"
+version = "1.6.7"
 
 
 repositories {
@@ -27,7 +27,7 @@ dependencies {
     // testng
     implementation("org.testng", "testng", "7.5")
     // reportng
-    implementation("com.github.hibissscus:reportng:1.5.1")
+    implementation("com.github.hibissscus:reportng:1.5.2")
 }
 
 tasks {

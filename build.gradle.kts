@@ -25,7 +25,7 @@ dependencies {
     // selenium
     implementation("org.seleniumhq.selenium:selenium-java:4.7.2")
     // testng
-    implementation("org.testng", "testng", "7.7.1")
+    implementation("org.testng", "testng", "7.5")
     // reportng
     implementation("com.github.hibissscus:reportng:1.5.3")
 }

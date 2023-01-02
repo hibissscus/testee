@@ -4,7 +4,6 @@ Changes in version 1.6.8
 * selenium java 4.7.2
 * selenium docker 4.7.2-20221219
 * reportng 1.5.3
-* testng 7.7.1
 
 
 Changes in version 1.6.7

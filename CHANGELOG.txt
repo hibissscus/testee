@@ -1,11 +1,18 @@
-Changes in version 1.6.7
+Changes in version 1.6.8
+------------------------
+* kotlin 1.8.0
+* selenium java 4.7.2
+* selenium docker 4.7.2-20221219
+* reportng 1.5.3
+* testng 7.7.1
 
+
+Changes in version 1.6.7
 ------------------------
 * reportng 1.5.2
 
 
 Changes in version 1.6.6
-
 ------------------------
 * kotlin 1.7.21
 * selenium java 4.6.0
@@ -14,7 +21,6 @@ Changes in version 1.6.6
 
 
 Changes in version 1.6.5
-
 ------------------------
 * kotlin 1.7.20
 * selenium java 4.5.0
@@ -24,27 +30,23 @@ Changes in version 1.6.5
 
 
 Changes in version 1.6.4
-
 ------------------------
 * extended selenium interfaces
 
 
 Changes in version 1.6.3
-
 ------------------------
 * reportng 1.4.8
 * testng 7.5
 
 
 Changes in version 1.6.2
-
 ------------------------
 * testng 7.6.1
 * reportng 1.4.7
 
 
 Changes in version 1.6.1
-
 ------------------------
 * kotlin 1.7.10
 * selenium java 4.4.0
@@ -53,7 +55,6 @@ Changes in version 1.6.1
 
 
 Changes in version 1.6.0
-
 ------------------------
 * selenium java 4.3.0
 * selenium docker 4.3.0-20220624
@@ -61,7 +62,6 @@ Changes in version 1.6.0
 
 
 Changes in version 1.5.9
-
 ------------------------
 * kotlin 1.7.0
 * selenium java 4.2.2
@@ -70,7 +70,6 @@ Changes in version 1.5.9
 
 
 Changes in version 1.5.8
-
 ------------------------
 * selenium java 4.2.1
 * selenium docker 4.2.1-20220531

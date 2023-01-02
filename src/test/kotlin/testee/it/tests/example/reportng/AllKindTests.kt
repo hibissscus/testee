@@ -8,7 +8,7 @@ import testee.it.reportng.HTMLReporter
 /**
  * Some successful tests, some not, some skipped 33%.
  */
-@Test
+@Test(groups = ["allkind"])
 @Listeners(HTMLReporter::class)
 class AllKindTests {
 

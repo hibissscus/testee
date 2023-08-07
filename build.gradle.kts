@@ -1,6 +1,6 @@
 plugins {
     java
-    kotlin("jvm") version "1.8.0"
+    kotlin("jvm") version "1.9.0"
     id("maven-publish")
     id("java-library")
     id("org.jetbrains.dokka") version "1.7.20"
@@ -9,7 +9,7 @@ plugins {
 
 
 group = "it.testee"
-version = "1.6.8"
+version = "1.7.0"
 
 
 repositories {
@@ -23,7 +23,7 @@ dependencies {
     // kotlin
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
     // selenium
-    implementation("org.seleniumhq.selenium:selenium-java:4.7.2")
+    implementation("org.seleniumhq.selenium:selenium-java:4.11.0")
     // testng
     implementation("org.testng", "testng", "7.5")
     // reportng

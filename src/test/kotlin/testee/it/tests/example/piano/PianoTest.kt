@@ -17,6 +17,7 @@ class PianoTest : TestBase(url = "https://virtualpiano.net", browser = Browser.C
         PianoPage(driver)
             .open("https://virtualpiano.net")
             .loaded()
+            .hideCookies()
             .freePlay(Note.SYM40, 50)
             .waitForSeconds(10)
     }

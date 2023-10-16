@@ -120,7 +120,7 @@ object WebDriverFactory {
         opt.addArguments("--window-size=1300,900")
 
         if (headless) {
-            opt.setHeadless(headless)
+            opt.addArguments("--headless=new")
             profile.setPreference("media.navigator.streams.fake", true)
             // disable unresponsive script alerts
             profile.setPreference("dom.max_script_run_time", 0)
@@ -168,7 +168,7 @@ object WebDriverFactory {
         }
 
         if (headless) {
-            opt.setHeadless(headless)
+            opt.addArguments("--headless=new")
             opt.addArguments("--disable-gpu")
             opt.addArguments("--disable-dev-shm-usage")
         }
@@ -221,7 +221,7 @@ object WebDriverFactory {
         opt.addArguments("--incognito")
 
         if (headless) {
-            opt.setHeadless(headless)
+            opt.addArguments("--headless=new")
             opt.addArguments("--disable-dev-shm-usage")
         }
 

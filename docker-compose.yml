@@ -6,7 +6,7 @@ version: "3.9"
 services:
   selenium-hub:
     container_name: selenium-hub
-    image: selenium/hub:4.14.1-20231016
+    image: selenium/hub:4.17.0-20240123
     ports:
       - "4444:4444"
       - "4443:4443"
@@ -14,7 +14,7 @@ services:
     environment:
       - TZ=Europe/Berlin
   chrome:
-    image: selenium/node-chrome:4.14.1-20231016
+    image: selenium/node-chrome:4.17.0-20240123
     deploy:
       replicas: 3
     shm_size: 512m

@@ -30,6 +30,6 @@
 
 ### Authors
 
-© 2019-2023 [Sergei Stepanov](https://github.com/hibissscus) (Initial idea, implementation & enhancement)
+© 2019-2024 [Sergei Stepanov](https://github.com/hibissscus) (Initial idea, implementation & enhancement)
 
 <img width="125" alt="testee it" src="https://user-images.githubusercontent.com/1389501/101087856-21f42a80-35b3-11eb-8935-6ac32fb29471.png">

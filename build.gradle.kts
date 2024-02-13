@@ -1,15 +1,15 @@
 plugins {
     java
-    kotlin("jvm") version "1.9.10"
+    kotlin("jvm") version "1.9.22"
     id("maven-publish")
     id("java-library")
-    id("org.jetbrains.dokka") version "1.9.0"
-    id("com.avast.gradle.docker-compose") version ("0.16.11")
+    id("org.jetbrains.dokka") version "1.9.10"
+    id("com.avast.gradle.docker-compose") version ("0.17.6")
 }
 
 
 group = "it.testee"
-version = "1.7.1"
+version = "1.7.2"
 
 
 repositories {
@@ -23,11 +23,11 @@ dependencies {
     // kotlin
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
     // selenium
-    implementation("org.seleniumhq.selenium:selenium-java:4.14.1")
+    implementation("org.seleniumhq.selenium:selenium-java:4.17.0")
     // testng
-    implementation("org.testng", "testng", "7.5")
+    implementation("org.testng", "testng", "7.8.0")
     // reportng
-    implementation("com.github.hibissscus:reportng:1.5.3")
+    implementation("com.github.hibissscus:reportng:1.5.4")
 }
 
 tasks {

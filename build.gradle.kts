@@ -9,7 +9,7 @@ plugins {
 
 
 group = "it.testee"
-version = "1.7.2"
+version = "1.7.3"
 
 
 repositories {
@@ -25,7 +25,7 @@ dependencies {
     // selenium
     implementation("org.seleniumhq.selenium:selenium-java:4.17.0")
     // testng
-    implementation("org.testng", "testng", "7.8.0")
+    implementation("org.testng", "testng", "7.5")
     // reportng
     implementation("com.github.hibissscus:reportng:1.5.4")
 }

@@ -1,15 +1,15 @@
 plugins {
     java
-    kotlin("jvm") version "1.9.22"
+    kotlin("jvm") version "1.9.23"
     id("maven-publish")
     id("java-library")
-    id("org.jetbrains.dokka") version "1.9.10"
+    id("org.jetbrains.dokka") version "1.9.20"
     id("com.avast.gradle.docker-compose") version ("0.17.6")
 }
 
 
 group = "it.testee"
-version = "1.7.3"
+version = "1.7.4"
 
 
 repositories {
@@ -23,11 +23,11 @@ dependencies {
     // kotlin
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
     // selenium
-    implementation("org.seleniumhq.selenium:selenium-java:4.17.0")
+    implementation("org.seleniumhq.selenium:selenium-java:4.19.1")
     // testng
     implementation("org.testng", "testng", "7.5")
     // reportng
-    implementation("com.github.hibissscus:reportng:1.5.5")
+    implementation("com.github.hibissscus:reportng:1.5.6")
 }
 
 tasks {
@@ -45,6 +45,7 @@ tasks {
             systemProperties = mapOf(
                 "testee.it.version" to "$version",
                 "testee.it.reportng.title" to "testee-e2e",
+                "testee.it.reportng.color" to "#f0f8ff",
                 "testee.it.reportng.zip" to "true",
                 "testee.it.reportng.slack" to "false",
                 "testee.it.reportng.slack.token" to "xxxx-xxxxxxxxxx-xxxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx",
@@ -70,6 +71,7 @@ tasks.register<Test>("docker") {
             "e2e.url" to System.getProperty("e2e.url", ""),
             "testee.it.version" to "$version",
             "testee.it.reportng.title" to "testee-e2e-docker",
+            "testee.it.reportng.color" to "#fff0f5",
             "testee.it.reportng.zip" to "true",
             "testee.it.reportng.slack" to "false",
             "testee.it.reportng.slack.token" to "xxxx-xxxxxxxxxx-xxxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx",

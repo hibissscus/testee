@@ -1,3 +1,12 @@
+Changes in version 1.7.4
+------------------------
+* reportng 1.5.6
+* kotlin 1.9.23
+* org.jetbrains.dokka 1.9.20
+* selenium java 4.19.1
+* selenium docker 4.19.1-20240402
+
+
 Changes in version 1.7.3
 ------------------------
 * testng 7.5

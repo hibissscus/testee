@@ -53,7 +53,7 @@ abstract class BasePage(driver: WebDriver) : AbstractPage(driver) {
         /**
          * View specific [Page] and check the [title] on the [Page]
          */
-        fun <P : BasePage, T : BasePage> P.view(page: T): T {
+        fun <T : BasePage> view(page: T): T {
             (page).loaded().opened()
             return page
         }

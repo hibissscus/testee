@@ -187,6 +187,7 @@ object WebDriverFactory {
         opt.addArguments("--disable-notifications")
         opt.addArguments("--window-size=1280,800")
         opt.addArguments("--lang=de")
+        opt.addArguments("--disable-search-engine-choice-screen")
 
 
         val prefs = HashMap<String, Any>()

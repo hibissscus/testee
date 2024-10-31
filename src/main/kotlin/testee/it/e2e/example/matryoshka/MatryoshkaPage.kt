@@ -14,7 +14,10 @@ class MatryoshkaPage(driver: WebDriver) : BasePage(driver) {
     @FindBy(css = ".accept")
     private lateinit var acceptCookieAgreement: WebElement
 
-    @FindBy(id = "home-open-url")
+    @FindBy(id = "splash-file-menu")
+    private lateinit var menu: WebElement
+
+    @FindBy(id = "splash-file-url")
     private lateinit var createNewFromUrl: WebElement
 
     @FindBy(id = "image-url")
@@ -98,6 +101,8 @@ class MatryoshkaPage(driver: WebDriver) : BasePage(driver) {
     }
 
     fun openNewImageFromUrl(imageUrlStr: String): MatryoshkaPage = apply {
+        clickIfVisible(menu)
+        visible(createNewFromUrl)
         click(createNewFromUrl)
         sendText(imageUrl, imageUrlStr)
         click(dialogApply)

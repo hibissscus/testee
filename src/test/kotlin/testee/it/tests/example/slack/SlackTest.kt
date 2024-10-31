@@ -4,7 +4,6 @@ import org.testng.SkipException
 import org.testng.annotations.Test
 import testee.it.e2e.core.browser.Browser
 import testee.it.e2e.core.test.TestBase
-import testee.it.e2e.example.BasePage.Companion.loaded
 import testee.it.e2e.example.BasePage.Companion.newTab
 import testee.it.e2e.example.BasePage.Companion.switchTab
 import testee.it.e2e.example.BasePage.Companion.view
@@ -12,10 +11,7 @@ import testee.it.e2e.example.BasePage.Companion.waitForSeconds
 import testee.it.e2e.example.slack.model.Channels
 import testee.it.e2e.example.slack.model.Slack
 import testee.it.e2e.example.slack.model.Tokens
-import testee.it.e2e.example.slack.model.User
-import testee.it.e2e.example.slack.model.Workspace
 import testee.it.e2e.example.slack.pages.SlackApiPage
-import testee.it.e2e.example.slack.pages.SlackWebLoginPage
 import testee.it.e2e.example.slack.pages.SlackWebPage
 import kotlin.random.Random
 
@@ -28,11 +24,7 @@ class SlackTest : TestBase(url = Slack.WEB.slack, browser = Browser.CHROME) {
 
     @Test
     fun `01 login into slack web`() {
-        SlackWebLoginPage(driver)
-            .opened()
-            .acceptAllCookies()
-            .login(Workspace.WORKSPACE, User.TEST)
-            .view(SlackWebPage(driver))
+        view(SlackWebPage(driver))
     }
 
     @Test

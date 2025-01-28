@@ -9,7 +9,7 @@ plugins {
 
 
 group = "it.testee"
-version = "1.7.5"
+version = "1.8.0"
 
 
 repositories {
@@ -23,9 +23,9 @@ dependencies {
     // kotlin
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
     // selenium
-    implementation("org.seleniumhq.selenium:selenium-java:4.25.0")
+    implementation("org.seleniumhq.selenium:selenium-java:4.28.1")
     // testng
-    implementation("org.testng", "testng", "7.5")
+    implementation("org.testng", "testng", "7.10.2")
     // reportng
     implementation("com.github.hibissscus:reportng:1.5.6")
 }

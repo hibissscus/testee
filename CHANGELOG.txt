@@ -1,3 +1,10 @@
+Changes in version 1.8.0
+------------------------
+* kotlin 2.1.10
+* selenium java 4.28.1
+* selenium docker 4.28.1-20250123
+
+
 Changes in version 1.7.5
 ------------------------
 * kotlin 2.0.20

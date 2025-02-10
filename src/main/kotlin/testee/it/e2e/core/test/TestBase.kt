@@ -172,7 +172,7 @@ abstract class TestBase(
 
     fun takeScreenShot() {
         val screenshotFile = (driver as TakesScreenshot).getScreenshotAs(OutputType.FILE)
-        val outputFolder = "${outputDirectory}/images/$className/$testName" + "_" + this.counter++ + ".png"
+        val outputFolder = "${outputDirectory}/images/$className/$testName/" + "_" + this.counter++ + ".png"
         screenshotFile.copyTo(File(outputFolder))
     }
 

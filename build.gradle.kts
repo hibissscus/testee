@@ -9,7 +9,7 @@ plugins {
 
 
 group = "it.testee"
-version = "1.8.1"
+version = "1.8.2"
 
 
 repositories {
@@ -27,7 +27,7 @@ dependencies {
     // testng
     implementation("org.testng", "testng", "7.7.1")
     // reportng
-    implementation("com.github.hibissscus:reportng:1.5.6")
+    implementation("com.github.hibissscus:reportng:1.6.1")
 }
 
 tasks {
@@ -98,9 +98,13 @@ tasks {
     jar {
         duplicatesStrategy = DuplicatesStrategy.EXCLUDE
         from(configurations.runtimeClasspath.get().filter {
-            it.name.contains("reportng") || it.name.contains("velocity") || it.name.contains("spring-web") || it.name.contains("commons-collections") || it.name.contains(
+            it.name.contains("reportng") || it.name.contains("velocity") || it.name.contains("spring-web") || it.name.contains(
+                "commons-collections"
+            ) || it.name.contains(
                 "commons-lang"
-            ) || it.name.contains("gson") || it.name.contains("guice") || it.name.contains("inject") || it.name.contains("aopalliance")
+            ) || it.name.contains("gson") || it.name.contains("guice") || it.name.contains("inject") || it.name.contains(
+                "aopalliance"
+            )
         }.onEach { println("add from dependencies: ${it.name}") }.map { if (it.isDirectory) it else zipTree(it) })
         val sourcesMain = sourceSets.main.get()
         sourcesMain.allSource.forEach { println("add from sources: ${it.name}") }

@@ -20,7 +20,11 @@ import testee.it.e2e.core.browser.WebDriverFactory.manageBrowser
 import testee.it.e2e.core.browser.WebDriverFactory.startBrowser
 import testee.it.reportng.HTMLReporter
 import java.io.File
+import java.lang.System.currentTimeMillis
 import java.lang.reflect.Method
+import java.util.*
+import kotlin.collections.HashSet
+import kotlin.concurrent.timerTask
 
 
 /**
@@ -46,6 +50,8 @@ abstract class TestBase(
      */
     lateinit var driver: RemoteWebDriver protected set
     protected var hasFailures = 0
+    lateinit var timer: Timer
+    var counter = currentTimeMillis()
 
     /**
      * This part will be executed before any other test methods.
@@ -67,6 +73,13 @@ abstract class TestBase(
         if (!Strings.isNullOrEmpty(optMobile)) mobile = optMobile.toBoolean()
 
         driverStart()
+
+        timer = Timer()
+        timer.scheduleAtFixedRate(
+            timerTask {
+                takeScreenShot()
+            }, 500, 500
+        )
     }
 
     /**
@@ -96,6 +109,7 @@ abstract class TestBase(
     @AfterClass(alwaysRun = true)
     fun driverQuit() {
         if (this::driver.isInitialized) driver.quit()
+        timer.cancel()
     }
 
     /**
@@ -141,7 +155,9 @@ abstract class TestBase(
         // in case if we allow retry for the first method in a test class
         if (itc.allTestMethods.first().methodName == testName) {
             val results = getCorrespondingResultFor(itc, method)
-            if (results != null && (itc.allTestMethods.first().getRetryAnalyzer(results) as RetryAnalyzer).retries == maxRetries()) {
+            if (results != null && (itc.allTestMethods.first()
+                    .getRetryAnalyzer(results) as RetryAnalyzer).retries == maxRetries()
+            ) {
                 // clean up test results from duplication if we do retry
                 itc.skippedTests.allResults.forEach { i ->
                     if (itc.skippedTests.allMethods.contains(i.method)) {
@@ -156,7 +172,7 @@ abstract class TestBase(
 
     fun takeScreenShot() {
         val screenshotFile = (driver as TakesScreenshot).getScreenshotAs(OutputType.FILE)
-        val outputFolder = "${outputDirectory}/images/$className/$testName.png"
+        val outputFolder = "${outputDirectory}/images/$className/$testName" + "_" + this.counter++ + ".png"
         screenshotFile.copyTo(File(outputFolder))
     }
 

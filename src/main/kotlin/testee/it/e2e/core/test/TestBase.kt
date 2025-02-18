@@ -7,8 +7,13 @@ import org.openqa.selenium.remote.RemoteWebDriver
 import org.testng.ITestContext
 import org.testng.ITestResult
 import org.testng.SkipException
-import org.testng.annotations.*
+import org.testng.annotations.AfterClass
+import org.testng.annotations.AfterMethod
+import org.testng.annotations.BeforeClass
+import org.testng.annotations.BeforeMethod
+import org.testng.annotations.Listeners
 import org.testng.annotations.Optional
+import org.testng.annotations.Parameters
 import org.testng.util.Strings
 import testee.it.e2e.core.browser.Browser
 import testee.it.e2e.core.browser.WebDriverFactory.manageBrowser
@@ -103,7 +108,7 @@ abstract class TestBase(
     @AfterClass(alwaysRun = true)
     fun driverQuit() {
         if (this::driver.isInitialized) driver.quit()
-        timer.cancel()
+//        timer.cancel()
     }
 
     /**

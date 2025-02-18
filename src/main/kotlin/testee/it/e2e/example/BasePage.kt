@@ -10,7 +10,21 @@ import testee.it.e2e.core.pages.WaitForSeconds
  * All tests pages should extend this [BasePage]
  * Those methods can be overwritten
  */
-abstract class BasePage(driver: WebDriver) : AbstractPage(driver) {
+abstract class BasePage(driver: WebDriver, screenshot: (String) -> Unit = {}) : AbstractPage(driver, screenshot) {
+
+    /**
+     * Trace applied page method and based on the name take a screenshot.
+     */
+    inline fun <T> T.traceApply(apply: T.() -> Unit): T {
+        Throwable().stackTrace
+            .first { it.className.contains(".e2e") }
+            .also {
+                apply()
+                screenshot()(it.methodName)
+            }
+
+        return this
+    }
 
     abstract fun opened(): BasePage
 

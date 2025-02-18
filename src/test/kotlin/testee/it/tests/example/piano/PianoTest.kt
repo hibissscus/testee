@@ -14,17 +14,13 @@ class PianoTest : TestBase(url = "https://virtualpiano.net", browser = Browser.C
 
     @Test
     fun `01 piano play`() {
-        PianoPage(driver)
+        PianoPage(driver, screenshot = ::takeScreenShot)
             .open("https://virtualpiano.net")
-            .also { takeScreenShot("open") }
             .loaded()
-            .also { takeScreenShot("loaded") }
+            .apply { takeScreenShot("loaded!") }
             .hideCookies()
-            .also { takeScreenShot("hideCookies") }
             .freePlay(Note.SYM40, 50)
-            .also { takeScreenShot("freePlay") }
             .waitForSeconds(10)
-            .also { takeScreenShot("waitForSeconds") }
     }
 
     @Test

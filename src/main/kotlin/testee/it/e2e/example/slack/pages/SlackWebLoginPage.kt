@@ -7,7 +7,7 @@ import testee.it.e2e.example.BasePage
 import testee.it.e2e.example.slack.model.User
 import testee.it.e2e.example.slack.model.Workspace
 
-class SlackWebLoginPage(driver: WebDriver) : BasePage(driver) {
+class SlackWebLoginPage(driver: WebDriver, screenshot: (String) -> Unit) : BasePage(driver, screenshot) {
 
     @FindBy(css = "[data-qa='signin_domain_input']")
     private lateinit var login: WebElement

@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 import testee.it.e2e.example.BasePage
 
-class SlackApiPage(driver: WebDriver) : BasePage(driver) {
+class SlackApiPage(driver: WebDriver, screenshot: (String) -> Unit = {}) : BasePage(driver, screenshot) {
 
     @FindBy(id = "api-arg-token")
     private lateinit var token: WebElement

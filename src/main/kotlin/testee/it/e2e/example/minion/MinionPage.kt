@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 import testee.it.e2e.example.BasePage
 
-class MinionPage(driver: WebDriver) : BasePage(driver) {
+class MinionPage(driver: WebDriver, screenshot: (String) -> Unit = {}) : BasePage(driver, screenshot) {
 
     @FindBy(id = "close-contest")
     private lateinit var popup: WebElement

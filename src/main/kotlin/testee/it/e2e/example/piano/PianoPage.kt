@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy
 import org.openqa.selenium.support.ui.ExpectedConditions
 import testee.it.e2e.example.BasePage
 
-class PianoPage(driver: WebDriver) : BasePage(driver) {
+class PianoPage(driver: WebDriver, screenshot: (String) -> Unit = {}) : BasePage(driver, screenshot) {
 
     @FindBy(css = ".piano-menu__song-start")
     private lateinit var start: WebElement
@@ -23,7 +23,7 @@ class PianoPage(driver: WebDriver) : BasePage(driver) {
     @FindBy(css = ".assist_highlight")
     private lateinit var highlight: WebElement
 
-    override fun opened(): PianoPage = apply {
+    override fun opened(): PianoPage = traceApply {
     }
 
     private fun setAttribute(element: WebElement, attName: String, attValue: String) {
@@ -34,20 +34,20 @@ class PianoPage(driver: WebDriver) : BasePage(driver) {
         )
     }
 
-    fun hideCookies(): PianoPage = apply {
+    fun hideCookies(): PianoPage = traceApply {
         driver().findElements(By.id("qc-cmp2-container")).forEach {
             setAttribute(it, "hidden", "true")
         }
     }
 
-    fun hideAdvertisement(): PianoPage = apply {
+    fun hideAdvertisement(): PianoPage = traceApply {
         driver().findElements(By.cssSelector(".ad-wrap")).forEach {
             setAttribute(it, "hidden", "true")
         }
     }
 
 
-    fun setHighlight(): PianoPage = apply {
+    fun setHighlight(): PianoPage = traceApply {
         click(menu)
         attributeContains(menu, "class", "opened")
         attributeContains(assistMenu, "class", "active")
@@ -56,7 +56,7 @@ class PianoPage(driver: WebDriver) : BasePage(driver) {
         click(menu)
     }
 
-    fun mentorPlay(pause: Long = 180): PianoPage = apply {
+    fun mentorPlay(pause: Long = 180): PianoPage = traceApply {
 //        setHighlight()
 //        waitForSeconds(5)
 //        click(start)
@@ -76,12 +76,17 @@ class PianoPage(driver: WebDriver) : BasePage(driver) {
 
             println("|")
         } while (
-            tick().until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".key-white.key-next, .key-black.key-next"), 0)).size > 0
+            tick().until(
+                ExpectedConditions.numberOfElementsToBeMoreThan(
+                    By.cssSelector(".key-white.key-next, .key-black.key-next"),
+                    0
+                )
+            ).size > 0
         )
         println("Finish")
     }
 
-    fun freePlay(note: Note, pause: Long = 180): PianoPage = apply {
+    fun freePlay(note: Note, pause: Long = 180): PianoPage = traceApply {
         note.note.split("|").forEach {
             driver().findElements(By.cssSelector("#" + it.replace(",", ", #")))
                 .forEach { key -> click(key) }

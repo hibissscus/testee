@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 import testee.it.e2e.example.BasePage
 
-class DinoPage(driver: WebDriver) : BasePage(driver) {
+class DinoPage(driver: WebDriver, screenshot: (String) -> Unit = {}) : BasePage(driver, screenshot) {
 
     @FindBy(css = "body")
     private lateinit var body: WebElement

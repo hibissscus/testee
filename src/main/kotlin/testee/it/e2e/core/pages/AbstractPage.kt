@@ -10,7 +10,7 @@ import java.time.Duration
  * All tests pages should extend this [AbstractPage]
  * Those methods can be overwritten
  */
-abstract class AbstractPage(protected val driver: WebDriver) : Page {
+abstract class AbstractPage(protected val driver: WebDriver, protected val screenshot: (String) -> Unit = {}) : Page {
 
     /**
      * Initialization for all elements on the page marked with annotation
@@ -18,6 +18,10 @@ abstract class AbstractPage(protected val driver: WebDriver) : Page {
      */
     init {
         PageFactory.initElements(driver, this)
+    }
+
+    override fun screenshot(): (String) -> Unit {
+        return screenshot
     }
 
     override fun driver(): WebDriver {

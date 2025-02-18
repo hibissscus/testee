@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 import testee.it.e2e.example.BasePage
 
-class SlackWebPage(driver: WebDriver) : BasePage(driver) {
+class SlackWebPage(driver: WebDriver, screenshot: (String) -> Unit = {}) : BasePage(driver, screenshot) {
 
     @FindBy(css = "[data-qa='channel_sidebar_name_test']")
     private lateinit var testChannel: WebElement

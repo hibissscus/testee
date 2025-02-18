@@ -15,6 +15,7 @@ interface Page :
     Retry,
     SelectDropdownOption,
     SendText,
+    Screenshot,
     Tabs,
     Text,
     Timeouts,

@@ -7,13 +7,8 @@ import org.openqa.selenium.remote.RemoteWebDriver
 import org.testng.ITestContext
 import org.testng.ITestResult
 import org.testng.SkipException
-import org.testng.annotations.AfterClass
-import org.testng.annotations.AfterMethod
-import org.testng.annotations.BeforeClass
-import org.testng.annotations.BeforeMethod
-import org.testng.annotations.Listeners
+import org.testng.annotations.*
 import org.testng.annotations.Optional
-import org.testng.annotations.Parameters
 import org.testng.util.Strings
 import testee.it.e2e.core.browser.Browser
 import testee.it.e2e.core.browser.WebDriverFactory.manageBrowser
@@ -23,7 +18,6 @@ import java.io.File
 import java.lang.System.currentTimeMillis
 import java.lang.reflect.Method
 import java.util.*
-import kotlin.collections.HashSet
 import kotlin.concurrent.timerTask
 
 
@@ -123,7 +117,7 @@ abstract class TestBase(
     @BeforeClass
     fun beforeClass(context: ITestContext) {
         itc = context
-        outputDirectory = context.outputDirectory
+        outputDirectory = context.outputDirectory.replace("Default Suite", "e2e")
         className = this.javaClass.name
         itc.allTestMethods.first().retryAnalyzerClass = RetryAnalyzer::class.java
     }
@@ -170,9 +164,9 @@ abstract class TestBase(
         }
     }
 
-    fun takeScreenShot() {
+    fun takeScreenShot(name: String = "") {
         val screenshotFile = (driver as TakesScreenshot).getScreenshotAs(OutputType.FILE)
-        val outputFolder = "${outputDirectory}/images/$className/$testName/" + "_" + this.counter++ + ".png"
+        val outputFolder = "${outputDirectory}/images/$className/$testName/$name" + "_" + this.counter++ + ".png"
         screenshotFile.copyTo(File(outputFolder))
     }
 

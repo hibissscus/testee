@@ -9,7 +9,7 @@ plugins {
 
 
 group = "it.testee"
-version = "1.8.3"
+version = "1.8.4"
 
 
 repositories {
@@ -27,7 +27,7 @@ dependencies {
     // testng
     implementation("org.testng", "testng", "7.7.1")
     // reportng
-    implementation("com.github.hibissscus:reportng:1.6.2")
+    implementation("com.github.hibissscus:reportng:1.6.5")
 }
 
 tasks {
